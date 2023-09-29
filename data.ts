@@ -1,7 +1,7 @@
 type Color = string;
 
 type Filter = {
-  color: 'grey' | 'red' | 'green' | 'blue';
+  color: 'grey' | 'red' | 'green' | 'blue' | 'black';
 };
 
 type Size = {
@@ -35,9 +35,10 @@ type Char = {
   fontFamily: string;
   color: Color;
   bold: boolean;
+  filter: Filter;
 };
 
-type Figure = 'rectangle' | 'ellipse' | 'circle';
+type Figure = 'rectangle' | 'triangle' | 'circle';
 
 type TextBlock = Block & {
   type: 'text';
@@ -61,17 +62,22 @@ type Operation = {
   next: Operation | null;
 }
 
-type HistoryOperations = {
-  operations: Operation;
-}; 
 
-type Docum = {
-  pages: Canvas;
+type Preview = Workspace & {
+  selected: boolean;
+}
+
+type Workspace = {
+  pages: Array<Canvas>;
 };
 
-type Preview = {
-  id: string;
+type Presentation = {
+  name: string;
+  workspace: Workspace;
+  operation: Operation;
+  preview: Preview;
 }
+
 
 export type {
   Color,
@@ -86,7 +92,7 @@ export type {
   ImageBlock,
   GraphicBlock,
   Operation,
-  HistoryOperations,
-  Docum,
-  Preview
+  Workspace,
+  Preview,
+  Presentation
 }

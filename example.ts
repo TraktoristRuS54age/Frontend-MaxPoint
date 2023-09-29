@@ -11,8 +11,9 @@ import {
   ImageBlock,
   GraphicBlock,
   Operation,
-  HistoryOperations,
-  Docum,
+  Workspace,
+  Presentation,
+  Preview
 } from './data';
 
 
@@ -33,6 +34,9 @@ const textBlock: TextBlock = {
      fontFamily: 'Times New Roman',
      color: '#FCFCFC',
      bold: true,
+     filter: {
+      color: 'black'
+     }
   }],
 };
 
@@ -62,8 +66,9 @@ const graphicBlock: GraphicBlock = {
   },
   type: 'graphic',
   color: '#SSSSSS',
-  form: 'ellipse',
+  form: 'triangle',
 };
+
 
 const canvas: Canvas = {
   name: 'first',
@@ -78,7 +83,10 @@ const canvas: Canvas = {
   objects: [textBlock, imageBlock, graphicBlock],
 };
 
-const doc: Docum = {
-   pages: canvas,
+const preview: Preview  = {
+    selected: false
+};
+
+const workspace: Workspace = {
+   pages: [canvas],
 }; 
- 
