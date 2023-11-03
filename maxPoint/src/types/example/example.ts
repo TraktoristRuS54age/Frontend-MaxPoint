@@ -1,3 +1,8 @@
+/* eslint-disable sort-keys */
+/* eslint-disable prettier/prettier */
+/* eslint-disable sort-imports */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Color,
   Filter,
@@ -14,7 +19,7 @@ import {
   Workspace,
   Presentation,
   Preview
-} from './data';
+} from '../types';
 
 
 const textBlock: TextBlock = {
