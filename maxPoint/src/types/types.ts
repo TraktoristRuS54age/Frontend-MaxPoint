@@ -23,12 +23,12 @@ type Block = {
 };
 
 type Slide = {
-  name: string;
+  id: string;
   background: Color;
   size: Size;
   filter: Filter;
-  selectObjects: Array<Text | ImageBlock | GraphicBlock>;
-  objects: Array<TextBlock | ImageBlock | GraphicBlock>;
+  selectObjects: Graphics;
+  objects: Graphics;
 };
 
 type Char = {
@@ -41,6 +41,9 @@ type Char = {
 };
 
 //Графика (текст, фигуры и изображения)
+type Graphics = {
+  Objects: Array<TextBlock | ImageBlock | GraphicBlock>;
+}
 
 type Figure = 'rectangle' | 'triangle' | 'circle';
 
@@ -63,7 +66,14 @@ type GraphicBlock = Block & {
 
 
 // Сайд бар операций
+type SideBar = {
+  Objects: Array<SideBarElement>;
+}
 
+type SideBarElement = {
+  id: string;
+  data: object;
+}
 type Operation = {
   id: string;
   data: object;
@@ -77,10 +87,10 @@ type History = {
 };
 
 
-type Preview = Presentation & {
-  selected: boolean;
+type Preview = Slide & {
+  prev: Preview | null;
+  next: Preview | null;
 };
-
 
 type Presentation = {
   name: string;
@@ -118,5 +128,6 @@ export type {
   GraphicBlock,
   Operation,
   Preview,
+  SideBar,
   Presentation
 }
