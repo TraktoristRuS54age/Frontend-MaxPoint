@@ -6,7 +6,6 @@ type Filter = {
   color: string[];
 };
 
-
 type Size = {
   width: number;
   height: number;
@@ -16,7 +15,6 @@ type Position = {
   x: number;
   y: number;
 };
-
 
 type Block = {
   id: string;
@@ -68,7 +66,6 @@ type Primitive = Block & {
   };
 };
 
-
 type Operation = {
   id: string;
   data: object;
@@ -78,7 +75,6 @@ type History = {
   operations: Operation[];
   undidOperations: Operation[];
 };
-
 
 // type Preview = Slide & {
 //   prev: Preview | null;
@@ -110,7 +106,6 @@ type Menu = {
   menuElements: MenuElement[];
 };
 
-
 export type {
   FontFamily,
   Color,
@@ -129,5 +124,5 @@ export type {
   Presentation,
   Option,
   MenuElement,
-  Menu
-}
+  Menu,
+};

@@ -1,16 +1,17 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable sort-imports */
 import "./App.css";
-import logo from "./image/logo.png";
-import text from "./image/text.png";
-import figures from "./image/figures.png"
-import photo from "./image/photo.png";
+import logo from "../../resources/img/logo.png";
+import text from "../../resources/img/text.png";
+import figures from "../../resources/img/figures.png"
+import photo from "../../resources/img/photo.png";
 
 function App() {
 
   return (
     <>
       <section className="header">
+
         <div className="header-block">
           <img className="header-img" src={logo} alt="log" />
           <p className="header-text">
@@ -24,8 +25,8 @@ function App() {
           </p>
         </div>
         
-        
       </section>
+      
       <div className="grid-block">
 
         <section className="menu-block">
