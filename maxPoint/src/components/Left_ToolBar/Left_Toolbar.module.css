@@ -1,0 +1,21 @@
+.menu_block {
+    height: 100vh;
+    background-color: rgba(58, 148, 86, 0.5);
+}
+
+.menu_block__list {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+}
+
+.menu_item:not(:first-child) {
+    margin-top: 100px;
+}
+
+.menu_block__img {
+    width: 40px;
+    height: 40px;
+}
