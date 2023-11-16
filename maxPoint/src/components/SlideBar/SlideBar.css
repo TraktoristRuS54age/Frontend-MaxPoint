@@ -1,0 +1,10 @@
+.slide_block {
+    background-color: rgba(158, 173, 58, 0.5);
+    display: flex;
+}
+
+/* .slide_block__item {
+    height: 100%;
+    margin: 25px auto;
+    display: flex;
+} */

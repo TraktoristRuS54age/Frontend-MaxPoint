@@ -136,6 +136,27 @@ const slide: Slide = {
   objects: [text],
 };
 
+const slide1: Slide = {
+  id: uuidv4(),
+  background: color,
+  selectObjects: [image, text, triangle, rectangle, ellipse],
+  objects: [text],
+};
+
+const slide2: Slide = {
+  id: uuidv4(),
+  background: color,
+  selectObjects: [image, text, triangle, rectangle, ellipse],
+  objects: [text],
+};
+
+const slide3: Slide = {
+  id: uuidv4(),
+  background: color,
+  selectObjects: [image, text, triangle, rectangle, ellipse],
+  objects: [text],
+};
+
 const operation: Operation = {
   id: uuidv4(),
   data: {},
@@ -151,7 +172,9 @@ const presentation: Presentation = {
   name: "First",
   currentSlide: slide,
   selectSlides: [],
-  slides: [],
+  slides: [slide, slide1, slide2, slide3],
   operation: operation,
   // preview: Preview,
 };
+
+export default presentation;

@@ -2,15 +2,19 @@
 /* eslint-disable sort-imports */
 import "./App.css";
 import Header from "../Header/Header.tsx";
-import WorkSpace from "../WorkSpace/WorkSpace.tsx";
+import Editor from "../Editor/Editor.tsx";
+import { Presentation } from "../../types/types.ts";
 
 
-function App() {
+type AppProps = {
+  presentation: Presentation
+}
 
+function App({ presentation } : AppProps) {
   return (
     <>
       <Header />
-      <WorkSpace />  
+      <Editor presentation={presentation}/>  
     </>
   );
 }

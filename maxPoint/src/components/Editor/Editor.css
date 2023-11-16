@@ -8,9 +8,6 @@
     grid-template-rows: 80vh 20vh;
 }
 
-.slide_block {
-    background-color: rgba(158, 173, 58, 0.5);
-}
 
 .working_block {
     width: 100%;
@@ -33,22 +30,4 @@
     width: 800px;
     height: 400px;
     background: white;
-}
-
-.slide_block__item {
-    height: 100%;
-    margin: 25px auto;
-    display: flex;
-}
-
-.slide {
-    background: grey;
-    width: 240px;
-    height: 120px;
-    border-radius: 10px;
-    margin-left: 20px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
