@@ -1,10 +1,11 @@
 /* eslint-disable sort-imports */
 import { CSSProperties } from "react"; //типизация стилей
-import { Slide as PropSlide } from "../../types/types";
+import { Slide as TSlide } from "../../types/types";
 import "./Slide.css";
+import { Block } from "../Block/Block";
 
 type SlideProps = {
-  slide: PropSlide;
+  slide: TSlide;
   slideName: number;
 };
 
@@ -15,9 +16,11 @@ function Slide({ slide, slideName }: SlideProps) {
 
   return (
     <div key={slide.id} className="slide" style={style}>
-      <h2>{slideName}</h2>
+      <p> {slideName} </p>;
+      {slide.objects.map((object) => (
+        <Block key={object.id} {...object} />
+      ))}
     </div>
   );
 }
-
 export default Slide;
