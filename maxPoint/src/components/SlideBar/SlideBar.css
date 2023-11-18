@@ -8,3 +8,7 @@
     margin: 25px auto;
     display: flex;
 } */
+
+.slide_block__wrapper {
+    width: 300px;
+}

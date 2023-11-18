@@ -1,5 +1,5 @@
+/* eslint-disable sort-imports */
 import { Char as TChar } from "../../types/types";
-// eslint-disable-next-line sort-imports
 import Char from "../Char/Char";
 
 type TextProps = {

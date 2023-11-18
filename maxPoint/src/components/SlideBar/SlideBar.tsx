@@ -10,17 +10,17 @@ type SlideBarProps = {
 function SlideBar({ slides }: SlideBarProps) {
   return (
     <div className="slide_block">
-      {slides.length > 0
-        ? slides.map((slide, index) => (
-            <div key={index}>
-              <Slide slide={slide} slideName={index} />
-            </div>
-          ))
-        : 
+      {slides.length > 0 ? (
+        slides.map((slide, index) => (
+          <div key={index} className="slide_block__wrapper">
+            <Slide slide={slide} className="slide_block_slide"/>
+          </div>
+        ))
+      ) : (
         <div>
-            <h1>Нет слайдов</h1>
+          <h1>Нет слайдов</h1>
         </div>
-            }
+      )}
     </div>
   );
 }
