@@ -16,6 +16,7 @@ function Block({ position, size, type, data }: BlockProps) {
     left: position.x,
     top: position.y,
     width: size.width,
+    
   };
   return (
     <div className="block" style={style}>

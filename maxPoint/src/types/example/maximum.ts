@@ -87,8 +87,8 @@ const triangle: Primitive = {
   },
   id: uuidv4(),
   position: {
-    x: 0,
-    y: 220,
+    x: 500,
+    y: -10,
   },
   rotation: 20,
   size: size,
@@ -102,8 +102,8 @@ const ellipse: Primitive = {
   },
   id: uuidv4(),
   position: {
-    x: 0,
-    y: 420,
+    x: 200,
+    y: 100,
   },
   rotation: 0,
   size: size,
@@ -134,7 +134,7 @@ const slide: Slide = {
   // size: size,
   // filter: Filter;
   selectObjects: [image, text, triangle, rectangle, ellipse],
-  objects: [image, ellipse],
+  objects: [image, triangle, ellipse],
 };
 
 const slide1: Slide = {

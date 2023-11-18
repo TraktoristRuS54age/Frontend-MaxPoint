@@ -43,14 +43,20 @@ type Char = {
 };
 
 //Графика (текст, фигуры и изображения)
-type Text = Block & {
+interface Text extends Block {
   type: "text";
   data: {
     text: Char[];
   };
-};
+}
+// type Text = Block & {
+//   type: "text";
+//   data: {
+//     text: Char[];
+//   };
+// };
 
-type Image = Block & {
+interface Image extends Block {
   type: "image";
   data: {
     alt: string;

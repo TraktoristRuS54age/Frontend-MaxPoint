@@ -2,7 +2,7 @@
 import text from "../../resources/img/text.png";
 import figures from "../../resources/img/figures.png";
 import photo from "../../resources/img/photo.png";
-import style from "./Left_ToolBar.module.css";
+import style from "./Left_Toolbar.module.css";
 
 function Left_ToolBar() {
   return (

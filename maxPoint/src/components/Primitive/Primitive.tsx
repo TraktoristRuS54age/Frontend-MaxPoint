@@ -5,6 +5,7 @@ type PrimitiveProps = {
     size: Size;
     form: "triangle" | "ellipse" | "rectangle";
   };
+  
 };
 
 function calculateTriangleCoordinates(width: number, height: number): string {
