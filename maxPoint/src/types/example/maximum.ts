@@ -134,7 +134,7 @@ const slide: Slide = {
   // size: size,
   // filter: Filter;
   selectObjects: [image, text, triangle, rectangle, ellipse],
-  objects: [image, triangle, ellipse],
+  objects: [image],
 };
 
 const slide1: Slide = {
