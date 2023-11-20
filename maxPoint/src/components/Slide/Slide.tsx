@@ -21,7 +21,6 @@ function Slide({ slide, className }: SlideProps) {
       className={classNames("slide", className)}
       style={style}
     >
-      <p> {slide.name} </p>;
       {slide.objects.map((object) => (
         <Block key={object.id} {...object} />
       ))}

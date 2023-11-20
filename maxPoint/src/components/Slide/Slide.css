@@ -1,14 +1,14 @@
 .slide {
     position: relative;
+    background: grey;
 }
 
 .slide_block_slide {
     width: 1000px;
-    height: 420px;
-    border-radius: 10px;
+    height: 350px;
     margin: 35px 0 0 20px;
     overflow: hidden;
-    transform: scale(0.3);
+    transform: scale(0.36);
     transform-origin: 0 0;
 }
 

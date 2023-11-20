@@ -1,9 +1,9 @@
+/* eslint-disable sort-imports */
 import "./Block.css";
 import { CSSProperties } from "react";
 import { Image as TImage } from "../../types/types";
 import { Primitive as TPrimitive } from "../../types/types";
 import { Text as TText } from "../../types/types";
-// eslint-disable-next-line sort-imports
 import Image from "../Image/Image";
 import Primitive from "../Primitive/Primitive";
 import Text from "../Text/Text";
@@ -16,8 +16,8 @@ function Block({ position, size, type, data }: BlockProps) {
     left: position.x,
     top: position.y,
     width: size.width,
-    
   };
+
   return (
     <div className="block" style={style}>
       {type === "image" && <Image data={data} />}

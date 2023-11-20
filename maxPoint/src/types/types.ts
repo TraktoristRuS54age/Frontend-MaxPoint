@@ -1,6 +1,7 @@
 type FontFamily = string;
 
 type Color = string;
+type TColor = string;
 
 type Filter = {
   color: string[];
@@ -37,7 +38,7 @@ type Char = {
   value: string;
   fontSize: number;
   fontFamily: string;
-  color: Color;
+  color: TColor;
   bold: boolean;
   id: string;
 };
@@ -116,6 +117,7 @@ type Menu = {
 export type {
   FontFamily,
   Color,
+  TColor,
   Filter,
   Size,
   Position,

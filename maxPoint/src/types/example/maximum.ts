@@ -5,6 +5,7 @@
 import {
   FontFamily,
   Color,
+  TColor,
   Filter,
   Size,
   Position,
@@ -25,6 +26,8 @@ const fontFamily: FontFamily = "Arial";
 
 const color: Color = "#aaaaaa";
 
+const textColor: TColor = "black"
+
 const filter: Filter = {
   color: ['grey', 'red', 'green', 'blue', 'black']
 }
@@ -40,11 +43,11 @@ const position: Position = {
 };
 
 const char: Char = {
-  value: "T",
-  fontSize: 12,
+  value: "maxPoint",
+  fontSize: 30,
   fontFamily: fontFamily,
-  color: color,
-  bold: false,
+  color: textColor,
+  bold: true,
   id: uuidv4(),
 };
 
@@ -56,7 +59,7 @@ const text: Text = {
   },
   id: uuidv4(),
   position: {
-    x: 0,
+    x: 200,
     y: 0,
   },
   rotation: 0,
@@ -73,7 +76,7 @@ const image: Image = {
   id: uuidv4(),
   position: {
     x: 0,
-    y: 20,
+    y: 50,
   },
   rotation: 0,
   size: size,
@@ -117,8 +120,8 @@ const rectangle: Primitive = {
   },
   id: uuidv4(),
   position: {
-    x: 430,
-    y: 0,
+    x: 230,
+    y: 300,
   },
   rotation: 70,
   size: size,
@@ -134,7 +137,7 @@ const slide: Slide = {
   // size: size,
   // filter: Filter;
   selectObjects: [image, text, triangle, rectangle, ellipse],
-  objects: [image],
+  objects: [text, image, triangle, rectangle],
 };
 
 const slide1: Slide = {

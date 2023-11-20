@@ -1,5 +1,6 @@
 .slide_block {
-    background-color: rgba(158, 173, 58, 0.5);
+    background-color: rgba(58, 148, 86, 0.5);
+    box-sizing: border-box;
     display: flex;
 }
 
@@ -11,4 +12,19 @@
 
 .slide_block__wrapper {
     width: 300px;
+}
+
+.slide_block_new-slide {
+    width: 279px;
+    height: 123px;
+    margin: 35px 0 0 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide_block__img {
+    width: 40px;
+    height: 40px;
 }
