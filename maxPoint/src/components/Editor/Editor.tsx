@@ -1,5 +1,5 @@
 /* eslint-disable sort-imports */
-import "./Editor.css";
+import style from "./Editor.module.css";
 import Left_ToolBar from "../Left_ToolBar/Left_ToolBar";
 import SlideBar from "../SlideBar/SlideBar";
 import { Presentation } from "../../types/types";
@@ -11,10 +11,10 @@ type EditorProps = {
 
 function Editor({ presentation }: EditorProps) {
   return (
-    <div className="grid_block">
+    <div className={style.grid_block}>
       <Left_ToolBar />
 
-      <section className="working_block_grid">
+      <section className={style.working_block_grid}>
         <MainWS slide={presentation.currentSlide} />
         <SlideBar slides={presentation.slides} />
       </section>

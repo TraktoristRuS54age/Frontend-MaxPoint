@@ -1,7 +1,7 @@
 /* eslint-disable sort-imports */
 import { CSSProperties } from "react"; //типизация стилей
 import { Slide as TSlide } from "../../types/types";
-import "./Slide.css";
+import style from "./Slide.module.css";
 import Block from "../Block/Block";
 import classNames from "classnames";
 
@@ -11,15 +11,15 @@ type SlideProps = {
 };
 
 function Slide({ slide, className }: SlideProps) {
-  const style: CSSProperties = {
+  const styles: CSSProperties = {
     background: slide.background,
   };
 
   return (
     <div
       key={slide.id}
-      className={classNames("slide", className)}
-      style={style}
+      className={classNames(style.slide, className)}
+      style={styles}
     >
       {slide.objects.map((object) => (
         <Block key={object.id} {...object} />

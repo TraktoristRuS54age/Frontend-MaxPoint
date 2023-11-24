@@ -1,5 +1,5 @@
 /* eslint-disable sort-imports */
-import "./Block.css";
+import style from "./Block.module.css";
 import { CSSProperties } from "react";
 import { Image as TImage } from "../../types/types";
 import { Primitive as TPrimitive } from "../../types/types";
@@ -11,7 +11,7 @@ import Text from "../Text/Text";
 type BlockProps = TPrimitive | TImage | TText;
 
 function Block({ position, size, type, data }: BlockProps) {
-  const style: CSSProperties = {
+  const styles: CSSProperties = {
     height: size.height,
     left: position.x,
     top: position.y,
@@ -19,7 +19,7 @@ function Block({ position, size, type, data }: BlockProps) {
   };
 
   return (
-    <div className="block" style={style}>
+    <div className={style.block} style={styles}>
       {type === "image" && <Image data={data} />}
       {type === "primitive" && <Primitive data={data} />}
       {type === "text" && <Text data={data} />}

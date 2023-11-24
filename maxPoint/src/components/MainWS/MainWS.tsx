@@ -12,7 +12,7 @@ function MainWS({ slide }: WorkspaceProps) {
     return (
       <div className={style.working_block}>
         <div className={style.working_block__wrapper}>
-          <Slide slide={slide} className="working_block__slide" />
+          <Slide slide={slide} className={style.working_block__slide} />
         </div>
       </div>
     );
@@ -21,8 +21,7 @@ function MainWS({ slide }: WorkspaceProps) {
       <div className={style.working_block}>
         <div className={style.working_block__wrapper}></div>
       </div>
-    )
-    
+    );
   }
 }
 
