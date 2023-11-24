@@ -5,9 +5,8 @@
 
 .working_block_grid {
     display: grid;
-    grid-template-rows: 80vh 20vh;
+/*  grid-template-rows: 80vh 20vh;*/
 }
-
 
 .working_block__items {
     display: flex;

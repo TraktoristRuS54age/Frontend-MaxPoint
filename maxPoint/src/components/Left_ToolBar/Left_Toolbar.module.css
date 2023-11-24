@@ -1,6 +1,6 @@
 .menu_block {
     height: 100vh;
-    background-color: rgba(58, 148, 86, 0.5);
+    background-color: rgba(53, 55, 59, 0.815);
 }
 
 .menu_block__list {
@@ -11,8 +11,12 @@
     height: 100%;
 }
 
+.menu_item {
+    cursor: pointer;
+}
+
 .menu_item:not(:first-child) {
-    margin-top: 100px;
+    margin-top: 60px;
 }
 
 .menu_block__img {

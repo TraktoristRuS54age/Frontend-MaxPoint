@@ -1,15 +1,88 @@
 .header_block {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
+}
+
+.header_block_button {
+    margin: 0 10% 0 10%;
+    display: flex;
+    align-items: flex-end;
+    margin-right: 10%;
+}
+
+.header_hist {
+    display: flex;
+    align-items: baseline;
+}
+
+.header_block_center {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    justify-content: flex-start;
+}
+
+.header_button {
+    background: none;
+    width: 25px;
+    height: 25px;
+    border: none;
+    padding: 5px 5px;
+    margin: 0 6px;
+    display: flex;
+    align-items: baseline;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.header_input_number {
+    width: 40px;
+    height: 20px;
+    background: none;
+    border-radius: 0.125rem;
+    align-items: center;
+    appearance: textfield;
+    background-color: transparent;
+    border-width: 0 0 1px 0;
+    border-color: coral;
+}
+
+.header_input_name {
+    width: 160px;
+    height: 30px;
+    background-color: transparent;
+    text-align: center;
+    margin-left: 8%;
+    border-width: 0 0 2px 0;
+    border-color: black;
+}
+
+.button_img {
+    width: 15px;
+    height: 15px;
 }
 
 .header_img {
     width: 40px;
     height: 40px;
     margin-left: 20px;
+    margin-right: 30px;
 }
   
 .header_text {
     margin-left: 20px;
+}
+
+.header_upload {
+    margin-right: 20px;
+    margin-left: 30px;
+}
+
+.header_upload_button {
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    background-color: blueviolet;
 }

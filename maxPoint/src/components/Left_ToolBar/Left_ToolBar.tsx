@@ -2,7 +2,10 @@
 import text from "../../resources/img/text.png";
 import figures from "../../resources/img/figures.png";
 import photo from "../../resources/img/photo.png";
+import upload from "../../resources/img/upload.png";
 import style from "./Left_Toolbar.module.css";
+
+
 
 function Left_ToolBar() {
   return (
@@ -21,6 +24,10 @@ function Left_ToolBar() {
         <div className={style.menu_item}>
           <img className={style.menu_block__img} src={photo}></img>
           <p className={style.menu_block_text}>Photos</p>
+        </div>
+        <div className={style.menu_item}>
+          <img className={style.menu_block__img} src={upload}></img>
+          <p className={style.menu_block_text}>Download</p>
         </div>
       </div>
     </div>
