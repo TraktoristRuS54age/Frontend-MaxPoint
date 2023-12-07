@@ -1,0 +1,13 @@
+.header_input_name {
+    background-color: transparent;
+    text-align: center;
+    border-width: 0 0 2px 0;
+    border-color: black;
+}
+
+.error {
+    background-color: transparent;
+    text-align: center;
+    border-width: 0 0 2px 0;
+    border-color: black;
+}

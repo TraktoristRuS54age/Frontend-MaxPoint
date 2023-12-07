@@ -27,7 +27,7 @@ function Left_ToolBar() {
         </div>
         <div className={style.menu_item}>
           <img className={style.menu_block__img} src={upload}></img>
-          <p className={style.menu_block_text}>Download</p>
+          <p className={style.menu_block_text}>Upload</p>
         </div>
       </div>
     </div>

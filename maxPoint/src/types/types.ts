@@ -47,7 +47,7 @@ type Char = {
 interface Text extends Block {
   type: "text";
   data: {
-    text: Char[];
+    text: Char[],
   };
 }
 // type Text = Block & {

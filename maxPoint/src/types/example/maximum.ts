@@ -52,7 +52,6 @@ const char: Char = {
 };
 
 // graphic
-
 const text: Text = {
   data: {
     text: [char],
@@ -176,7 +175,7 @@ const history: History = {
 
 
 const presentation: Presentation = {
-  name: "First",
+  name: "",
   currentSlide: slide,
   selectSlides: [],
   slides: [slide, slide1, slide2, slide3],

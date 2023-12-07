@@ -1,20 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable sort-imports */
 import logo from "../../resources/img/logo.png";
-import arrowLeft from "../../resources/headerButton/left_48.png";
-import arrowRight from "../../resources/headerButton/right_48.png";
-import minus from "../../resources/headerButton/minus_48.png";
-import plus from "../../resources/headerButton/plus_48.png";
-import bold from "../../resources/headerButton/bold_48.png";
-import italic from "../../resources/headerButton/italic_48.png";
-import delet from "../../resources/headerButton/delete_48.png";
 import style from "./ToolBar.module.css";
 
+<<<<<<< Updated upstream
+=======
+import Title from "../Title/Title";
+import History from "../History/History";
+import Button from "../Button/Button";
+
+>>>>>>> Stashed changes
 function ToolBar() {
   return (
     <div className={style.header_block}>
       <img className={style.header_img} src={logo} alt="log" />
       <div className={style.header_block_center}>
+<<<<<<< Updated upstream
         <div className={style.header_hist}>
           <button type="button" className={style.header_button}>
             <img
@@ -56,10 +57,15 @@ function ToolBar() {
         </div>
 
         <input className={style.header_input_name} type="input" value="first" />
+=======
+        <History />
+        <Button />
+        <Title />
+>>>>>>> Stashed changes
       </div>
       <div className={style.header_upload}>
         <button className={style.header_upload_button} type="button">
-          Upload
+          Download
         </button>
       </div>
     </div>

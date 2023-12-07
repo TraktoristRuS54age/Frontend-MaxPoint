@@ -1,0 +1,23 @@
+.header_hist {
+    display: flex;
+    align-items: baseline;
+}
+
+.header_button {
+    background: none;
+    width: 25px;
+    height: 25px;
+    border: none;
+    padding: 5px 5px;
+    margin: 0 6px;
+    display: flex;
+    align-items: baseline;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.button_img {
+    width: 15px;
+    height: 15px;
+}
