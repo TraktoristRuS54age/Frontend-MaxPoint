@@ -14,7 +14,7 @@ function Left_ToolBar() {
         <div className={style.menu_item}>
           <img className={style.menu_block__img} src={text}></img>
           <p className={style.menu_block_text}>Text</p>
-        </div>
+        </div> 
 
         <div className={style.menu_item}>
           <img className={style.menu_block__img} src={figures}></img>

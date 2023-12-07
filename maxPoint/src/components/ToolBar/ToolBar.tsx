@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable sort-imports */
 import logo from "../../resources/img/logo.png";
 import arrowLeft from "../../resources/headerButton/left_48.png";
@@ -8,6 +9,7 @@ import bold from "../../resources/headerButton/bold_48.png";
 import italic from "../../resources/headerButton/italic_48.png";
 import delet from "../../resources/headerButton/delete_48.png";
 import style from "./ToolBar.module.css";
+
 function ToolBar() {
   return (
     <div className={style.header_block}>
@@ -53,11 +55,7 @@ function ToolBar() {
           </button>
         </div>
 
-        <input
-          className={style.header_input_name}
-          type="text"
-          value="Untitled Project"
-        />
+        <input className={style.header_input_name} type="input" value="first" />
       </div>
       <div className={style.header_upload}>
         <button className={style.header_upload_button} type="button">

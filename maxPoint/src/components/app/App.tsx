@@ -2,14 +2,10 @@
 /* eslint-disable sort-imports */
 import Header from "../Header/Header.tsx";
 import Editor from "../Editor/Editor.tsx";
-import { Presentation } from "../../types/types.ts";
+import presentation from '../../types/example/maximum.ts'
 
 
-type AppProps = {
-  presentation: Presentation
-}
-
-function App({ presentation } : AppProps) {
+function App() {
   return (
     <>
       <Header />
