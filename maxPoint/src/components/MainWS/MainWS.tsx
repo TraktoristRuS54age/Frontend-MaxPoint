@@ -1,18 +1,19 @@
 /* eslint-disable sort-imports */
-import { Slide as PSlide } from "../../types/types.ts";
 import style from "./MainWS.module.css";
 import Slide from "../Slide/Slide.tsx";
+import { useSelector } from "react-redux";
+import { allData } from "../../redux/slide/selectors";
 
-type WorkspaceProps = {
-  slide: PSlide | null;
-};
-
-function MainWS({ slide }: WorkspaceProps) {
-  if (slide != null) {
+function MainWS() {
+  const data = useSelector(allData);
+  if (data.currentSlide != null) {
     return (
       <div className={style.working_block}>
         <div className={style.working_block__wrapper}>
-          <Slide slide={slide} className={style.working_block__slide} />
+          <Slide
+            slide={data.currentSlide}
+            className={style.working_block__slide}
+          />
         </div>
       </div>
     );
