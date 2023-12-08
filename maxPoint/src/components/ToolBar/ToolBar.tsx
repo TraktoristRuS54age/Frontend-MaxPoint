@@ -6,6 +6,7 @@ import style from "./ToolBar.module.css";
 import Title from "../Title/Title";
 import History from "../History/History";
 import Button from "../Button/Button";
+import DownloadButton from "../downloadButton/DownloadButton";
 
 function ToolBar() {
   return (
@@ -17,9 +18,7 @@ function ToolBar() {
         <Title />
       </div>
       <div className={style.header_upload}>
-        <button className={style.header_upload_button} type="button">
-          Download
-        </button>
+        <DownloadButton />
       </div>
     </div>
   );

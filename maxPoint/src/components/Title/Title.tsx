@@ -4,9 +4,12 @@
 import style from "./Title.module.css";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { useAppDispatch } from "../../redux/store";
+import { changeName } from "../../redux/slide/slice";
 import { slideName } from "../../redux/slide/selectors";
 
 export const Title = () => {
+  const dispatch = useAppDispatch();
   const name = useSelector(slideName);
   const {
     //создаём объект используя useForm
@@ -14,13 +17,13 @@ export const Title = () => {
     register, //позволяет регистрировать различные поля (ну знаения крч)
     formState: { errors }, //объект ошибки
   } = useForm({ mode: "onChange" }); //валидация сразу при форме
-  const onSubmit = () => {
-    console.log(name);
+  const onChange = (e) => {
+    dispatch(changeName(e.name));
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onChange={handleSubmit(onChange)}>
         <input
           type="text"
           className={errors.name && style.header_input_name} //если поле содержит ошибку
