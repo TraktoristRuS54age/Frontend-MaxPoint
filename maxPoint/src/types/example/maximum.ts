@@ -175,7 +175,7 @@ const history: History = {
 
 
 const presentation: Presentation = {
-  name: "",
+  name: "danil",
   currentSlide: slide,
   selectSlides: [],
   slides: [slide, slide1, slide2, slide3],
