@@ -2,14 +2,10 @@
 /* eslint-disable sort-keys */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import presentation from "../../types/example/maximum";
-import { Presentation } from "../../types/types";
+import { PresentationSliceState, Presentation } from "../../types/types";
 
-const initialState: Presentation = {
-  name: presentation.name,
-  currentSlide: presentation.currentSlide,
-  selectSlides: presentation.selectSlides,
-  slides: presentation.slides,
-  operation: presentation.operation,
+const initialState: PresentationSliceState = {
+  items: presentation,
 };
 
 export const slideSlice = createSlice({
@@ -17,14 +13,10 @@ export const slideSlice = createSlice({
   initialState,
   reducers: {
     changeName(state, action: PayloadAction<string>) {
-      state.name = action.payload;
+      state.items.name = action.payload;
     },
     setNewData(state, action: PayloadAction<Presentation>) {
-      state.name = action.payload.name;
-      state.currentSlide = action.payload.currentSlide;
-      state.selectSlides = action.payload.selectSlides;
-      state.slides = action.payload.slides;
-      state.operation = action.payload.operation;
+      state.items = action.payload;
     }
   },
 });

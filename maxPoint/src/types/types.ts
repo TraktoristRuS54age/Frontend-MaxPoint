@@ -47,7 +47,7 @@ type Char = {
 interface Text extends Block {
   type: "text";
   data: {
-    text: Char[],
+    text: Char[];
   };
 }
 // type Text = Block & {
@@ -64,7 +64,7 @@ interface Image extends Block {
     src: string;
     size: Size;
   };
-};
+}
 
 type Primitive = Block & {
   type: "primitive";
@@ -97,6 +97,10 @@ type Presentation = {
   operation: Operation;
   // preview: Preview;
 };
+
+interface PresentationSliceState {
+  items: Presentation;
+}
 
 type Option = {
   id: string;
@@ -131,8 +135,8 @@ export type {
   History,
   // Preview,
   Presentation,
+  PresentationSliceState,
   Option,
   MenuElement,
   Menu,
 };
-

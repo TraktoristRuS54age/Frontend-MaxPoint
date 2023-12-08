@@ -18,6 +18,7 @@ import {
   History,
   // Preview,
   Presentation,
+  PresentationSliceState
 } from '../types';
 
 import { v4 as uuidv4 } from "uuid";
@@ -182,5 +183,9 @@ const presentation: Presentation = {
   operation: operation,
   // preview: Preview,
 };
+
+export const presentationSlice: PresentationSliceState = {
+  items: presentation
+}
 
 export default presentation;
