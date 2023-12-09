@@ -1,7 +1,7 @@
 /* eslint-disable sort-imports */
 import { ChangeEvent } from "react";
 import upload from "../../resources/img/upload.png";
-import style from "../Left_ToolBar/Left_Toolbar.module.css";
+import style from "../LeftToolBar/LeftToolbar.module.css";
 import { useAppDispatch } from "../../redux/store";
 import { setNewData } from "../../redux/slide/slice";
 

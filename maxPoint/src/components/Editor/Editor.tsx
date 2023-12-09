@@ -1,9 +1,8 @@
 /* eslint-disable sort-imports */
 import style from "./Editor.module.css";
-import Left_ToolBar from "../Left_ToolBar/Left_ToolBar";
+import Left_ToolBar from "../LeftToolBar/LeftToolBar";
 import SlideBar from "../SlideBar/SlideBar";
 import MainWS from "../MainWS/MainWS";
-
 
 function Editor() {
   return (

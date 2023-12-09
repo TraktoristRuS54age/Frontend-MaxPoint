@@ -1,7 +1,7 @@
 /* eslint-disable sort-imports */
 import style from "./SlideBar.module.css";
 import Slide from "../Slide/Slide";
-import Plus from "../../resources/img/plus.png"
+import Plus from "../../resources/img/plus.png";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import { allData } from "../../redux/slide/selectors";
@@ -13,7 +13,7 @@ function SlideBar() {
       {data.slides.length > 0 ? (
         data.slides.map((slide, index) => (
           <div key={index} className={style.slide_block__wrapper}>
-            <Slide slide={slide} className={style.slide_block_slide}/>
+            <Slide slide={slide} className={style.slide_block_slide} />
           </div>
         ))
       ) : (

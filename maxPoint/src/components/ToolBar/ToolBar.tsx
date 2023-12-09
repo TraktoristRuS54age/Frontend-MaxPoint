@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable sort-imports */
 import logo from "../../resources/img/logo.png";
 import style from "./ToolBar.module.css";
@@ -6,7 +5,7 @@ import style from "./ToolBar.module.css";
 import Title from "../Title/Title";
 import History from "../History/History";
 import Button from "../Button/Button";
-import DownloadButton from "../downloadButton/DownloadButton";
+import DownloadButton from "../DownloadButton/DownloadButton";
 
 function ToolBar() {
   return (

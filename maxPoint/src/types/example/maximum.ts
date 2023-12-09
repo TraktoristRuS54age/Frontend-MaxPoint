@@ -1,5 +1,4 @@
 /* eslint-disable sort-keys */
-/* eslint-disable prettier/prettier */
 /* eslint-disable sort-imports */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
@@ -18,8 +17,8 @@ import {
   History,
   // Preview,
   Presentation,
-  PresentationSliceState
-} from '../types';
+  PresentationSliceState,
+} from "../types";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -27,11 +26,11 @@ const fontFamily: FontFamily = "Arial";
 
 const color: Color = "#aaaaaa";
 
-const textColor: TColor = "black"
+const textColor: TColor = "black";
 
 const filter: Filter = {
-  color: ['grey', 'red', 'green', 'blue', 'black']
-}
+  color: ["grey", "red", "green", "blue", "black"],
+};
 
 const size: Size = {
   height: 200,
@@ -132,7 +131,7 @@ const rectangle: Primitive = {
 
 const slide: Slide = {
   id: uuidv4(),
-  name: 'slide',
+  name: "slide",
   background: color,
   // size: size,
   // filter: Filter;
@@ -142,26 +141,26 @@ const slide: Slide = {
 
 const slide1: Slide = {
   id: uuidv4(),
-  name: 'slide1',
+  name: "slide1",
   background: color,
   selectObjects: [image, text, triangle, rectangle, ellipse],
-  objects: [image],
+  objects: [image, triangle],
 };
 
 const slide2: Slide = {
   id: uuidv4(),
-  name: 'slide2',
+  name: "slide2",
   background: color,
   selectObjects: [image, text, triangle, rectangle, ellipse],
-  objects: [image],
+  objects: [image, rectangle, text],
 };
 
 const slide3: Slide = {
   id: uuidv4(),
-  name: 'slide3',
+  name: "slide3",
   background: color,
   selectObjects: [image, text, triangle, rectangle, ellipse],
-  objects: [image],
+  objects: [image, triangle],
 };
 
 const operation: Operation = {
@@ -174,7 +173,6 @@ const history: History = {
   undidOperations: [],
 };
 
-
 const presentation: Presentation = {
   name: "danil",
   currentSlide: slide,
@@ -185,7 +183,7 @@ const presentation: Presentation = {
 };
 
 export const presentationSlice: PresentationSliceState = {
-  items: presentation
-}
+  items: presentation,
+};
 
 export default presentation;
