@@ -27,3 +27,32 @@
 .input_display {
     display: none;
 }
+
+.figure {
+    position:absolute;
+    display: none;
+    width: auto;
+    height: auto;
+    border-radius: 25px;
+    margin: -94px 0px 0px 100px;
+    border: 1px solid darkorange;
+}
+
+.figure.active {
+    display: block;
+}
+
+.figure_button {
+    background:url("../../resources/img/figures.png")
+}
+
+.figure__menu {
+    display:flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.figure__item {
+    font-size: small;
+    font-weight: 100;
+}
