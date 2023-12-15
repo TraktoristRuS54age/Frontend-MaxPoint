@@ -2,3 +2,8 @@
     position: absolute;
     text-align: center;
 }
+
+.selectArea {
+    outline: dashed red;
+    outline-offset: 2px;
+}

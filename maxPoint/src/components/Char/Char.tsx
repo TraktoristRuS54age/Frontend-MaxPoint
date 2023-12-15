@@ -10,6 +10,7 @@ function Char({ color, fontFamily, fontSize, value, bold }: CharProps) {
     fontFamily,
     fontSize,
     fontWeight: bold ? "bold" : "normal",
+    userSelect: "none",
   };
   return <span style={style}>{value}</span>;
 }

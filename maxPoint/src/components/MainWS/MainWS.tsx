@@ -2,18 +2,15 @@
 import style from "./MainWS.module.css";
 import Slide from "../Slide/Slide.tsx";
 import { useSelector } from "react-redux";
-import { allData } from "../../redux/slide/selectors";
+import { currentSlide } from "../../redux/slide/selectors";
 
 function MainWS() {
-  const data = useSelector(allData);
-  if (data.currentSlide != null) {
+  const data = useSelector(currentSlide);
+  if (data != null) {
     return (
       <div className={style.working_block}>
         <div className={style.working_block__wrapper}>
-          <Slide
-            slide={data.currentSlide}
-            className={style.working_block__slide}
-          />
+          <Slide slide={data} className={style.working_block__slide} />
         </div>
       </div>
     );

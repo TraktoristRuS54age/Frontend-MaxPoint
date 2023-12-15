@@ -65,6 +65,7 @@ const char: Char = {
 const text: Text = {
   data: {
     text: [char],
+    size: textSize,
   },
   id: uuidv4(),
   position: {
@@ -72,7 +73,6 @@ const text: Text = {
     y: 0, // 150
   },
   rotation: 0,
-  size: textSize,
   type: "text",
 };
 
@@ -88,7 +88,6 @@ const image: Image = {
     y: 50, //100
   },
   rotation: 0,
-  size: size,
   type: "image",
 };
 
@@ -103,7 +102,6 @@ const triangle: Primitive = {
     y: -10,
   },
   rotation: 20,
-  size: size,
   type: "primitive",
 };
 
@@ -118,7 +116,6 @@ const ellipse: Primitive = {
     y: 100,
   },
   rotation: 0,
-  size: size,
   type: "primitive",
 };
 
@@ -133,7 +130,6 @@ const rectangle: Primitive = {
     y: 300,
   },
   rotation: 70,
-  size: size,
   type: "primitive",
 };
 

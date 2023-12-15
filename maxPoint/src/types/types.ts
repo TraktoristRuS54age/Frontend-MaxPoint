@@ -20,7 +20,6 @@ type Position = {
 type Block = {
   id: string;
   position: Position;
-  size: Size;
   rotation?: number;
 };
 
@@ -48,6 +47,7 @@ interface Text extends Block {
   type: "text";
   data: {
     text: Char[];
+    size: Size;
   };
 }
 // type Text = Block & {
