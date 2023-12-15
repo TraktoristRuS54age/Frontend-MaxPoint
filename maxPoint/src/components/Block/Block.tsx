@@ -5,21 +5,23 @@ import { CSSProperties, useEffect, useRef, useState } from "react";
 import { Image as TImage } from "../../types/types";
 import { Primitive as TPrimitive } from "../../types/types";
 import { Text as TText } from "../../types/types";
+import { useDnD } from "../../hooks/useDnD/useDnD";
+import { useAppDispatch } from "../../redux/store";
 import Image from "../Image/Image";
 import Primitive from "../Primitive/Primitive";
 import Text from "../Text/Text";
-import { useDnD } from "../../hooks/useDnD/useDnD";
 import classNames from "classnames";
+import { setPosition } from "../../redux/slide/slice";
 
 type BlockProps = TPrimitive | TImage | TText;
 
-function Block({ position, type, data }: BlockProps) {
-  const [state, setState] = useState(position);
+function Block({ position, type, data, id }: BlockProps) {
+  const dispatch = useAppDispatch();
 
   const styles: CSSProperties = {
     minHeight: data.size.height,
-    left: state.x,
-    top: state.y,
+    left: position.x,
+    top: position.y,
     minWidth: data.size.width,
   };
 
@@ -29,13 +31,12 @@ function Block({ position, type, data }: BlockProps) {
   const [selectArea, setSelectArea] = useState(false);
 
   const toggleArea = () => {
-    console.log('toggle');
+    console.log("toggle");
     setSelectArea((area) => !area);
   };
 
   useEffect(() => {
     // TODO: эту логику перемещения можно вынести в отдельный компонент, div, который сможет отрисовывать в себе любой контент
-
     const { onDragStart } = registerDndItem({
       elementRef: ref,
     });
@@ -48,18 +49,18 @@ function Block({ position, type, data }: BlockProps) {
         onDrag: (dragEvent) => {
           dragEvent.preventDefault();
           ref.current!.style.top = `${
-            dragEvent.clientY + (state.y - mouseDownEvent.clientY)
+            dragEvent.clientY + (position.y - mouseDownEvent.clientY)
           }px`;
           ref.current!.style.left = `${
-            dragEvent.clientX + (state.x - mouseDownEvent.clientX)
+            dragEvent.clientX + (position.x - mouseDownEvent.clientX)
           }px`;
         },
         onDrop: (dropEvent) => {
-          setState((state) => ({
-            ...state,
-            x: dropEvent.clientX + (state.x - mouseDownEvent.clientX),
-            y: dropEvent.clientY + (state.y - mouseDownEvent.clientY),
-          }));
+          const pos = {
+            x: dropEvent.clientX + (position.x - mouseDownEvent.clientX),
+            y: dropEvent.clientY + (position.y - mouseDownEvent.clientY),
+          };
+          dispatch(setPosition({ pos, id }));
           toggleArea();
         },
       });
@@ -78,7 +79,7 @@ function Block({ position, type, data }: BlockProps) {
       }
       style={styles}
       ref={ref}
-      onClick={toggleArea}
+      onDoubleClick={toggleArea}
     >
       {type === "image" && <Image data={data} />}
       {type === "primitive" && <Primitive data={data} />}
