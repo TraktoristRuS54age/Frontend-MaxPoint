@@ -21,11 +21,11 @@ type Block = {
   id: string;
   position: Position;
   size: Size;
-  rotation: number;
+  rotation?: number;
 };
 
-type Slide = {
-  id: string;
+interface Slide {
+  id: string,
   name: string;
   background: Color;
   // size: Size;

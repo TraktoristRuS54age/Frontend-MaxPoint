@@ -10,26 +10,36 @@ function SlideBar() {
   const data = useSelector(allData);
   return (
     <div className={style.slide_block}>
-      {data.slides.length > 0 ? (
-        data.slides.map((slide, index) => (
-          <div key={index} className={style.slide_block__wrapper}>
-            <Slide slide={slide} className={style.slide_block_slide} />
+      <div className={style.slide_block_main__wrapper}>
+        {data.slides.length > 0 ? (
+          data.slides.map((slide, index) => (
+            <div key={index} className={style.slide_block__wrapper}>
+              <Slide slide={slide} className={style.slide_block_slide} />
+            </div>
+          ))
+        ) : (
+          <div className={style.slide_block__wrapper}>
+            <div
+              className={classNames(style.slide, style.slide_block_new_slide)}
+            >
+              <img src={Plus} alt="plus" className={style.slide_block__img} />
+            </div>
           </div>
-        ))
-      ) : (
-        <div className={style.slide_block__wrapper}>
-          <div className={classNames(style.slide, style.slide_block_new_slide)}>
-            <img src={Plus} alt="plus" className={style.slide_block__img} />
+        )}
+        {data.slides.length > 0 ? (
+          <div className={style.slide_block__wrapper}>
+            <div
+              className={classNames(
+                style.slide,
+                style.slide_block_new_slide,
+                style.slide_block_new_slide_small,
+              )}
+            >
+              <img src={Plus} alt="plus" className={style.slide_block__img} />
+            </div>
           </div>
-        </div>
-      )}
-      {data.slides.length > 0 ? (
-        <div className={style.slide_block__wrapper}>
-          <div className={classNames(style.slide, style.slide_block_new_slide)}>
-            <img src={Plus} alt="plus" className={style.slide_block__img} />
-          </div>
-        </div>
-      ) : null}
+        ) : null}
+      </div>
     </div>
   );
 }

@@ -37,6 +37,16 @@ const size: Size = {
   width: 400,
 };
 
+const workSize: Size = {
+  height: 400,
+  width: 800,
+}
+
+const textSize: Size = {
+  height: 0,
+  width: 0,
+};
+
 const position: Position = {
   x: 12,
   y: 90,
@@ -58,11 +68,11 @@ const text: Text = {
   },
   id: uuidv4(),
   position: {
-    x: 200,
-    y: 0,
+    x: 200, //200
+    y: 0, // 150
   },
   rotation: 0,
-  size: size,
+  size: textSize,
   type: "text",
 };
 
@@ -74,8 +84,8 @@ const image: Image = {
   },
   id: uuidv4(),
   position: {
-    x: 0,
-    y: 50,
+    x: 0, //200
+    y: 50, //100
   },
   rotation: 0,
   size: size,
@@ -133,8 +143,6 @@ const slide: Slide = {
   id: uuidv4(),
   name: "slide",
   background: color,
-  // size: size,
-  // filter: Filter;
   selectObjects: [image, text, triangle, rectangle, ellipse],
   objects: [text, image, triangle, rectangle],
 };
@@ -177,7 +185,7 @@ const presentation: Presentation = {
   name: "danil",
   currentSlide: slide,
   selectSlides: [],
-  slides: [slide, slide1, slide2, slide3],
+  slides: [slide, slide1, slide2, slide3, slide3, slide3, slide3],
   operation: operation,
   // preview: Preview,
 };

@@ -5,32 +5,31 @@ import plus from "../../resources/headerButton/plus_48.png";
 import bold from "../../resources/headerButton/bold_48.png";
 import italic from "../../resources/headerButton/italic_48.png";
 import delet from "../../resources/headerButton/delete_48.png";
-import { useState } from "react";
+// import { useState } from "react";
 
 function Button() {
-  const [counter, setCounter] = useState(0);
+  // const [counter, setCounter] = useState(0);
 
-  function increment() {
-    setCounter(counter + 1);
-  }
+  // function increment() {
+  //   setCounter(counter + 1);
+  // }
 
-  function decrement() {
-    setCounter(counter - 1);
-  }
+  // function decrement() {
+  //   setCounter(counter - 1);
+  // }
   return (
     <div className={style.header_block_button}>
-      <button type="button" className={style.header_button} onClick={decrement}>
+      <button type="button" className={style.header_button}>
         <img className={style.button_img} src={minus} alt="минус"></img>
       </button>
 
       <input
         className={style.header_input_number}
         type="number"
-        value={counter}
         name="number"
       />
 
-      <button type="button" className={style.header_button} onClick={increment}>
+      <button type="button" className={style.header_button}>
         <img className={style.button_img} src={plus} alt="плюс"></img>
       </button>
 

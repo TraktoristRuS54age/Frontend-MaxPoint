@@ -1,10 +1,11 @@
 /* eslint-disable sort-keys */
 import { configureStore } from "@reduxjs/toolkit";
 import slide from "./slide/slice";
+import stuff from "./someStuff/slice"
 import { useDispatch } from "react-redux";
 
 const store = configureStore({
-  reducer: { slide },
+  reducer: { slide, stuff },
   devTools: process.env.NODE_ENV !== "production",
 });
 

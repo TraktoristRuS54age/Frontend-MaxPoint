@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 /* eslint-disable sort-imports */
 import style from "./Block.module.css";
 import { CSSProperties } from "react";
@@ -12,11 +13,12 @@ type BlockProps = TPrimitive | TImage | TText;
 
 function Block({ position, size, type, data }: BlockProps) {
   const styles: CSSProperties = {
-    height: size.height,
+    minHeight: size.height,
     left: position.x,
     top: position.y,
-    width: size.width,
+    minWidth: size.width,
   };
+
 
   return (
     <div className={style.block} style={styles}>

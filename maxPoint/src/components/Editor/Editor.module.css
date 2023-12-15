@@ -3,6 +3,10 @@
     grid-template-columns: 5vw 100vw;
 }
 
+.extended_columns {
+    grid-template-columns: 5vw 10vw 90vw;
+}
+
 .working_block_grid {
     display: grid;
     grid-template-rows: 74vh 20vh;
