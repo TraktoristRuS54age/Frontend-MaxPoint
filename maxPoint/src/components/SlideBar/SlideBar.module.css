@@ -16,7 +16,7 @@
 .slide_block_main__wrapper {
     position: absolute;
     display: flex;
-    pointer-events: none;
+    /* pointer-events: none; */
     
 }
 
@@ -29,6 +29,17 @@
     width: 276px;
     height: 123px;
     margin-left: 20px;
+}
+
+.wrapper__current {
+    border: solid white;
+    /* outline-offset: 5px; */
+}
+
+.visitor {
+    width: 276px;
+    height: 123px;
+    pointer-events: none;
 }
 
 

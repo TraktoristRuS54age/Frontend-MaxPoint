@@ -91,7 +91,7 @@ type History = {
 
 type Presentation = {
   name: string;
-  currentSlide: Slide | null;
+  currentSlideID: string | null;
   slides: Slide[];
   operation: Operation;
   // preview: Preview;

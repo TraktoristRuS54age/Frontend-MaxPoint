@@ -60,8 +60,8 @@ function Block({ position, type, data, id }: BlockProps) {
             x: dropEvent.clientX + (position.x - mouseDownEvent.clientX),
             y: dropEvent.clientY + (position.y - mouseDownEvent.clientY),
           };
-          dispatch(setPosition({ pos, id }));
           toggleArea();
+          dispatch(setPosition({ pos, id }));
         },
       });
     };

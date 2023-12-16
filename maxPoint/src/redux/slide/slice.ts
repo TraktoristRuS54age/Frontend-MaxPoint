@@ -28,24 +28,20 @@ export const slideSlice = createSlice({
     },
     setPosition(state, action: PayloadAction<TSetPosition>) {
       const { pos, id } = action.payload;
-      state.items.currentSlide!.objects.find(
-        (obj) => obj.id === id,
-      )!.position! = {
-        x: pos.x,
-        y: pos.y,
-      };
-      const currId = state.items.currentSlide?.id;
       state.items.slides
-        .find((slide) => slide.id === currId)!
+        .find((slide) => slide.id === state.items.currentSlideID)!
         .objects.find((obj) => obj.id === id)!.position! = {
         x: pos.x,
         y: pos.y,
       };
     },
+    setNewCurentSlideID(state, action: PayloadAction<string>) {
+      state.items.currentSlideID = action.payload;
+    }
   },
 });
 
-export const { changeName, setNewData, setPosition } = slideSlice.actions;
+export const { changeName, setNewData, setPosition, setNewCurentSlideID } = slideSlice.actions;
 
 const { reducer } = slideSlice;
 export default reducer;
