@@ -31,6 +31,7 @@
     margin-left: 20px;
 }
 
+
 .wrapper__current {
     border: solid white;
     /* outline-offset: 5px; */
@@ -55,6 +56,7 @@
 .slide_block_new_slide_small {
     width: 100px;
 }
+
 
 .slide_block__img {
     width: 40px;

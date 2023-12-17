@@ -4,22 +4,24 @@ import Left_ToolBar from "../LeftToolBar/LeftToolBar";
 import SlideBar from "../SlideBar/SlideBar";
 import MainWS from "../MainWS/MainWS";
 import FigureMenu from "../FigureMenu/FigureMenu";
-import { useSelector } from "react-redux";
-import { isOpen } from "../../redux/someStuff/selectors";
 import classNames from "classnames";
+import { useState } from "react";
 
 function Editor() {
-  const data = useSelector(isOpen);
+  const [isOpen, setIsOpen] = useState(false);
+  const changeIsOpen = () => {
+    setIsOpen((isOpen) => !isOpen)
+  }
   return (
     <div
       className={
-        data
+        isOpen
           ? classNames(style.grid_block, style.extended_columns)
           : style.grid_block
       }
     >
-      <Left_ToolBar />
-      {data ? <FigureMenu /> : null}
+      <Left_ToolBar props={changeIsOpen}/>
+      {isOpen ? <FigureMenu /> : null}
 
       <section className={style.working_block_grid}>
         <MainWS />

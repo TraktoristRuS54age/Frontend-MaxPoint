@@ -1,16 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable sort-keys */
 /* eslint-disable sort-imports */
+import { useContext } from "react";
 import style from "./Title.module.css";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { useAppDispatch } from "../../redux/store";
-import { changeName } from "../../redux/slide/slice";
-import { slideName } from "../../redux/slide/selectors";
+import { PresentationContext } from "../../context/context";
+
 
 export const Title = () => {
-  const dispatch = useAppDispatch();
-  const name = useSelector(slideName);
+  const { presentation, setPresentation } = useContext(PresentationContext);
   const {
     //создаём объект используя useForm
     handleSubmit, //создаём передачу данных
@@ -18,7 +16,9 @@ export const Title = () => {
     formState: { errors }, //объект ошибки
   } = useForm({ mode: "onChange" }); //валидация сразу при форме
   const onChange = (e) => {
-    dispatch(changeName(e.name));
+    const newPresentation = {...presentation}
+    newPresentation.name = e.name;
+    setPresentation(newPresentation);
   };
 
   return (
@@ -27,7 +27,7 @@ export const Title = () => {
         <input
           type="text"
           className={errors.name && style.header_input_name} //если поле содержит ошибку
-          value={name}
+          value={presentation.name}
           {...register("name", {
             required: true, //поле является обязательным для ввода
             minLength: 2, //мин. символов

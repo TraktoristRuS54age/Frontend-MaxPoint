@@ -181,7 +181,7 @@ const presentation: Presentation = {
   name: "danil",
   currentSlideID: slide.id,
   slides: [slide, slide1, slide2, slide3],
-  operation: operation,
+  // operation: operation,
   // preview: Preview,
 };
 

@@ -4,11 +4,12 @@ import figures from "../../resources/img/figures.png";
 import photo from "../../resources/img/photo.png";
 import style from "./LeftToolbar.module.css";
 import UploadButton from "../UploadButton/UploadButton";
-import { useAppDispatch } from "../../redux/store";
-import { changeIsOpen } from "../../redux/someStuff/slice";
 
-function Left_ToolBar() {
-  const dispatch = useAppDispatch();
+type TFunction = {
+  props: () => void;
+}
+
+function Left_ToolBar({props}: TFunction) {
   return (
     <div className={style.menu_block}>
       <div className={style.menu_block__list}>
@@ -18,9 +19,7 @@ function Left_ToolBar() {
         </div>
 
         <div className={style.menu_item}>
-          <button
-            className={style.figure__button}
-            onClick={() => dispatch(changeIsOpen())}>
+          <button className={style.figure__button} onClick={props}>
             <img className={style.menu_block__img} src={figures}></img>
             <p className={style.menu_block_text}>Figure</p>
           </button>

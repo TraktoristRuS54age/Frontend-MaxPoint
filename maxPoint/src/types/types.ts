@@ -93,7 +93,7 @@ type Presentation = {
   name: string;
   currentSlideID: string | null;
   slides: Slide[];
-  operation: Operation;
+  // operation: Operation;
   // preview: Preview;
 };
 

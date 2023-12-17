@@ -1,12 +1,11 @@
 /* eslint-disable sort-imports */
-import { ChangeEvent } from "react";
+import { ChangeEvent, useContext } from "react";
 import upload from "../../resources/img/upload.png";
 import style from "../LeftToolBar/LeftToolbar.module.css";
-import { useAppDispatch } from "../../redux/store";
-import { setNewData } from "../../redux/slide/slice";
+import { PresentationContext } from "../../context/context";
 
 const UploadButton = () => {
-  const dispatch = useAppDispatch();
+  const { setPresentation } = useContext(PresentationContext);
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
     let file: File;
@@ -22,7 +21,7 @@ const UploadButton = () => {
         if (file.type !== "application/json")
           throw Error("invalid file: " + file.type);
         const dataParsing = JSON.parse(reader.result);
-        dispatch(setNewData(dataParsing));
+        setPresentation(dataParsing);
       } catch (error) {
         alert(error);
       }
