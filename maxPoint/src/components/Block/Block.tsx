@@ -5,7 +5,7 @@ import { CSSProperties, useContext, useEffect, useRef, useState } from "react";
 import { Image as TImage } from "../../types/types";
 import { Primitive as TPrimitive } from "../../types/types";
 import { Text as TText } from "../../types/types";
-import { useDnD } from "../../hooks/useDnD/useDnD";
+import { useDnDBlock } from "../../hooks/useDnD/useDnD";
 import Image from "../Image/Image";
 import Primitive from "../Primitive/Primitive";
 import Text from "../Text/Text";
@@ -25,7 +25,7 @@ function Block({ position, type, data, id }: BlockProps) {
     minWidth: data.size.width,
   };
 
-  const { registerDndItem } = useDnD();
+  const { registerDndItem } = useDnDBlock();
 
   const ref = useRef<HTMLDivElement>(null);
   const [selectArea, setSelectArea] = useState(false);

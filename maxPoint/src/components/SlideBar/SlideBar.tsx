@@ -1,57 +1,54 @@
 /* eslint-disable sort-keys */
 /* eslint-disable sort-imports */
 import style from "./SlideBar.module.css";
-import Slide from "../Slide/Slide";
 import Plus from "../../resources/img/plus.png";
 import classNames from "classnames";
+import SlideList from "../SlideList/SlideList";
 import { useContext } from "react";
 import { PresentationContext } from "../../context/context";
 import { Slide as TSlide } from "../../types/types";
 import { v4 as uuidv4 } from "uuid";
+import { useDndList } from "../../hooks/useDnD/useDnD";
 
 function SlideBar() {
   const { presentation, setPresentation } = useContext(PresentationContext);
   const newPresentation = { ...presentation };
-  const currId = presentation.currentSlideID;
-  const setId = (id: string) => {
-    if (id === currId) {
-      return;
-    }
-    newPresentation.currentSlideID = id;
+
+
+  const changeSlideOrder = (from: number, to: number) => {
+    console.log(from, to);
+    const removed = newPresentation.slides.splice(from, 1);
+    newPresentation.slides.splice(to, 0, removed[0]);
     setPresentation(newPresentation);
   };
+
+  const { registerDndItem } = useDndList({
+    onOrderChange: changeSlideOrder,
+  });
+
   const createNewSlide = () => {
     const NewSlide: TSlide = {
       id: uuidv4(),
       name: `${uuidv4()}`,
-      background: '#aaaaaa',
+      background: "#aaaaaa",
       selectObjects: [],
-      objects: []
-    }
+      objects: [],
+    };
     newPresentation.slides.push(NewSlide);
-    setPresentation(newPresentation)
-  }
+    setPresentation(newPresentation);
+  };
+
   return (
     <div className={style.slide_block}>
       <div className={style.slide_block_main__wrapper}>
         {presentation.slides.length > 0 ? (
           presentation.slides.map((slide, index) => (
-            <div
+            <SlideList
               key={index}
-              className={
-                slide.id === currId
-                  ? classNames(
-                      style.slide_block__wrapper,
-                      style.wrapper__current,
-                    )
-                  : style.slide_block__wrapper
-              }
-              onClick={() => setId(slide.id)}
-            >
-              <div className={style.visitor}>
-                <Slide slide={slide} className={style.slide_block_slide} />
-              </div>
-            </div>
+              slide={slide}
+              index={index}
+              registerDndItem={registerDndItem}
+            />
           ))
         ) : (
           <div className={style.slide_block__wrapper} onClick={createNewSlide}>
