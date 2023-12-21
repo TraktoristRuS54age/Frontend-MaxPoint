@@ -4,7 +4,7 @@ import style from "../SlideBar/SlideBar.module.css";
 import Slide from "../Slide/Slide";
 import { Slide as TSlide } from "../../types/types";
 import classNames from "classnames";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { PresentationContext } from "../../context/context";
 import { RegisterDndItemFn } from "../../hooks/useDnD/useDnD";
 import delet from "../../resources/headerButton/delete_48.png";
@@ -20,6 +20,7 @@ const SlideList = (props: SlideListProps) => {
   const { presentation, setPresentation } = useContext(PresentationContext);
   const newPresentation = { ...presentation };
   const currId = presentation.currentSlideID;
+  const [slideID, setSlideID] = useState(slide.id)
 
   const setId = (id: string) => {
     console.log(id)
@@ -28,6 +29,7 @@ const SlideList = (props: SlideListProps) => {
     // }
     newPresentation.currentSlideID = id;
     setPresentation(newPresentation);
+    setSlideID(slide.id)
   };
 
   const removeSlide = (id: string) => {
@@ -39,6 +41,7 @@ const SlideList = (props: SlideListProps) => {
       ? (newPresentation.currentSlideID = null)
       : newPresentation.currentSlideID;
     setPresentation(newPresentation);
+    setSlideID(slide.id)
   };
 
   const ref = useRef<HTMLDivElement>(null);
@@ -85,7 +88,7 @@ const SlideList = (props: SlideListProps) => {
             ? classNames(style.slide_block__wrapper, style.wrapper__current)
             : style.slide_block__wrapper
         }
-        onDoubleClick={() => setId(slide.id)}
+        onClick={() => setId(slideID)}
       >
         <div className={style.visitor}>
           <Slide slide={slide} className={style.slide_block_slide} />
@@ -93,7 +96,7 @@ const SlideList = (props: SlideListProps) => {
       </div>
       <button
         className={style.slide_button}
-        onClick={() => removeSlide(slide.id)}
+        onClick={() => removeSlide(slideID)}
       >
         <img className={style.slide_button_img} src={delet} alt="удалить"></img>
       </button>

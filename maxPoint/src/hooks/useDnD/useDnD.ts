@@ -65,6 +65,9 @@ const useDndList = ({ onOrderChange }: UseDraggableListParams) => {
         startX: 0,
       };
       itemsRef.current[index] = item;
+      if (itemsRef.current[itemsRef.current.length - 1].elementRef.current! === null) {
+        itemsRef.current.pop()
+      }
 
       const onDragStart: OnDragStartFn = ({ onDrag, onDrop }) => {
         item.startX = item.elementRef.current!.getBoundingClientRect().left;
