@@ -20,16 +20,19 @@ const SlideList = (props: SlideListProps) => {
   const { presentation, setPresentation } = useContext(PresentationContext);
   const newPresentation = { ...presentation };
   const currId = presentation.currentSlideID;
-  const [slideID, setSlideID] = useState(slide.id)
+  const [slideID, setSlideID] = useState(slide.id);
 
   const setId = (id: string) => {
-    console.log(id)
-    // if (id === currId) {
-    //   return;
-    // }
+    // отменить выделение selectObjects если мы переместились на другой слайд
+    const updatedSlides = newPresentation.slides.map((slide) =>
+      slide.id === presentation.currentSlideID
+        ? { ...slide, selectObjects: null }
+        : slide,
+    );
+    newPresentation.slides = updatedSlides;
     newPresentation.currentSlideID = id;
     setPresentation(newPresentation);
-    setSlideID(slide.id)
+    setSlideID(slide.id);
   };
 
   const removeSlide = (id: string) => {
@@ -41,13 +44,12 @@ const SlideList = (props: SlideListProps) => {
       ? (newPresentation.currentSlideID = null)
       : newPresentation.currentSlideID;
     setPresentation(newPresentation);
-    setSlideID(slide.id)
+    setSlideID(slide.id);
   };
 
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log(`done ${index}`)
     // TODO: эту логику перемещения можно вынести в отдельный компонент, div, который сможет отрисовывать в себе любой контент
     const { onDragStart } = registerDndItem(index, {
       elementRef: ref,
@@ -70,7 +72,7 @@ const SlideList = (props: SlideListProps) => {
           ref.current!.style.position = "";
           ref.current!.style.zIndex = "";
           ref.current!.style.left = "";
-          console.log('Я в OnDrop')
+          // console.log('Я в OnDrop')
           setId(slide.id);
         },
       });

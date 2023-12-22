@@ -139,7 +139,7 @@ const slide: Slide = {
   id: uuidv4(),
   name: "slide",
   background: color,
-  selectObjects: [image, text, triangle, rectangle, ellipse],
+  selectObjects: null,
   objects: [text, image, triangle, rectangle],
 };
 
@@ -147,7 +147,7 @@ const slide1: Slide = {
   id: uuidv4(),
   name: "slide1",
   background: color,
-  selectObjects: [image, text, triangle, rectangle, ellipse],
+  selectObjects: null,
   objects: [image, triangle],
 };
 
@@ -155,7 +155,7 @@ const slide2: Slide = {
   id: uuidv4(),
   name: "slide2",
   background: color,
-  selectObjects: [image, text, triangle, rectangle, ellipse],
+  selectObjects: null,
   objects: [image, rectangle, text],
 };
 
@@ -163,7 +163,7 @@ const slide3: Slide = {
   id: uuidv4(),
   name: "slide3",
   background: color,
-  selectObjects: [image, text, triangle, rectangle, ellipse],
+  selectObjects: null,
   objects: [image, triangle],
 };
 

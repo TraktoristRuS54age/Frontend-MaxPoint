@@ -6,7 +6,10 @@ type DndItemInfo = {
   controlRef?: RefObject<HTMLDivElement>;
 };
 
-type RegisterDndItemFn = (index: number, dndItemInfo: DndItemInfo) => {
+type RegisterDndItemFn = (
+  index: number,
+  dndItemInfo: DndItemInfo,
+) => {
   onDragStart: OnDragStartFn;
 };
 
@@ -24,16 +27,11 @@ type OnDragStartFn = (args: {
 }) => void;
 
 const useDnDBlock = () => {
-  const registerDndItem = useCallback((dndItemInfo: DndItemInfo) => {
-    const item = {
-      ...dndItemInfo,
-      startY: 0,
-      startX: 0,
-    };
+  const registerDndItem = useCallback(() => {
 
     const onDragStart: OnDragStartFn = ({ onDrag, onDrop }) => {
-      item.startY = item.elementRef.current!.getBoundingClientRect().top;
-      item.startX = item.elementRef.current!.getBoundingClientRect().left;
+      // item.startY = item.elementRef.current!.getBoundingClientRect().top;
+      // item.startX = item.elementRef.current!.getBoundingClientRect().left;
 
       const onMouseUp = (event: MouseEvent) => {
         onDrop(event);
@@ -65,8 +63,11 @@ const useDndList = ({ onOrderChange }: UseDraggableListParams) => {
         startX: 0,
       };
       itemsRef.current[index] = item;
-      if (itemsRef.current[itemsRef.current.length - 1].elementRef.current! === null) {
-        itemsRef.current.pop()
+      if (
+        itemsRef.current[itemsRef.current.length - 1].elementRef.current! ===
+        null
+      ) {
+        itemsRef.current.pop();
       }
 
       const onDragStart: OnDragStartFn = ({ onDrag, onDrop }) => {

@@ -29,7 +29,7 @@ interface Slide {
   background: Color;
   // size: Size;
   // filter: Filter;
-  selectObjects: Array<Text | Image | Primitive>;
+  selectObjects: string | null;
   objects: Array<Text | Image | Primitive>;
 };
 

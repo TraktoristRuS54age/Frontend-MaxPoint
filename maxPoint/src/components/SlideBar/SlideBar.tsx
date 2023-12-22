@@ -16,7 +16,7 @@ function SlideBar() {
 
 
   const changeSlideOrder = (from: number, to: number) => {
-    console.log(from, to);
+    // console.log(from, to);
     const removed = newPresentation.slides.splice(from, 1);
     newPresentation.slides.splice(to, 0, removed[0]);
     setPresentation(newPresentation);
@@ -31,7 +31,7 @@ function SlideBar() {
       id: uuidv4(),
       name: `${uuidv4()}`,
       background: "#aaaaaa",
-      selectObjects: [],
+      selectObjects: null,
       objects: [],
     };
     newPresentation.slides.push(NewSlide);

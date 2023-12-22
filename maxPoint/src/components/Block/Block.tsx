@@ -1,7 +1,7 @@
 /* eslint-disable sort-keys */
 /* eslint-disable sort-imports */
 import style from "./Block.module.css";
-import { CSSProperties, useContext, useEffect, useRef, useState } from "react";
+import { CSSProperties, useContext, useEffect, useRef } from "react";
 import { Image as TImage } from "../../types/types";
 import { Primitive as TPrimitive } from "../../types/types";
 import { Text as TText } from "../../types/types";
@@ -17,6 +17,9 @@ type BlockProps = TPrimitive | TImage | TText;
 function Block({ position, type, data, id }: BlockProps) {
   const { presentation, setPresentation } = useContext(PresentationContext);
   const newPresentation = { ...presentation };
+  const currentSelectObject = newPresentation.slides.find(
+    (slide) => slide.id === newPresentation.currentSlideID,
+  )?.selectObjects;
 
   const styles: CSSProperties = {
     minHeight: data.size.height,
@@ -28,11 +31,25 @@ function Block({ position, type, data, id }: BlockProps) {
   const { registerDndItem } = useDnDBlock();
 
   const ref = useRef<HTMLDivElement>(null);
-  const [selectArea, setSelectArea] = useState(false);
 
   const toggleArea = () => {
     console.log("toggle");
-    setSelectArea((area) => !area);
+    const currentSlide = newPresentation.slides.find(
+      (slide) => slide.id === presentation.currentSlideID,
+    );
+
+    if (currentSlide) {
+      const isSelected = currentSlide.selectObjects === id;
+
+      const updatedSlides = newPresentation.slides.map((slide) =>
+        slide.id === presentation.currentSlideID
+          ? { ...slide, selectObjects: isSelected ? null : id }
+          : slide,
+      );
+
+      newPresentation.slides = updatedSlides;
+      setPresentation(newPresentation);
+    }
   };
 
   const setPosition = (pos: { x: number; y: number }) => {
@@ -58,16 +75,15 @@ function Block({ position, type, data, id }: BlockProps) {
 
   useEffect(() => {
     // TODO: эту логику перемещения можно вынести в отдельный компонент, div, который сможет отрисовывать в себе любой контент
-    const { onDragStart } = registerDndItem({
-      elementRef: ref,
-    });
+    const { onDragStart } = registerDndItem();
 
     const onMouseDown = (mouseDownEvent: MouseEvent) => {
-      if (!selectArea) {
+      if (currentSelectObject !== id) {
         return; // Если toggleArea не активен, выходим из функции
       }
       onDragStart({
         onDrag: (dragEvent) => {
+          console.log(dragEvent.clientX)
           dragEvent.preventDefault();
           ref.current!.style.top = `${
             dragEvent.clientY + (position.y - mouseDownEvent.clientY)
@@ -81,26 +97,27 @@ function Block({ position, type, data, id }: BlockProps) {
             x: dropEvent.clientX + (position.x - mouseDownEvent.clientX),
             y: dropEvent.clientY + (position.y - mouseDownEvent.clientY),
           };
-          toggleArea();
           setPosition(pos);
         },
       });
     };
-    if (selectArea !== null) {
+    if (currentSelectObject !== null) {
       const control = ref.current!;
       control.addEventListener("mousedown", onMouseDown);
       return () => control.removeEventListener("mousedown", onMouseDown);
     }
-  }, [selectArea]);
+  }, [currentSelectObject]);
 
   return (
     <div
       className={
-        selectArea ? classNames(style.block, style.selectArea) : style.block
+        currentSelectObject == id
+          ? classNames(style.block, style.selectArea)
+          : style.block
       }
       style={styles}
       ref={ref}
-      onDoubleClick={toggleArea}
+      onClick={toggleArea}
     >
       {type === "image" && <Image data={data} />}
       {type === "primitive" && <Primitive data={data} />}

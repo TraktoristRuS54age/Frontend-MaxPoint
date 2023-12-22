@@ -5,18 +5,33 @@ import plus from "../../resources/headerButton/plus_48.png";
 import bold from "../../resources/headerButton/bold_48.png";
 import italic from "../../resources/headerButton/italic_48.png";
 import delet from "../../resources/headerButton/delete_48.png";
+import { useContext } from "react";
+import { PresentationContext } from "../../context/context";
 // import { useState } from "react";
 
 function Button() {
-  // const [counter, setCounter] = useState(0);
+  const { presentation, setPresentation } = useContext(PresentationContext);
+  const newPresentation = { ...presentation };
+  const selectedObject = newPresentation.slides.find(
+    (slide) => slide.id === newPresentation.currentSlideID,
+  )?.selectObjects;
 
-  // function increment() {
-  //   setCounter(counter + 1);
-  // }
+  const ObjectDelete = () => {
+    if (selectedObject) {
+      const updatedSlides = newPresentation.slides.map((slide) => {
+        if (slide.selectObjects === selectedObject) {
+          const updatedObjects = slide.objects.filter(
+            (obj) => obj.id !== selectedObject,
+          );
+          return { ...slide, objects: updatedObjects, selectObjects: null };
+        }
+        return slide;
+      });
+      newPresentation.slides = updatedSlides;
+      setPresentation(newPresentation);
+    }
+  };
 
-  // function decrement() {
-  //   setCounter(counter - 1);
-  // }
   return (
     <div className={style.header_block_button}>
       <button type="button" className={style.header_button}>
@@ -41,7 +56,11 @@ function Button() {
         <img className={style.button_img} src={italic} alt="курсив"></img>
       </button>
 
-      <button type="button" className={style.header_button}>
+      <button
+        type="button"
+        className={style.header_button}
+        onClick={ObjectDelete}
+      >
         <img className={style.button_img} src={delet} alt="удалить"></img>
       </button>
     </div>
