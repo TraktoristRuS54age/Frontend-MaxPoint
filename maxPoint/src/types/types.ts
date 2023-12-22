@@ -47,8 +47,8 @@ interface Text extends Block {
   type: "text";
   data: {
     text: Char[];
-    size: Size;
   };
+  size: Size;
 }
 // type Text = Block & {
 //   type: "text";
@@ -60,18 +60,18 @@ interface Text extends Block {
 interface Image extends Block {
   type: "image";
   data: {
-    alt: string;
-    src: string;
-    size: Size;
+    alt?: string;
+    src?: string;
   };
+  size: Size;
 }
 
 type Primitive = Block & {
   type: "primitive";
   data: {
-    size: Size;
-    form: "triangle" | "ellipse" | "rectangle";
+    form?: "triangle" | "ellipse" | "rectangle";
   };
+  size: Size;
 };
 
 type Operation = {

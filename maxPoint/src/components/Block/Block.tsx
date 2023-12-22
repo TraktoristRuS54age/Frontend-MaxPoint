@@ -14,18 +14,21 @@ import { PresentationContext } from "../../context/context";
 
 type BlockProps = TPrimitive | TImage | TText;
 
-function Block({ position, type, data, id }: BlockProps) {
+function Block({ position, type, data, size, id }: BlockProps) {
   const { presentation, setPresentation } = useContext(PresentationContext);
   const newPresentation = { ...presentation };
   const currentSelectObject = newPresentation.slides.find(
     (slide) => slide.id === newPresentation.currentSlideID,
   )?.selectObjects;
+  const currentSlide = newPresentation.slides.find(
+    (slide) => slide.id === newPresentation.currentSlideID,
+  );
 
   const styles: CSSProperties = {
-    minHeight: data.size.height,
+    minHeight: size.height,
     left: position.x,
     top: position.y,
-    minWidth: data.size.width,
+    minWidth: size.width,
   };
 
   const { registerDndItem } = useDnDBlock();
@@ -39,11 +42,9 @@ function Block({ position, type, data, id }: BlockProps) {
     );
 
     if (currentSlide) {
-      const isSelected = currentSlide.selectObjects === id;
-
       const updatedSlides = newPresentation.slides.map((slide) =>
         slide.id === presentation.currentSlideID
-          ? { ...slide, selectObjects: isSelected ? null : id }
+          ? { ...slide, selectObjects: id }
           : slide,
       );
 
@@ -53,10 +54,6 @@ function Block({ position, type, data, id }: BlockProps) {
   };
 
   const setPosition = (pos: { x: number; y: number }) => {
-    const currentSlide = newPresentation.slides.find(
-      (slide) => slide.id === newPresentation.currentSlideID,
-    );
-
     if (currentSlide) {
       const updatedObjects = currentSlide.objects.map((obj) =>
         obj.id === id ? { ...obj, position: { x: pos.x, y: pos.y } } : obj,
@@ -73,40 +70,75 @@ function Block({ position, type, data, id }: BlockProps) {
     }
   };
 
+  const setSize = (size: { height: number; width: number }) => {
+    if (currentSlide) {
+      const updatedObjectsSize = currentSlide.objects.map((obj) =>
+        obj.id === id && (obj.type === "primitive" || obj.type === "image")
+          ? {
+              ...obj,
+              size: {
+                height: size.height < 200 ? 200 : size.height,
+                width: size.width < 100 ? 100 : size.width,
+              },
+            }
+          : obj,
+      );
+
+      const updatedSlide = {
+        ...currentSlide,
+        objects: updatedObjectsSize,
+      };
+
+      const updatedSlides = newPresentation.slides.map((slide) =>
+        slide.id === newPresentation.currentSlideID ? updatedSlide : slide,
+      );
+
+      newPresentation.slides = updatedSlides;
+      setPresentation(newPresentation);
+    }
+  };
+
   useEffect(() => {
     // TODO: эту логику перемещения можно вынести в отдельный компонент, div, который сможет отрисовывать в себе любой контент
-    const { onDragStart } = registerDndItem();
+    const { onChangePosition, onChangeSize } = registerDndItem();
 
     const onMouseDown = (mouseDownEvent: MouseEvent) => {
       if (currentSelectObject !== id) {
         return; // Если toggleArea не активен, выходим из функции
       }
-      onDragStart({
-        onDrag: (dragEvent) => {
-          console.log(dragEvent.clientX)
-          dragEvent.preventDefault();
-          ref.current!.style.top = `${
-            dragEvent.clientY + (position.y - mouseDownEvent.clientY)
-          }px`;
-          ref.current!.style.left = `${
-            dragEvent.clientX + (position.x - mouseDownEvent.clientX)
-          }px`;
-        },
-        onDrop: (dropEvent) => {
-          const pos = {
-            x: dropEvent.clientX + (position.x - mouseDownEvent.clientX),
-            y: dropEvent.clientY + (position.y - mouseDownEvent.clientY),
-          };
-          setPosition(pos);
-        },
-      });
+
+      if (!mouseDownEvent.shiftKey) {
+        console.log(mouseDownEvent);
+        onChangePosition({
+          onDrag: (dragEvent) => {
+            dragEvent.preventDefault();
+            const pos = {
+              x: dragEvent.clientX + (position.x - mouseDownEvent.clientX),
+              y: dragEvent.clientY + (position.y - mouseDownEvent.clientY),
+            };
+            setPosition(pos);
+          },
+        });
+      } else {
+        onChangeSize({
+          onDrag: (dragEvent) => {
+            console.log("перерисовка");
+            dragEvent.preventDefault();
+            const sizes = {
+              height: size.height + dragEvent.clientY - mouseDownEvent.clientY,
+              width: size.width + dragEvent.clientX - mouseDownEvent.clientX,
+            };
+            setSize(sizes);
+          },
+        });
+      }
     };
     if (currentSelectObject !== null) {
       const control = ref.current!;
       control.addEventListener("mousedown", onMouseDown);
       return () => control.removeEventListener("mousedown", onMouseDown);
     }
-  }, [currentSelectObject]);
+  }, [newPresentation]);
 
   return (
     <div
@@ -119,8 +151,8 @@ function Block({ position, type, data, id }: BlockProps) {
       ref={ref}
       onClick={toggleArea}
     >
-      {type === "image" && <Image data={data} />}
-      {type === "primitive" && <Primitive data={data} />}
+      {type === "image" && <Image data={data} size={size} />}
+      {type === "primitive" && <Primitive data={data} size={size} />}
       {type === "text" && <Text data={data} />}
     </div>
   );

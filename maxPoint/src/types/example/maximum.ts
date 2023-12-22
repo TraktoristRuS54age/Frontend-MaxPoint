@@ -43,8 +43,8 @@ const workSize: Size = {
 }
 
 const textSize: Size = {
-  height: 0,
-  width: 0,
+  height: 10,
+  width: 10,
 };
 
 const position: Position = {
@@ -65,9 +65,9 @@ const char: Char = {
 const text: Text = {
   data: {
     text: [char],
-    size: textSize,
   },
   id: uuidv4(),
+  size: textSize,
   position: {
     x: 200, //200
     y: 0, // 150
@@ -79,10 +79,10 @@ const text: Text = {
 const image: Image = {
   data: {
     alt: "base",
-    size: size,
     src: "https://i.pinimg.com/736x/e6/d3/61/e6d361c27b9c198cf5ddea153e88fb94.jpg",
   },
   id: uuidv4(),
+  size: size,
   position: {
     x: 0, //200
     y: 50, //100
@@ -94,9 +94,9 @@ const image: Image = {
 const triangle: Primitive = {
   data: {
     form: "triangle",
-    size: size,
   },
   id: uuidv4(),
+  size: size,
   position: {
     x: 500,
     y: -10,
@@ -108,9 +108,9 @@ const triangle: Primitive = {
 const ellipse: Primitive = {
   data: {
     form: "ellipse",
-    size: size,
   },
   id: uuidv4(),
+  size: size,
   position: {
     x: 200,
     y: 100,
@@ -122,8 +122,8 @@ const ellipse: Primitive = {
 const rectangle: Primitive = {
   data: {
     form: "rectangle",
-    size: size,
   },
+  size: size,
   id: uuidv4(),
   position: {
     x: 230,

@@ -23,18 +23,29 @@ type UseDraggableListParams = {
 
 type OnDragStartFn = (args: {
   onDrag: (event: MouseEvent) => void;
-  onDrop: (event: MouseEvent) => void;
+  onDrop?: (event: MouseEvent) => void;
 }) => void;
 
 const useDnDBlock = () => {
   const registerDndItem = useCallback(() => {
-
-    const onDragStart: OnDragStartFn = ({ onDrag, onDrop }) => {
+    const onChangePosition: OnDragStartFn = ({ onDrag }) => {
       // item.startY = item.elementRef.current!.getBoundingClientRect().top;
       // item.startX = item.elementRef.current!.getBoundingClientRect().left;
 
-      const onMouseUp = (event: MouseEvent) => {
-        onDrop(event);
+      const onMouseUp = () => {
+
+        window.removeEventListener("mousemove", onDrag);
+        window.removeEventListener("mouseup", onMouseUp);
+      };
+      window.addEventListener("mousemove", onDrag);
+      window.addEventListener("mouseup", onMouseUp);
+    };
+
+    const onChangeSize: OnDragStartFn = ({ onDrag }) => {
+      // item.startY = item.elementRef.current!.getBoundingClientRect().top;
+      // item.startX = item.elementRef.current!.getBoundingClientRect().left;
+
+      const onMouseUp = () => {
 
         window.removeEventListener("mousemove", onDrag);
         window.removeEventListener("mouseup", onMouseUp);
@@ -44,7 +55,8 @@ const useDnDBlock = () => {
     };
 
     return {
-      onDragStart,
+      onChangePosition,
+      onChangeSize,
     };
   }, []);
 
@@ -89,7 +101,7 @@ const useDndList = ({ onOrderChange }: UseDraggableListParams) => {
             newIndex = i;
           }
           onOrderChange(index, newIndex);
-          onDrop(event);
+          onDrop!(event);
 
           window.removeEventListener("mousemove", onDrag);
           window.removeEventListener("mouseup", onMouseUp);
