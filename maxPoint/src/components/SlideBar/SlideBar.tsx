@@ -68,7 +68,7 @@ function SlideBar() {
                 style.slide_block_new_slide_small,
               )}
             >
-              <img src={Plus} alt="plus" className={style.slide_block__img} />
+              <img src={Plus} alt="plus" className={style.slide_block__img}/>
             </div>
           </div>
         ) : null}

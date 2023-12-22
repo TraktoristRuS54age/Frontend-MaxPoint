@@ -69,6 +69,7 @@
 .slide_block__img {
     width: 40px;
     height: 40px;
+    user-select: false;
 }
 
 .slide {

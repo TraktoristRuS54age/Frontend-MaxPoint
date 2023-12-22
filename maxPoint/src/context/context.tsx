@@ -12,7 +12,7 @@ export const PresentationContext = createContext<PresentationContextType>({
   presentation: {
     currentSlideID: null,
     name: data.items.name,
-    slides: data.items.slides,
+    slides: [],
   },
   setPresentation: () => {},
 });
@@ -21,7 +21,7 @@ function PresentationProvider({ children }: PropsWithChildren) {
   const [presentation, setPresentation] = useState<Presentation>({
     currentSlideID: null,
     name: data.items.name,
-    slides: data.items.slides,
+    slides: [],
   });
 
   const handleSetPresentation = (newPresentation: Presentation) => {

@@ -23,12 +23,13 @@ function Block({ position, type, data, size, id }: BlockProps) {
   const currentSlide = newPresentation.slides.find(
     (slide) => slide.id === newPresentation.currentSlideID,
   );
+  console.log('Перерисовка')
 
   const styles: CSSProperties = {
-    minHeight: size.height,
+    height: size.height,
     left: position.x,
     top: position.y,
-    minWidth: size.width,
+    width: size.width,
   };
 
   const { registerDndItem } = useDnDBlock();
@@ -36,7 +37,6 @@ function Block({ position, type, data, size, id }: BlockProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const toggleArea = () => {
-    console.log("toggle");
     const currentSlide = newPresentation.slides.find(
       (slide) => slide.id === presentation.currentSlideID,
     );
@@ -77,7 +77,7 @@ function Block({ position, type, data, size, id }: BlockProps) {
           ? {
               ...obj,
               size: {
-                height: size.height < 200 ? 200 : size.height,
+                height: size.height < 100 ? 100 : size.height,
                 width: size.width < 100 ? 100 : size.width,
               },
             }
@@ -108,7 +108,7 @@ function Block({ position, type, data, size, id }: BlockProps) {
       }
 
       if (!mouseDownEvent.shiftKey) {
-        console.log(mouseDownEvent);
+        // console.log(mouseDownEvent);
         onChangePosition({
           onDrag: (dragEvent) => {
             dragEvent.preventDefault();

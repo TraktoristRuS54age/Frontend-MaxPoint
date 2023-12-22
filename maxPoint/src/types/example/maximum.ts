@@ -43,8 +43,8 @@ const workSize: Size = {
 }
 
 const textSize: Size = {
-  height: 10,
-  width: 10,
+  height: 50,
+  width: 200,
 };
 
 const position: Position = {
