@@ -30,8 +30,8 @@
 }
 
 .slide_block__wrapper {
-    width: 276px;
-    height: 123px;
+    width: 246px;
+    height: 127px;
     margin-left: 20px;
     position: relative;
     box-sizing: border-box;
@@ -78,10 +78,10 @@
 }
 
 .slide_block_slide {
-    width: 770px;
-    height: 350px;
+    width: 800px;
+    height: 500px;
     overflow: hidden;
-    transform: scale(0.36);
+    transform: scale(0.3);
     transform-origin: 0 0;
 }
 
@@ -89,7 +89,7 @@
     color: black;
     position: absolute;
     top: 0px;
-    left: 262px;
+    left: 227px;
     padding: 2px 6px;
 }
 

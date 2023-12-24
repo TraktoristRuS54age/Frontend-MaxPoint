@@ -21,8 +21,8 @@ function Left_ToolBar({props}: TFunction) {
         <div className={style.menu_item}>
           <button className={style.figure__button} onClick={props}>
             <img className={style.menu_block__img} src={figures}></img>
-            <p className={style.menu_block_text}>Figure</p>
           </button>
+          <p className={style.menu_block_text}>Figure</p>
         </div>
 
         <div className={style.menu_item}>

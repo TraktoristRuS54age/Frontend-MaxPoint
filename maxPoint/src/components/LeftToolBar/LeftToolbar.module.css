@@ -27,3 +27,10 @@
 .input_display {
     display: none;
 }
+.figure__button {
+    background-color: transparent;
+    border: none;
+}
+.figure__button:focus {
+    outline: none;
+}
