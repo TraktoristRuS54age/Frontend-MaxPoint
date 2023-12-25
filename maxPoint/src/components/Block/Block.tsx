@@ -5,7 +5,7 @@ import { CSSProperties, useContext, useEffect, useRef } from "react";
 import { Image as TImage } from "../../types/types";
 import { Primitive as TPrimitive } from "../../types/types";
 import { Text as TText } from "../../types/types";
-import { useDnDBlock } from "../../hooks/useDnD/useDnD";
+import { useDnDBlock } from "../../hooks/useDnD/useDragBlock";
 import Image from "../Image/Image";
 import Primitive from "../Primitive/Primitive";
 import Text from "../Text/Text";

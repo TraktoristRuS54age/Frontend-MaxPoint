@@ -6,7 +6,7 @@ import { Slide as TSlide } from "../../types/types";
 import classNames from "classnames";
 import { useContext, useEffect, useRef, useState } from "react";
 import { PresentationContext } from "../../context/context";
-import { RegisterDndItemFn } from "../../hooks/useDnD/useDnD";
+import { RegisterDndItemFn } from "../../hooks/useDnD/useDragSlideList";
 import delet from "../../resources/headerButton/delete_48.png";
 
 interface SlideListProps {

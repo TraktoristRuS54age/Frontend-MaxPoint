@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { PresentationContext } from "../../context/context";
 import { Slide as TSlide } from "../../types/types";
 import { v4 as uuidv4 } from "uuid";
-import { useDndList } from "../../hooks/useDnD/useDnD";
+import { useDndList } from "../../hooks/useDnD/useDragSlideList";
 
 function SlideBar() {
   const { presentation, setPresentation } = useContext(PresentationContext);
