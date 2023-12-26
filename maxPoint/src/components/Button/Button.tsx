@@ -5,6 +5,7 @@ import plus from "../../resources/headerButton/plus_48.png";
 import bold from "../../resources/headerButton/bold_48.png";
 import italic from "../../resources/headerButton/italic_48.png";
 import delet from "../../resources/headerButton/delete_48.png";
+import zalivka from "../../resources/headerButton/zalivka_48.png"
 import { useContext } from "react";
 import { PresentationContext } from "../../context/context";
 // import { useState } from "react";
@@ -62,6 +63,10 @@ function Button() {
         onClick={ObjectDelete}
       >
         <img className={style.button_img} src={delet} alt="удалить"></img>
+      </button>
+
+      <button type="button" className={style.header_button}>
+        <img className={style.button_img} src={zalivka} alt="заливка"></img>
       </button>
     </div>
   );

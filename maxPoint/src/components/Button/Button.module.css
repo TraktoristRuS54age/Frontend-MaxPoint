@@ -9,14 +9,17 @@
     background: none;
     width: 25px;
     height: 25px;
-    border: none;
+    border: 0;
     padding: 5px 5px;
     margin: 0 6px;
     display: flex;
     align-items: baseline;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+}
+
+.header_button:focus {
+    background-color: azure;
+    opacity: 0.5;
+    outline: none;
 }
 
 .button_img {
@@ -33,5 +36,6 @@
     appearance: textfield;
     background-color: transparent;
     border-width: 0 0 1px 0;
-    border-color: coral;
+    border-color: rgb(177, 158, 151);
+    outline: none;
 }
