@@ -1,28 +1,17 @@
 /* eslint-disable sort-imports */
-import { Char as TChar } from "../../types/types";
-import Char from "../Char/Char";
+import { CSSProperties } from "react";
+import {Text as TText} from "../../types/types"
 
-type TextProps = {
-  data: {
-    text: TChar[];
+
+function Text({ data }: TText) {
+  const style: CSSProperties = {
+    color: data.color,
+    fontFamily: data.fontFamily,
+    fontSize: data.fontSize,
+    fontWeight: data.bold ? "bold" : "normal",
+    userSelect: "none",
   };
-};
-
-function Text({ data }: TextProps) {
-  return (
-    <span>
-      {data.text.map((char) => (
-        <Char
-          key={char.id}
-          value={char.value}
-          fontSize={char.fontSize}
-          fontFamily={char.fontFamily}
-          color={char.color}
-          bold={char.bold}
-        />
-      ))}
-    </span>
-  );
+  return <span style={style}>{data.value}</span>;
 }
 
 export default Text;

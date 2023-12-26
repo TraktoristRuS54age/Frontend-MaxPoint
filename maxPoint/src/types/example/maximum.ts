@@ -43,8 +43,8 @@ const workSize: Size = {
 }
 
 const textSize: Size = {
-  height: 50,
-  width: 200,
+  height: 60,
+  width: 250,
 };
 
 const position: Position = {
@@ -52,28 +52,23 @@ const position: Position = {
   y: 90,
 };
 
-const char: Char = {
-  value: "maxPoint",
-  fontSize: 30,
-  fontFamily: fontFamily,
-  color: textColor,
-  bold: true,
-  id: uuidv4(),
-};
-
 // graphic
 const text: Text = {
-  data: {
-    text: [char],
-  },
-  id: uuidv4(),
-  size: textSize,
-  position: {
-    x: 200, //200
-    y: 0, // 150
-  },
-  rotation: 0,
   type: "text",
+  data: {
+    value: "maxPoint",
+    fontSize: 50,
+    fontFamily: fontFamily,
+    color: textColor,
+    bold: true,
+  },
+  size: textSize,
+  id: uuidv4(),
+  position: {
+    x: 0, //200
+    y: 50, //100
+  },
+
 };
 
 const image: Image = {

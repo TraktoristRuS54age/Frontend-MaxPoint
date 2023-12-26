@@ -1,12 +1,4 @@
-import { Size } from "../../types/types";
-
-type PrimitiveProps = {
-  data: {
-    form?: "triangle" | "ellipse" | "rectangle";
-  };
-  size: Size;
-  
-};
+import { Primitive as TPrimitive } from "../../types/types";
 
 function calculateTriangleCoordinates(width: number, height: number): string {
   const x1 = width / 2;
@@ -19,7 +11,7 @@ function calculateTriangleCoordinates(width: number, height: number): string {
   return `${x1},${y1} ${x2},${y2} ${x3},${y3}`;
 }
 
-function Primitive({ data, size }: PrimitiveProps) {
+function Primitive({ data, size }: TPrimitive) {
   const { form } = data;
   const centerX = size.width / 2;
   const centerY = size.height / 2;

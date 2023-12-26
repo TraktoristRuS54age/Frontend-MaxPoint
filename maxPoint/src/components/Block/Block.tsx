@@ -14,7 +14,19 @@ import { PresentationContext } from "../../context/context";
 
 type BlockProps = TPrimitive | TImage | TText;
 
-function Block({ position, type, data, size, id }: BlockProps) {
+function getObject(props: BlockProps) {
+  switch (props.type) {
+    case "text": 
+      return <Text {...props} />
+    case "image":
+      return <Image {...props} />
+    case "primitive":
+      return <Primitive {...props} />
+  }
+}
+
+function Block(props: BlockProps) {
+  const {size, position, id } = props;
   const { presentation, setPresentation } = useContext(PresentationContext);
   const newPresentation = { ...presentation };
   const currentSelectObject = newPresentation.slides.find(
@@ -151,9 +163,7 @@ function Block({ position, type, data, size, id }: BlockProps) {
       ref={ref}
       onClick={toggleArea}
     >
-      {type === "image" && <Image data={data} size={size} />}
-      {type === "primitive" && <Primitive data={data} size={size} />}
-      {type === "text" && <Text data={data} />}
+      {getObject(props)}
     </div>
   );
 }

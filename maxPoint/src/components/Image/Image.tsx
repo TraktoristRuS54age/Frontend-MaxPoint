@@ -1,17 +1,9 @@
 /* eslint-disable sort-keys */
 import { CSSProperties } from "react";
-import { Size } from "../../types/types";
+import { Image as TImage } from "../../types/types";
 
-type ImageProps = {
-  data: {
-    src?: string;
-    alt?: string;
-    
-  };
-  size: Size;
-};
 
-function Image({ data, size }: ImageProps) {
+function Image({ data, size }: TImage) {
   const style: CSSProperties = {
     height: size.height,
     width: size.width,

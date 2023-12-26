@@ -46,8 +46,12 @@ type Char = {
 interface Text extends Block {
   type: "text";
   data: {
-    text: Char[];
-  };
+    value: string;
+    fontSize: number;
+    fontFamily: string;
+    color: TColor;
+    bold: boolean;
+  }
   size: Size;
 }
 // type Text = Block & {

@@ -5,7 +5,7 @@ import style from "./ToolBar.module.css";
 import Title from "../Title/Title";
 import History from "../History/History";
 import Button from "../Button/Button";
-import DownloadButton from "../downloadButton/DownloadButton";
+import DownloadButton from "../DownloadButton/DownloadButton";
 
 function ToolBar() {
   return (
