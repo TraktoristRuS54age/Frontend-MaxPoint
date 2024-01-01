@@ -5,6 +5,9 @@ import { PresentationContext } from "../../context/context";
 import { Primitive as TPrimitive } from "../../types/types";
 import { v4 as uuidv4 } from "uuid";
 import style from "./FigureMenu.module.css";
+import triangle from "../../resources/img/triangle.svg"; 
+import rectangle from "../../resources/img/rectangle.svg"; 
+import ellipse from "../../resources/img/ellipse.png";
 
 const FigureMenu = () => {
   const { presentation, setPresentation } = useContext(PresentationContext);
@@ -83,17 +86,17 @@ const FigureMenu = () => {
     <div className={style.figure}>
       <div className={style.figure__menu}>
         <button className={style.figure__button} onClick={createTriangle}>
-          <p>Треугольник</p>
+          <img src={triangle} className={style.figure_image}></img> 
         </button>
       </div>
       <div className={style.figure__menu}>
         <button className={style.figure__button} onClick={createRectangle}>
-          <p>Прямоугольник</p>
+          <img src={rectangle} className={style.figure_image}></img>
         </button>
       </div>
       <div className={style.figure__menu}>
         <button className={style.figure__button} onClick={createEllipse}>
-          <p>Эллипс</p>
+          <img src={ellipse} className={style.figure_image}></img>
         </button>
       </div>
     </div>
