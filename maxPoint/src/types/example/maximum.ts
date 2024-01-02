@@ -43,8 +43,8 @@ const workSize: Size = {
 }
 
 const textSize: Size = {
-  height: 60,
-  width: 250,
+  height: 50,
+  width: 100,
 };
 
 const position: Position = {
@@ -56,8 +56,8 @@ const position: Position = {
 const text: Text = {
   type: "text",
   data: {
-    value: "maxPoint",
-    fontSize: 50,
+    value: "",
+    fontSize: 20,
     fontFamily: fontFamily,
     color: textColor,
     bold: true,

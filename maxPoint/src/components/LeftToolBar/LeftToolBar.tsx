@@ -22,15 +22,15 @@ function Left_ToolBar({ props }: TFunction) {
     const text: TText = {
       type: "text",
       data: {
-        value: "maxPoint",
+        value: "",
         fontSize: 20,
         fontFamily: "Tahoma",
         color: "black",
         bold: true,
       },
       size: {
-        height: 30,
-        width: 100,
+        height: 34,
+        width: 110,
       },
       id: uuidv4(),
       position: {

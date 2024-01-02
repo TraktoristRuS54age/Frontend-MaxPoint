@@ -9,9 +9,10 @@ function MainWS() {
   const currentSlide = presentation.slides.find(
     (slide) => slide.id === presentation.currentSlideID,
   );
+
   if (currentSlide != null) {
     return (
-      <div className={style.working_block}>
+      <div className={style.working_block} >
         <div className={style.working_block__wrapper}>
           <Slide slide={currentSlide} className={style.working_block__slide} />
         </div>

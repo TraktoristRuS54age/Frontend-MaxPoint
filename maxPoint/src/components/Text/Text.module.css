@@ -1,0 +1,14 @@
+textarea {
+    border: none;
+    outline: none;
+    resize: none;
+    overflow: none;
+    background-color: transparent; /* или любой другой цвет фона, который вам подходит */
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    padding: 0; /* установите отступы по вашему усмотрению */
+    margin: 0; /* установите отступы по вашему усмотрению */
+    line-height: inherit;
+    text-align: center; /* выравнивание текста по центру */
+  }
