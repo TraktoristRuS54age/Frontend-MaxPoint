@@ -5,10 +5,39 @@ import { PresentationContext } from "../../context/context";
 import { Primitive as TPrimitive } from "../../types/types";
 import { v4 as uuidv4 } from "uuid";
 import style from "./FigureMenu.module.css";
-import triangle from "../../resources/img/triangle.svg"; 
-import rectangle from "../../resources/img/rectangle.svg"; 
-import ellipse from "../../resources/img/ellipse.png";
+import Primitive from "../Primitive/Primitive.tsx";
+import { Size } from "../../types/types";
 
+type PrimitiveProps = {
+  data: {
+    form?: "triangle" | "ellipse" | "rectangle";
+  };
+  size: Size;
+};
+const triangleButton: PrimitiveProps ={
+  data: {
+    form: "triangle"},
+  size: {
+    width: 100,
+    height: 100
+  },
+};
+const rectangleButton: PrimitiveProps ={
+  data: {
+    form: "rectangle"},
+  size: {
+    width: 100,
+    height: 100
+  },
+};
+const ellipseButton: PrimitiveProps ={
+  data: {
+    form: "ellipse"},
+  size: {
+    width: 100,
+    height: 100
+  },
+};
 const FigureMenu = () => {
   const { presentation, setPresentation } = useContext(PresentationContext);
   const newPresentation = { ...presentation };
@@ -86,17 +115,17 @@ const FigureMenu = () => {
     <div className={style.figure}>
       <div className={style.figure__menu}>
         <button className={style.figure__button} onClick={createTriangle}>
-          <img src={triangle} className={style.figure_image}></img> 
+          <Primitive data={triangleButton.data} size={triangleButton.size} />
         </button>
       </div>
       <div className={style.figure__menu}>
         <button className={style.figure__button} onClick={createRectangle}>
-          <img src={rectangle} className={style.figure_image}></img>
+          <Primitive data={rectangleButton.data} size={rectangleButton.size}/>
         </button>
       </div>
       <div className={style.figure__menu}>
         <button className={style.figure__button} onClick={createEllipse}>
-          <img src={ellipse} className={style.figure_image}></img>
+          <Primitive data={ellipseButton.data} size={ellipseButton.size}/>
         </button>
       </div>
     </div>
