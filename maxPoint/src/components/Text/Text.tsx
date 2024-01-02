@@ -13,13 +13,14 @@ function Text({ type, position, data, size, id }: TText) {
     fontFamily: data.fontFamily,
     fontSize: data.fontSize,
     fontWeight: data.bold ? "bold" : "normal",
+    fontStyle: data.fontStyle,
+    textDecoration: data.textDecoration,
     userSelect: "none",
     height: size.height,
     width: size.width,
   };
 
   const onChange = (value: string) => {
-    console.log(value, id);
     const currentSlide = newPresentation.slides.find(
       (slide) => slide.id === newPresentation.currentSlideID,
     )!;
@@ -29,8 +30,10 @@ function Text({ type, position, data, size, id }: TText) {
             type: type,
             data: {
               value: value,
-              fontSize: data.fontSize,
+              fontSize: value.length != 0 ? data.fontSize : 20,
               fontFamily: data.fontFamily,
+              fontStyle: data.fontStyle,
+              textDecoration: data.textDecoration,
               color: data.color,
               bold: data.bold,
             },

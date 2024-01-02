@@ -7,7 +7,8 @@ import bold from "../../resources/headerButton/bold_48.png";
 import italic from "../../resources/headerButton/italic_48.png";
 import delet from "../../resources/headerButton/delete_48.png";
 import zalivka from "../../resources/headerButton/zalivka_48.png";
-import { useContext, useEffect, useState } from "react";
+import underline from "../../resources/headerButton/underline_48.png";
+import { useContext, useState } from "react";
 import { PresentationContext } from "../../context/context";
 import { Text as TText } from "../../types/types";
 // import { useState } from "react";
@@ -21,11 +22,123 @@ function Button() {
   const selectedObject = currentSlide?.objects.find(
     (object) => object.id === currentSlide.selectObjects,
   );
-  const [TBold, setTBold] = useState(false);
+
+  const [counter, setCounter] = useState(20);
+
+  const PlusCount = () => {
+    if (currentSlide && selectedObject && selectedObject.type === "text") {
+      const { value, fontFamily, fontStyle, textDecoration, color, bold } =
+        selectedObject.data;
+      const newCurrentObject: TText = {
+        ...selectedObject,
+        data: {
+          value: value,
+          fontSize: counter + 10,
+          fontFamily: fontFamily,
+          fontStyle: fontStyle,
+          textDecoration: textDecoration,
+          color: color,
+          bold: bold,
+        },
+      };
+      changeTextSettings(newCurrentObject);
+      setCounter((counter): number => counter + 10);
+    }
+  };
+
+  const MinusCount = () => {
+    if (currentSlide && selectedObject && selectedObject.type === "text") {
+      const { value, fontFamily, fontStyle, textDecoration, color, bold } =
+        selectedObject.data;
+      const newCurrentObject: TText = {
+        ...selectedObject,
+        data: {
+          value: value,
+          fontSize: counter - 10,
+          fontFamily: fontFamily,
+          fontStyle: fontStyle,
+          textDecoration: textDecoration,
+          color: color,
+          bold: bold,
+        },
+      };
+      changeTextSettings(newCurrentObject);
+      setCounter((counter): number => counter - 10);
+    }
+  };
+
+  const changeUnderline = () => {
+    if (currentSlide && selectedObject && selectedObject.type === "text") {
+      const { value, fontFamily, fontSize, fontStyle, textDecoration, color, bold } =
+        selectedObject.data;
+      const newCurrentObject: TText = {
+        ...selectedObject,
+        data: {
+          value: value,
+          fontSize: fontSize,
+          fontFamily: fontFamily,
+          fontStyle: fontStyle,
+          textDecoration: textDecoration === "none" ? "underline" : "none",
+          color: color,
+          bold: bold,
+        },
+      };
+      changeTextSettings(newCurrentObject);
+      setCounter((counter): number => counter - 10);
+    }
+  };
+
+  const changeFontStyle = () => {
+    if (currentSlide && selectedObject && selectedObject.type === "text") {
+      const {
+        value,
+        fontSize,
+        fontStyle,
+        fontFamily,
+        textDecoration,
+        color,
+        bold,
+      } = selectedObject.data;
+      const newCurrentObject: TText = {
+        ...selectedObject,
+        data: {
+          value: value,
+          fontSize: fontSize,
+          fontFamily: fontFamily,
+          fontStyle: fontStyle === "italic" ? "normal" : "italic",
+          textDecoration: textDecoration,
+          color: color,
+          bold: bold,
+        },
+      };
+      changeTextSettings(newCurrentObject);
+    }
+  };
 
   const changeBold = () => {
-    if (selectedObject && selectedObject.type === "text") {
-      setTBold((bold): boolean => !bold);
+    if (currentSlide && selectedObject && selectedObject.type === "text") {
+      const {
+        value,
+        fontSize,
+        fontStyle,
+        fontFamily,
+        textDecoration,
+        color,
+        bold,
+      } = selectedObject.data;
+      const newCurrentObject: TText = {
+        ...selectedObject,
+        data: {
+          value: value,
+          fontSize: fontSize,
+          fontFamily: fontFamily,
+          fontStyle: fontStyle,
+          textDecoration: textDecoration,
+          color: color,
+          bold: !bold,
+        },
+      };
+      changeTextSettings(newCurrentObject);
     }
   };
 
@@ -45,29 +158,14 @@ function Button() {
     }
   };
 
-  useEffect(() => {
+  const changeTextSettings = (newCurrentObject: TText) => {
     if (currentSlide && selectedObject && selectedObject.type === "text") {
-      const { value, fontSize, fontFamily, color } = selectedObject.data;
-
-      // Create a new object with updated properties
-      const newCurrentObject: TText = {
-        ...selectedObject,
-        data: {
-          value: value,
-          fontSize: fontSize,
-          fontFamily: fontFamily,
-          color: color,
-          bold: TBold,
-        },
-      };
-
-      // Update the newPresentation with the modified object
       const updatedSlides = newPresentation.slides.map((slide) => {
         if (slide.selectObjects === selectedObject.id) {
           const updatedObjects = slide.objects.map((obj) =>
-            obj.id === selectedObject.id ? newCurrentObject : obj
+            obj.id === selectedObject.id ? newCurrentObject : obj,
           );
-          return { ...slide, objects: updatedObjects, selectObjects: null };
+          return { ...slide, objects: updatedObjects };
         }
         return slide;
       });
@@ -75,21 +173,26 @@ function Button() {
       newPresentation.slides = updatedSlides;
       setPresentation(newPresentation);
     }
-  }, [TBold]);
+  };
 
   return (
     <div className={style.header_block_button}>
-      <button type="button" className={style.header_button}>
+      <button
+        type="button"
+        className={style.header_button}
+        onClick={MinusCount}
+      >
         <img className={style.button_img} src={minus} alt="минус"></img>
       </button>
 
       <input
         className={style.header_input_number}
-        type="number"
+        type="text"
+        placeholder={`${counter}`}
         name="number"
       />
 
-      <button type="button" className={style.header_button}>
+      <button type="button" className={style.header_button} onClick={PlusCount}>
         <img className={style.button_img} src={plus} alt="плюс"></img>
       </button>
 
@@ -101,8 +204,24 @@ function Button() {
         <img className={style.button_img} src={bold} alt="жирный"></img>
       </button>
 
-      <button type="button" className={style.header_button}>
+      <button
+        type="button"
+        className={style.header_button}
+        onClick={changeFontStyle}
+      >
         <img className={style.button_img} src={italic} alt="курсив"></img>
+      </button>
+
+      <button
+        type="button"
+        className={style.header_button}
+        onClick={changeUnderline}
+      >
+        <img
+          className={style.button_img}
+          src={underline}
+          alt="подчеркивание"
+        ></img>
       </button>
 
       <button

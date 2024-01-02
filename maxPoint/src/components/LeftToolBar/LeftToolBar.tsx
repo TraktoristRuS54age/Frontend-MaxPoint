@@ -24,7 +24,9 @@ function Left_ToolBar({ props }: TFunction) {
       data: {
         value: "",
         fontSize: 20,
-        fontFamily: "Tahoma",
+        fontFamily: "Arial",
+        fontStyle: 'normal',
+        textDecoration: 'none',
         color: "black",
         bold: true,
       },

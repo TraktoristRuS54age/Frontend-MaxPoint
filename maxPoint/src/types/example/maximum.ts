@@ -59,6 +59,8 @@ const text: Text = {
     value: "",
     fontSize: 20,
     fontFamily: fontFamily,
+    fontStyle: 'normal',
+    textDecoration: 'none',
     color: textColor,
     bold: true,
   },

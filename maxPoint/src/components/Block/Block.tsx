@@ -35,7 +35,6 @@ function Block(props: BlockProps) {
   const currentSlide = newPresentation.slides.find(
     (slide) => slide.id === newPresentation.currentSlideID,
   );
-  console.log("Перерисовка");
 
   const styles: CSSProperties = {
     height: size.height,
@@ -49,6 +48,7 @@ function Block(props: BlockProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const toggleArea = () => {
+    console.log('Сработал toggle area')
     const currentSlide = newPresentation.slides.find(
       (slide) => slide.id === presentation.currentSlideID,
     );
@@ -134,7 +134,6 @@ function Block(props: BlockProps) {
       } else {
         onChangeSize({
           onDrag: (dragEvent) => {
-            console.log("перерисовка");
             dragEvent.preventDefault();
             const sizes = {
               height: size.height + dragEvent.clientY - mouseDownEvent.clientY,

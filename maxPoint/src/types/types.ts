@@ -49,6 +49,8 @@ interface Text extends Block {
     value: string;
     fontSize: number;
     fontFamily: string;
+    fontStyle: string;
+    textDecoration: string;
     color: TColor;
     bold: boolean;
   }
