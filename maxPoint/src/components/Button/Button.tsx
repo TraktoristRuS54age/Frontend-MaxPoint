@@ -22,8 +22,6 @@ function Button() {
 
   const [counter, setCounter] = useState(20);
 
-
-
   const onFontSizeChange = (event: any) => {
     if (currentSlide && selectedObject && selectedObject.type === "text") {
       const { ...textData } = selectedObject.data;

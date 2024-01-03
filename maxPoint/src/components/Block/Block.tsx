@@ -1,3 +1,4 @@
+
 /* eslint-disable sort-keys */
 /* eslint-disable sort-imports */
 import style from "./Block.module.css";
@@ -47,11 +48,23 @@ function Block(props: BlockProps) {
 
   const ref = useRef<HTMLDivElement>(null);
 
-  const toggleArea = () => {
-    console.log('Сработал toggle area')
+  const toggleArea = (event: any) => {
+    // console.log(event.ctrlKey)
     const currentSlide = newPresentation.slides.find(
       (slide) => slide.id === presentation.currentSlideID,
     );
+
+    if (event.ctrlKey) {
+      const updatedSlides = newPresentation.slides.map((slide) =>
+        slide.id === presentation.currentSlideID
+          ? { ...slide, selectObjects: null }
+          : slide,
+      );
+      newPresentation.slides = updatedSlides;
+      console.log(newPresentation.slides);
+      setPresentation(newPresentation);
+      return;
+    }
 
     if (currentSlide) {
       const updatedSlides = newPresentation.slides.map((slide) =>
