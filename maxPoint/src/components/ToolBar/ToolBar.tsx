@@ -3,7 +3,7 @@ import logo from "../../resources/img/logo.png";
 import style from "./ToolBar.module.css";
 
 import Title from "../Title/Title";
-import History from "../History/History";
+// import History from "../History/History";
 import Button from "../Button/Button";
 import DownloadButton from "../DownloadButton/DownloadButton";
 
@@ -12,7 +12,6 @@ function ToolBar() {
     <div className={style.header_block}>
       <img className={style.header_img} src={logo} alt="log" />
       <div className={style.header_block_center}>
-        <History />
         <Button />
         <Title />
       </div>

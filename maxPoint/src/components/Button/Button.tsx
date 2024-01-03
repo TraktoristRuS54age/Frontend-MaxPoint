@@ -21,10 +21,6 @@ function Button() {
   );
 
   const [counter, setCounter] = useState(20);
-<<<<<<< Updated upstream
-=======
-  
->>>>>>> Stashed changes
 
   const onFontSizeChange = (event: any) => {
     if (currentSlide && selectedObject && selectedObject.type === "text") {
@@ -42,16 +38,18 @@ function Button() {
 
   // const [color, setColor] = useState("#FFFFFF");
 
-  // const handleColorChange = (event:any) => {
-  //   if (currentSlide) {
-  //     const {background, ...Slide} = currentSlide.background;
-  //     const newColorSlide: Slide = {
-  //       ...Color,
-  //       background: +event.target.value,
-  //     };
-  //     setColor(event.target.value);
-  //   } 
-  // };
+  const changeColor = (event: any) => {
+    if (currentSlide && selectedObject && selectedObject.type === "text") {
+      const { ...textData } = selectedObject.data;
+      const newCurrentObject: TextData = {
+        data: {
+          ...textData,
+          color: event.target.value,
+        },
+      };
+      changeTextSettings(newCurrentObject);
+    }
+  };
 
   const changeUnderline = () => {
     if (currentSlide && selectedObject && selectedObject.type === "text") {
@@ -193,6 +191,12 @@ function Button() {
         <img className={style.button_img} src={zalivka} alt="заливка"></img>
       </button>
 
+      <input 
+        type="color"
+        className={style.colorPicker}
+        onChange={changeColor}
+      />
+
       <div>
         Font:
         <select defaultValue={'Arial'} onChange={changefontFamily}>
@@ -208,12 +212,6 @@ function Button() {
         </select>
       </div>
 
-      <input 
-        type="color"
-        className={style.colorPicker}
-        // value={color} 
-        // onChange={handleColorChange}
-      />
     </div>
   );
 }
