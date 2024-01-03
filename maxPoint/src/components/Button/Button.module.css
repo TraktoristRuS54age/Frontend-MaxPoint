@@ -39,3 +39,10 @@
     border-color: rgb(177, 158, 151);
     outline: none;
 }
+
+.colorPicker {
+    width: 45px;
+    height: 25px;
+    margin-left: 10px;
+    border: none;
+}

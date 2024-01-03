@@ -21,6 +21,10 @@ function Button() {
   );
 
   const [counter, setCounter] = useState(20);
+<<<<<<< Updated upstream
+=======
+  
+>>>>>>> Stashed changes
 
   const onFontSizeChange = (event: any) => {
     if (currentSlide && selectedObject && selectedObject.type === "text") {
@@ -35,6 +39,19 @@ function Button() {
       setCounter(event.target.value);
     }
   };
+
+  // const [color, setColor] = useState("#FFFFFF");
+
+  // const handleColorChange = (event:any) => {
+  //   if (currentSlide) {
+  //     const {background, ...Slide} = currentSlide.background;
+  //     const newColorSlide: Slide = {
+  //       ...Color,
+  //       background: +event.target.value,
+  //     };
+  //     setColor(event.target.value);
+  //   } 
+  // };
 
   const changeUnderline = () => {
     if (currentSlide && selectedObject && selectedObject.type === "text") {
@@ -190,6 +207,13 @@ function Button() {
           <option value="Brush Script MT">Brush Script MT</option>
         </select>
       </div>
+
+      <input 
+        type="color"
+        className={style.colorPicker}
+        // value={color} 
+        // onChange={handleColorChange}
+      />
     </div>
   );
 }
