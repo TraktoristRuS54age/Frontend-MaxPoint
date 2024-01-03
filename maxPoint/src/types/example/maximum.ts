@@ -187,3 +187,19 @@ export const presentationSlice: PresentationSliceState = {
 };
 
 export default presentation;
+
+
+// const ChangeFontSize = (event: any) => {
+//   console.log(event.target.value)
+//   if (currentSlide && selectedObject && selectedObject.type === "text") {
+//     const { ...textData } = selectedObject.data;
+//     const newCurrentObject: TextData = {
+//       data: {
+//         ...textData,
+//         fontSize: event.target.value,
+//       },
+//     };
+//     changeTextSettings(newCurrentObject);
+//     setCounter(event.target.value);
+//   }
+// };

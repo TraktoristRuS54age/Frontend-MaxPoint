@@ -42,9 +42,7 @@ type Char = {
   id: string;
 };
 
-//Графика (текст, фигуры и изображения)
-interface Text extends Block {
-  type: "text";
+interface TextData {
   data: {
     value: string;
     fontSize: number;
@@ -54,29 +52,34 @@ interface Text extends Block {
     color: TColor;
     bold: boolean;
   }
-  size: Size;
 }
-// type Text = Block & {
-//   type: "text";
-//   data: {
-//     text: Char[];
-//   };
-// };
 
-interface Image extends Block {
-  type: "image";
+interface ImageData {
   data: {
     alt?: string;
     src?: string;
   };
-  size: Size;
 }
 
-type Primitive = Block & {
-  type: "primitive";
+interface PrimitiveData {
   data: {
     form?: "triangle" | "ellipse" | "rectangle";
   };
+}
+
+//Графика (текст, фигуры и изображения)
+interface Text extends Block, TextData {
+  type: "text";
+  size: Size;
+}
+
+interface Image extends Block, ImageData {
+  type: "image";
+  size: Size;
+}
+
+interface Primitive extends Block, PrimitiveData {
+  type: "primitive";
   size: Size;
 };
 
@@ -90,17 +93,10 @@ type History = {
   undidOperations: Operation[];
 };
 
-// type Preview = Slide & {
-//   prev: Preview | null;
-//   next: Preview | null;
-// };
-
 type Presentation = {
   name: string;
   currentSlideID: string | null;
   slides: Slide[];
-  // operation: Operation;
-  // preview: Preview;
 };
 
 interface PresentationSliceState {
@@ -144,4 +140,5 @@ export type {
   Option,
   MenuElement,
   Menu,
+  TextData,
 };
