@@ -11,31 +11,38 @@ import { Size } from "../../types/types";
 type PrimitiveProps = {
   data: {
     form?: "triangle" | "ellipse" | "rectangle";
+    fill: string;
   };
   size: Size;
 };
-const triangleButton: PrimitiveProps ={
+const triangleButton: PrimitiveProps = {
   data: {
-    form: "triangle"},
+    form: "triangle",
+    fill: "black",
+  },
   size: {
     width: 100,
-    height: 100
+    height: 100,
   },
 };
-const rectangleButton: PrimitiveProps ={
+const rectangleButton: PrimitiveProps = {
   data: {
-    form: "rectangle"},
+    form: "rectangle",
+    fill: "black",
+  },
   size: {
     width: 100,
-    height: 100
+    height: 100,
   },
 };
-const ellipseButton: PrimitiveProps ={
+const ellipseButton: PrimitiveProps = {
   data: {
-    form: "ellipse"},
+    form: "ellipse",
+    fill: "black",
+  },
   size: {
     width: 100,
-    height: 100
+    height: 100,
   },
 };
 const FigureMenu = () => {
@@ -46,6 +53,7 @@ const FigureMenu = () => {
     const triangle: TPrimitive = {
       data: {
         form: "triangle",
+        fill: "black",
       },
       id: uuidv4(),
       size: {
@@ -69,6 +77,7 @@ const FigureMenu = () => {
     const rectangle: TPrimitive = {
       data: {
         form: "rectangle",
+        fill: "black",
       },
       size: {
         height: 100,
@@ -92,6 +101,7 @@ const FigureMenu = () => {
     const ellipse: TPrimitive = {
       data: {
         form: "ellipse",
+        fill: "black",
       },
       id: uuidv4(),
       size: {
@@ -120,12 +130,12 @@ const FigureMenu = () => {
       </div>
       <div className={style.figure__menu}>
         <button className={style.figure__button} onClick={createRectangle}>
-          <Primitive data={rectangleButton.data} size={rectangleButton.size}/>
+          <Primitive data={rectangleButton.data} size={rectangleButton.size} />
         </button>
       </div>
       <div className={style.figure__menu}>
         <button className={style.figure__button} onClick={createEllipse}>
-          <Primitive data={ellipseButton.data} size={ellipseButton.size}/>
+          <Primitive data={ellipseButton.data} size={ellipseButton.size} />
         </button>
       </div>
     </div>

@@ -6,9 +6,9 @@ import italic from "../../resources/headerButton/italic_48.png";
 import delet from "../../resources/headerButton/delete_48.png";
 import zalivka from "../../resources/headerButton/zalivka_48.png";
 import underline from "../../resources/headerButton/underline_48.png";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { PresentationContext } from "../../context/context";
-import { TextData } from "../../types/types";
+import { TextData, PrimitiveData } from "../../types/types";
 
 function Button() {
   const { presentation, setPresentation } = useContext(PresentationContext);
@@ -19,6 +19,7 @@ function Button() {
   const selectedObject = currentSlide?.objects.find(
     (object) => object.id === currentSlide.selectObjects,
   );
+  const ref = useRef<HTMLInputElement>(null);
 
   const [counter, setCounter] = useState(20);
 
@@ -38,16 +39,39 @@ function Button() {
 
   // const [color, setColor] = useState("#FFFFFF");
 
-  const changeColor = (event: any) => {
-    if (currentSlide && selectedObject && selectedObject.type === "text") {
-      const { ...textData } = selectedObject.data;
-      const newCurrentObject: TextData = {
-        data: {
-          ...textData,
-          color: event.target.value,
-        },
-      };
-      changeTextSettings(newCurrentObject);
+  const changeColor = () => {
+    if (currentSlide) {
+      if (selectedObject) {
+        if (selectedObject.type === "text") {
+          const { ...textData } = selectedObject.data;
+          const newCurrentObject: TextData = {
+            data: {
+              ...textData,
+              color: `${ref.current?.value}`,
+            },
+          };
+          changeTextSettings(newCurrentObject);
+        }
+        if (selectedObject.type === "primitive") {
+          const { ...primitiveData } = selectedObject.data;
+          const newCurrentObject: PrimitiveData = {
+            data: {
+              ...primitiveData,
+              fill: `${ref.current?.value}`,
+            },
+          };
+          changePrimitiveSettings(newCurrentObject);
+        }
+      } else {
+        const updatedSlides = newPresentation.slides.map((slide) => {
+          if (slide.id === currentSlide.id) {
+            return { ...slide, background: `${ref.current?.value}` };
+          }
+          return slide;
+        });
+        newPresentation.slides = updatedSlides;
+        setPresentation(newPresentation);
+      }
     }
   };
 
@@ -119,14 +143,30 @@ function Button() {
     }
   };
 
-
-
   const changeTextSettings = (newCurrentObject: TextData) => {
     if (currentSlide && selectedObject && selectedObject.type === "text") {
       const updatedSlides = newPresentation.slides.map((slide) => {
         if (slide.selectObjects === selectedObject.id) {
           const updatedObjects = slide.objects.map((obj) =>
             obj.id === selectedObject.id && obj.type === "text"
+              ? { ...obj, data: newCurrentObject.data }
+              : obj,
+          );
+          return { ...slide, objects: updatedObjects };
+        }
+        return slide;
+      });
+      newPresentation.slides = updatedSlides;
+      setPresentation(newPresentation);
+    }
+  };
+
+  const changePrimitiveSettings = (newCurrentObject: PrimitiveData) => {
+    if (currentSlide && selectedObject && selectedObject.type === "primitive") {
+      const updatedSlides = newPresentation.slides.map((slide) => {
+        if (slide.selectObjects === selectedObject.id) {
+          const updatedObjects = slide.objects.map((obj) =>
+            obj.id === selectedObject.id && obj.type === "primitive"
               ? { ...obj, data: newCurrentObject.data }
               : obj,
           );
@@ -187,19 +227,24 @@ function Button() {
         <img className={style.button_img} src={delet} alt="удалить"></img>
       </button>
 
-      <button type="button" className={style.header_button}>
+      <button
+        type="button"
+        className={style.header_button}
+        onClick={changeColor}
+      >
         <img className={style.button_img} src={zalivka} alt="заливка"></img>
       </button>
 
-      <input 
+      <input
         type="color"
+        ref={ref}
         className={style.colorPicker}
-        onChange={changeColor}
+        // onChange={changeColor}
       />
 
       <div>
         Font:
-        <select defaultValue={'Arial'} onChange={changefontFamily}>
+        <select defaultValue={"Arial"} onChange={changefontFamily}>
           <option value="Arial">Arial</option>
           <option value="Verdana">Verdana</option>
           <option value="Tahoma">Tahoma</option>
@@ -211,7 +256,6 @@ function Button() {
           <option value="Brush Script MT">Brush Script MT</option>
         </select>
       </div>
-
     </div>
   );
 }

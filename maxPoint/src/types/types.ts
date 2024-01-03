@@ -64,6 +64,7 @@ interface ImageData {
 interface PrimitiveData {
   data: {
     form?: "triangle" | "ellipse" | "rectangle";
+    fill: string;
   };
 }
 
@@ -141,4 +142,5 @@ export type {
   MenuElement,
   Menu,
   TextData,
+  PrimitiveData,
 };

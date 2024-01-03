@@ -3,7 +3,8 @@ import { Size } from "../../types/types";
 
 type PrimitiveProps = {
   data: {
-    form?: "triangle" | "ellipse" | "rectangle";
+    form?: "triangle" | "ellipse" | "rectangle",
+    fill: string,
   };
   size: Size;
 };
@@ -20,12 +21,12 @@ function calculateTriangleCoordinates(width: number, height: number): string {
 }
 
 function Primitive({ data, size }: PrimitiveProps) {
-  const { form } = data;
+  const { form, fill } = data;
   const centerX = size.width / 2;
   const centerY = size.height / 2;
 
   return (
-    <svg width={size.width} height={size.height}>
+    <svg width={size.width} height={size.height} fill={fill}>
       <g>
         {form === "ellipse" && (
           <ellipse

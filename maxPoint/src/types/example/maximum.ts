@@ -91,6 +91,7 @@ const image: Image = {
 const triangle: Primitive = {
   data: {
     form: "triangle",
+    fill: 'black',
   },
   id: uuidv4(),
   size: size,
@@ -105,6 +106,7 @@ const triangle: Primitive = {
 const ellipse: Primitive = {
   data: {
     form: "ellipse",
+    fill: 'black',
   },
   id: uuidv4(),
   size: size,
@@ -119,6 +121,7 @@ const ellipse: Primitive = {
 const rectangle: Primitive = {
   data: {
     form: "rectangle",
+    fill: 'black',
   },
   size: size,
   id: uuidv4(),
