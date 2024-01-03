@@ -13,7 +13,6 @@ const UploadButton = () => {
       file = event.target.files[0];
       reader.readAsText(event.target.files[0]);
     }
-
     reader.onloadend = function () {
       try {
         if (typeof reader.result !== "string")

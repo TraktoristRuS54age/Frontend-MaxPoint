@@ -2,8 +2,8 @@
 /* eslint-disable sort-imports */
 import text from "../../resources/img/text.png";
 import figures from "../../resources/img/figures.png";
-import photo from "../../resources/img/photo.png";
 import style from "./LeftToolbar.module.css";
+import PhotoButton from "../PhotoButton/PhotoButton";
 import UploadButton from "../UploadButton/UploadButton";
 import { useContext } from "react";
 import { PresentationContext } from "../../context/context";
@@ -60,11 +60,7 @@ function Left_ToolBar({ props }: TFunction) {
           </button>
           <p className={style.menu_block_text}>Figure</p>
         </div>
-
-        <div className={style.menu_item}>
-          <img className={style.menu_block__img} src={photo}></img>
-          <p className={style.menu_block_text}>Photos</p>
-        </div>
+        <PhotoButton />
         <UploadButton />
       </div>
     </div>
