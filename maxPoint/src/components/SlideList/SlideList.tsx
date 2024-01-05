@@ -18,33 +18,42 @@ interface SlideListProps {
 const SlideList = (props: SlideListProps) => {
   const { slide, index, registerDndItem } = props;
   const { presentation, setPresentation } = useContext(PresentationContext);
-  const newPresentation = { ...presentation };
-  const currId = presentation.currentSlideID;
+  const slides = presentation.slides;
   const [slideID, setSlideID] = useState(slide.id);
+  const [removed, setRemoved] = useState('');
 
   const setId = (id: string) => {
+    if (id === removed) {
+      console.log('yes')
+      setId(slide.id);
+      return;
+    }
     // отменить выделение selectObjects если мы переместились на другой слайд
-    const updatedSlides = newPresentation.slides.map((slide) =>
+    slides.map((slide) =>
       slide.id === presentation.currentSlideID
         ? { ...slide, selectObjects: null }
         : slide,
     );
-    newPresentation.slides = updatedSlides;
-    newPresentation.currentSlideID = id;
-    setPresentation(newPresentation);
+
+    setPresentation({
+      ...presentation,
+      currentSlideID: id,
+      slides: slides,
+    });
     setSlideID(slide.id);
   };
 
   const removeSlide = (id: string) => {
-    const newSlidesList = newPresentation.slides.filter(
-      (slide) => slide.id !== id,
-    );
-    newPresentation.slides = newSlidesList;
-    newPresentation.currentSlideID === id
-      ? (newPresentation.currentSlideID = null)
-      : newPresentation.currentSlideID;
-    setPresentation(newPresentation);
+    const newSlides = slides.filter((slide) => slide.id !== id);
+
+    setPresentation({
+      ...presentation,
+      currentSlideID:
+        presentation.currentSlideID === id ? null : presentation.currentSlideID,
+      slides: newSlides,
+    });
     setSlideID(slide.id);
+    setRemoved(id);
   };
 
   const ref = useRef<HTMLDivElement>(null);
@@ -55,7 +64,7 @@ const SlideList = (props: SlideListProps) => {
       elementRef: ref,
     });
 
-    if (slide.id !== currId) {
+    if (slide.id !== presentation.currentSlideID) {
       return;
     }
     const onMouseDown = (mouseDownEvent: MouseEvent) => {
@@ -86,7 +95,7 @@ const SlideList = (props: SlideListProps) => {
     <div className={style.wrapper} key={index} ref={ref}>
       <div
         className={
-          slide.id === currId
+          slide.id === presentation.currentSlideID
             ? classNames(style.slide_block__wrapper, style.wrapper__current)
             : style.slide_block__wrapper
         }

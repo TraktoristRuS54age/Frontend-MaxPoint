@@ -12,14 +12,16 @@ import { useDndList } from "../../hooks/useDnD/useDragSlideList";
 
 function SlideBar() {
   const { presentation, setPresentation } = useContext(PresentationContext);
-  const newPresentation = { ...presentation };
-
+  const slides = presentation.slides;
 
   const changeSlideOrder = (from: number, to: number) => {
     // console.log(from, to);
-    const removed = newPresentation.slides.splice(from, 1);
-    newPresentation.slides.splice(to, 0, removed[0]);
-    setPresentation(newPresentation);
+    const removed = slides.splice(from, 1);
+    slides.splice(to, 0, removed[0]);
+    setPresentation({
+      ...presentation,
+      slides: slides,
+    });
   };
 
   const { registerDndItem } = useDndList({
@@ -34,15 +36,18 @@ function SlideBar() {
       selectObjects: null,
       objects: [],
     };
-    newPresentation.slides.push(NewSlide);
-    setPresentation(newPresentation);
+    slides.push(NewSlide);
+    setPresentation({
+      ...presentation,
+      slides: slides,
+    });
   };
 
   return (
     <div className={style.slide_block}>
-      <div className={style.slide_block_main__wrapper}>
-        {presentation.slides.length > 0 ? (
-          presentation.slides.map((slide, index) => (
+      <div className={style.slide_block_main__wrapper} id="slides">
+        {slides.length > 0 ? (
+          slides.map((slide, index) => (
             <SlideList
               key={index}
               slide={slide}
@@ -68,7 +73,7 @@ function SlideBar() {
                 style.slide_block_new_slide_small,
               )}
             >
-              <img src={Plus} alt="plus" className={style.slide_block__img}/>
+              <img src={Plus} alt="plus" className={style.slide_block__img} />
             </div>
           </div>
         ) : null}

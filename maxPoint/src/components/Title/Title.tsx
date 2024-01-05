@@ -6,7 +6,6 @@ import style from "./Title.module.css";
 import { useForm } from "react-hook-form";
 import { PresentationContext } from "../../context/context";
 
-
 export const Title = () => {
   const { presentation, setPresentation } = useContext(PresentationContext);
   const {
@@ -15,22 +14,21 @@ export const Title = () => {
     register, //позволяет регистрировать различные поля (ну знаения крч)
     formState: { errors }, //объект ошибки
   } = useForm({ mode: "onChange" }); //валидация сразу при форме
-  const onChange = (e) => {
-    const newPresentation = {...presentation}
-    newPresentation.name = e.name;
-    setPresentation(newPresentation);
-  };
 
   return (
     <>
-      <form onChange={handleSubmit(onChange)}>
+      <form
+        onChange={handleSubmit((e) => {
+          setPresentation({ ...presentation, name: e.name });
+        })}
+      >
         <input
           type="text"
           className={errors.name && style.header_input_name} //если поле содержит ошибку
           value={presentation.name}
           {...register("name", {
             required: true, //поле является обязательным для ввода
-            minLength: 2, //мин. символов
+            minLength: 0, //мин. символов
             maxLength: 15, //макс. символов
             pattern: /^[a-zA-Zа-яА-Я]*$/,
           })} // какие символы будем вводить

@@ -48,7 +48,7 @@ function Block(props: BlockProps) {
 
   const ref = useRef<HTMLDivElement>(null);
 
-  const toggleArea = (event: any) => {
+  const toggleArea = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (currentSlide) {
       if (event.ctrlKey) {
         currentSlide.selectObjects = null;
