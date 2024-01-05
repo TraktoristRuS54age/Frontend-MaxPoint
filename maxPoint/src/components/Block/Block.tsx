@@ -1,4 +1,3 @@
-
 /* eslint-disable sort-keys */
 /* eslint-disable sort-imports */
 import style from "./Block.module.css";
@@ -7,11 +6,12 @@ import { Image as TImage } from "../../types/types";
 import { Primitive as TPrimitive } from "../../types/types";
 import { Text as TText } from "../../types/types";
 import { useDnDBlock } from "../../hooks/useDnD/useDragBlock";
+import { PresentationContext } from "../../context/context";
 import Image from "../Image/Image";
 import Primitive from "../Primitive/Primitive";
 import Text from "../Text/Text";
 import classNames from "classnames";
-import { PresentationContext } from "../../context/context";
+
 
 type BlockProps = TPrimitive | TImage | TText;
 
@@ -29,12 +29,12 @@ function getObject(props: BlockProps) {
 function Block(props: BlockProps) {
   const { size, position, id } = props;
   const { presentation, setPresentation } = useContext(PresentationContext);
-  const newPresentation = { ...presentation };
-  const currentSelectObject = newPresentation.slides.find(
-    (slide) => slide.id === newPresentation.currentSlideID,
-  )?.selectObjects;
-  const currentSlide = newPresentation.slides.find(
-    (slide) => slide.id === newPresentation.currentSlideID,
+  const slides = presentation.slides;
+  const currentSlide = slides.find(
+    (slide) => slide.id === presentation.currentSlideID,
+  );
+  const selectedObject = currentSlide?.objects.find(
+    (object) => object.id === currentSlide.selectObjects,
   );
 
   const styles: CSSProperties = {
@@ -49,77 +49,47 @@ function Block(props: BlockProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const toggleArea = (event: any) => {
-    // console.log(event.ctrlKey)
-    const currentSlide = newPresentation.slides.find(
-      (slide) => slide.id === presentation.currentSlideID,
-    );
-
-    if (event.ctrlKey) {
-      const updatedSlides = newPresentation.slides.map((slide) =>
-        slide.id === presentation.currentSlideID
-          ? { ...slide, selectObjects: null }
-          : slide,
-      );
-      newPresentation.slides = updatedSlides;
-      console.log(newPresentation.slides);
-      setPresentation(newPresentation);
-      return;
-    }
-
     if (currentSlide) {
-      const updatedSlides = newPresentation.slides.map((slide) =>
-        slide.id === presentation.currentSlideID
-          ? { ...slide, selectObjects: id }
-          : slide,
-      );
+      if (event.ctrlKey) {
+        currentSlide.selectObjects = null;
+        setPresentation({
+          ...presentation,
+          slides: slides,
+        });
+        return;
+      }
 
-      newPresentation.slides = updatedSlides;
-      setPresentation(newPresentation);
+      currentSlide.selectObjects = id;
+      setPresentation({
+        ...presentation,
+        slides: slides,
+      });
     }
   };
 
   const setPosition = (pos: { x: number; y: number }) => {
-    if (currentSlide) {
-      const updatedObjects = currentSlide.objects.map((obj) =>
-        obj.id === id ? { ...obj, position: { x: pos.x, y: pos.y } } : obj,
-      );
+    if (currentSlide && selectedObject) {
+      selectedObject.position = { x: pos.x, y: pos.y };
 
-      const updatedSlide = { ...currentSlide, objects: updatedObjects };
-
-      const updatedSlides = newPresentation.slides.map((slide) =>
-        slide.id === newPresentation.currentSlideID ? updatedSlide : slide,
-      );
-
-      newPresentation.slides = updatedSlides;
-      setPresentation(newPresentation);
+      setPresentation({
+        ...presentation,
+        slides: slides,
+      });
     }
   };
 
   const setSize = (size: { height: number; width: number }) => {
-    if (currentSlide) {
-      const updatedObjectsSize = currentSlide.objects.map((obj) =>
-        obj.id === id
-          ? {
-              ...obj,
-              size: {
-                height: size.height,
-                width: size.width,
-              },
-            }
-          : obj,
-      );
+    if (currentSlide && selectedObject) {
 
-      const updatedSlide = {
-        ...currentSlide,
-        objects: updatedObjectsSize,
+      selectedObject.size = {
+        height: size.height,
+        width: size.width,
       };
 
-      const updatedSlides = newPresentation.slides.map((slide) =>
-        slide.id === newPresentation.currentSlideID ? updatedSlide : slide,
-      );
-
-      newPresentation.slides = updatedSlides;
-      setPresentation(newPresentation);
+      setPresentation({
+        ...presentation,
+        slides: slides,
+      });
     }
   };
 
@@ -128,7 +98,7 @@ function Block(props: BlockProps) {
     const { onChangePosition, onChangeSize } = registerDndItem();
 
     const onMouseDown = (mouseDownEvent: MouseEvent) => {
-      if (currentSelectObject !== id) {
+      if (selectedObject?.id !== id) {
         return; // Если toggleArea не активен, выходим из функции
       }
 
@@ -157,17 +127,17 @@ function Block(props: BlockProps) {
         });
       }
     };
-    if (currentSelectObject !== null) {
+    if (selectedObject) {
       const control = ref.current!;
       control.addEventListener("mousedown", onMouseDown);
       return () => control.removeEventListener("mousedown", onMouseDown);
     }
-  }, [newPresentation]);
+  }, [presentation]);
 
   return (
     <div
       className={
-        currentSelectObject == id
+        selectedObject?.id == id
           ? classNames(style.block, style.selectArea)
           : style.block
       }

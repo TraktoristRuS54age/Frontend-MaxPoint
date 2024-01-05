@@ -5,9 +5,17 @@ import { Text as TText } from "../../types/types";
 import styles from "./Text.module.css";
 import { PresentationContext } from "../../context/context";
 
-function Text({ type, position, data, size, id }: TText) {
+function Text({ data, size }: TText) {
   const { presentation, setPresentation } = useContext(PresentationContext);
-  const newPresentation = { ...presentation };
+  const slides = presentation.slides;
+  const currentSlide = slides.find(
+    (slide) => slide.id === presentation.currentSlideID,
+  );
+  const selectedObject = () => {
+    return currentSlide?.objects.find(
+      (object) => object.id === currentSlide.selectObjects,
+    );
+  };
   const style: CSSProperties = {
     color: data.color,
     fontFamily: data.fontFamily,
@@ -19,43 +27,28 @@ function Text({ type, position, data, size, id }: TText) {
     height: size.height,
     width: size.width,
   };
-
-  const onChange = (value: string) => {
-    const currentSlide = newPresentation.slides.find(
-      (slide) => slide.id === newPresentation.currentSlideID,
-    )!;
-    currentSlide.objects = currentSlide.objects.map((obj) =>
-      obj.id === id
-        ? {
-            type: type,
-            data: {
-              value: value,
-              fontSize: value.length != 0 ? data.fontSize : 20,
-              fontFamily: data.fontFamily,
-              fontStyle: data.fontStyle,
-              textDecoration: data.textDecoration,
-              color: data.color,
-              bold: data.bold,
-            },
-            size: {
-              height: value.length != 0 ? size.height : 34,
-              width: value.length != 0 ? size.width : 110,
-            },
-            id: id,
-            position: position,
-          }
-        : obj,
-    );
-    setPresentation(newPresentation);
-  };
-
+  
   return (
     <textarea
       className={styles.textarea}
       style={style}
       value={data.value}
       placeholder={data.value === "" ? "Enter text" : undefined}
-      onChange={(e) => onChange(e.target.value)}
+      onChange={(event) => {
+        const obj = selectedObject();
+        if (obj === undefined || obj.type !== "text") {
+          return;
+        }
+        const value = event.target.value;
+        obj.data.value = event.target.value;
+        obj.data.fontSize = value.length != 0 ? obj.data.fontSize : 20;
+        obj.size.height = value.length != 0 ? obj.size.height : 34;
+        obj.size.width = value.length != 0 ? obj.size.width : 110;
+        setPresentation({
+          ...presentation,
+          slides: slides,
+        });
+      }}
     />
   );
 }

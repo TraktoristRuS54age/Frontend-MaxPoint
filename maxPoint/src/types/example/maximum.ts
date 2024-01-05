@@ -13,8 +13,6 @@ import {
   Text,
   Image,
   Primitive,
-  Operation,
-  History,
   // Preview,
   Presentation,
   PresentationSliceState,
@@ -143,44 +141,11 @@ const slide: Slide = {
   objects: [text, image, triangle, rectangle],
 };
 
-const slide1: Slide = {
-  id: uuidv4(),
-  name: "slide1",
-  background: color,
-  selectObjects: null,
-  objects: [image, triangle],
-};
-
-const slide2: Slide = {
-  id: uuidv4(),
-  name: "slide2",
-  background: color,
-  selectObjects: null,
-  objects: [image, rectangle, text],
-};
-
-const slide3: Slide = {
-  id: uuidv4(),
-  name: "slide3",
-  background: color,
-  selectObjects: null,
-  objects: [image, triangle],
-};
-
-const operation: Operation = {
-  id: uuidv4(),
-  data: {},
-};
-
-const history: History = {
-  operations: [operation],
-  undidOperations: [],
-};
 
 const presentation: Presentation = {
   name: "maxPoint",
   currentSlideID: slide.id,
-  slides: [slide, slide1, slide2, slide3],
+  slides: [slide],
   // operation: operation,
   // preview: Preview,
 };

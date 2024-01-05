@@ -16,8 +16,10 @@ type TFunction = {
 
 function Left_ToolBar({ props }: TFunction) {
   const { presentation, setPresentation } = useContext(PresentationContext);
-  const newPresentation = { ...presentation };
-
+  const slides = presentation.slides;
+  const currentSlide = slides.find(
+    (slide) => slide.id === presentation.currentSlideID,
+  );
   const createText = () => {
     const text: TText = {
       type: "text",
@@ -40,10 +42,11 @@ function Left_ToolBar({ props }: TFunction) {
         y: 0, //100
       },
     };
-    newPresentation.slides
-      .find((slide) => slide.id === newPresentation.currentSlideID)
-      ?.objects.push(text);
-    setPresentation(newPresentation);
+    currentSlide?.objects.push(text);
+    setPresentation({
+      ...presentation,
+      slides: slides,
+    });
   };
 
   return (

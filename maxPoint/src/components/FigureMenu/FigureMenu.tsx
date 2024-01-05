@@ -47,7 +47,10 @@ const ellipseButton: PrimitiveProps = {
 };
 const FigureMenu = () => {
   const { presentation, setPresentation } = useContext(PresentationContext);
-  const newPresentation = { ...presentation };
+  const slides = presentation.slides;
+  const currentSlide = slides.find(
+    (slide) => slide.id === presentation.currentSlideID,
+  );
 
   const createTriangle = () => {
     const triangle: TPrimitive = {
@@ -67,10 +70,11 @@ const FigureMenu = () => {
       rotation: 0,
       type: "primitive",
     };
-    newPresentation.slides
-      .find((slide) => slide.id === newPresentation.currentSlideID)
-      ?.objects.push(triangle);
-    setPresentation(newPresentation);
+    currentSlide?.objects.push(triangle);
+    setPresentation({
+      ...presentation,
+      slides: slides,
+    });
   };
 
   const createRectangle = () => {
@@ -91,10 +95,11 @@ const FigureMenu = () => {
       rotation: 0,
       type: "primitive",
     };
-    newPresentation.slides
-      .find((slide) => slide.id === newPresentation.currentSlideID)
-      ?.objects.push(rectangle);
-    setPresentation(newPresentation);
+    currentSlide?.objects.push(rectangle);
+    setPresentation({
+      ...presentation,
+      slides: slides,
+    });
   };
 
   const createEllipse = () => {
@@ -115,10 +120,11 @@ const FigureMenu = () => {
       rotation: 0,
       type: "primitive",
     };
-    newPresentation.slides
-      .find((slide) => slide.id === newPresentation.currentSlideID)
-      ?.objects.push(ellipse);
-    setPresentation(newPresentation);
+    currentSlide?.objects.push(ellipse);
+    setPresentation({
+      ...presentation,
+      slides: slides,
+    });
   };
 
   return (

@@ -27,8 +27,6 @@ interface Slide {
   id: string,
   name: string;
   background: Color;
-  // size: Size;
-  // filter: Filter;
   selectObjects: string | null;
   objects: Array<Text | Image | Primitive>;
 };
@@ -84,16 +82,6 @@ interface Primitive extends Block, PrimitiveData {
   size: Size;
 };
 
-type Operation = {
-  id: string;
-  data: object;
-};
-
-type History = {
-  operations: Operation[];
-  undidOperations: Operation[];
-};
-
 type Presentation = {
   name: string;
   currentSlideID: string | null;
@@ -133,9 +121,6 @@ export type {
   Text,
   Image,
   Primitive,
-  Operation,
-  History,
-  // Preview,
   Presentation,
   PresentationSliceState,
   Option,

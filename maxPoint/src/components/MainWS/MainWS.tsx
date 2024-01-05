@@ -6,7 +6,8 @@ import { PresentationContext } from "../../context/context.tsx";
 
 function MainWS() {
   const { presentation } = useContext(PresentationContext);
-  const currentSlide = presentation.slides.find(
+  const slides = presentation.slides;
+  const currentSlide = slides.find(
     (slide) => slide.id === presentation.currentSlideID,
   );
 

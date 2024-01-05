@@ -9,7 +9,10 @@ import { v4 as uuidv4 } from "uuid";
 
 const PhotoButton = () => {
   const { presentation, setPresentation } = useContext(PresentationContext);
-  const newPresentation = { ...presentation };
+  const slides = presentation.slides;
+  const currentSlide = slides.find(
+    (slide) => slide.id === presentation.currentSlideID,
+  );
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
     let file: File;
@@ -42,10 +45,11 @@ const PhotoButton = () => {
           },
           type: "image",
         };
-        newPresentation.slides
-          .find((slide) => slide.id === newPresentation.currentSlideID)
-          ?.objects.push(image);
-        setPresentation(newPresentation);
+        currentSlide?.objects.push(image);
+        setPresentation({
+          ...presentation,
+          slides: slides,
+        });
       } catch (error) {
         alert(error);
       }
