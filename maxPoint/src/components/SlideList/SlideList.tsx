@@ -23,11 +23,6 @@ const SlideList = (props: SlideListProps) => {
   const [removed, setRemoved] = useState('');
 
   const setId = (id: string) => {
-    if (id === removed) {
-      console.log('yes')
-      setId(slide.id);
-      return;
-    }
     // отменить выделение selectObjects если мы переместились на другой слайд
     slides.map((slide) =>
       slide.id === presentation.currentSlideID
@@ -64,10 +59,14 @@ const SlideList = (props: SlideListProps) => {
       elementRef: ref,
     });
 
-    if (slide.id !== presentation.currentSlideID) {
-      return;
-    }
+    // if (slide.id !== presentation.currentSlideID) {
+    //   return;
+    // }
     const onMouseDown = (mouseDownEvent: MouseEvent) => {
+      if (slide.id !== presentation.currentSlideID && slide.id !== removed) {
+        setId(slide.id);
+        return;
+      }
       onDragStart({
         onDrag: (dragEvent) => {
           // TODO: можно вынести в стили и использовать как-то так ref.current!.classList.add(styles.dragging) либо через useState
@@ -99,7 +98,6 @@ const SlideList = (props: SlideListProps) => {
             ? classNames(style.slide_block__wrapper, style.wrapper__current)
             : style.slide_block__wrapper
         }
-        onClick={() => setId(slideID)}
       >
         <div className={style.visitor}>
           <Slide slide={slide} className={style.slide_block_slide} />
