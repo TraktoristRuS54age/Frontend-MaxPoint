@@ -2,7 +2,7 @@
 import style from "./Editor.module.css";
 import Left_ToolBar from "../LeftToolBar/LeftToolBar";
 import SlideBar from "../SlideBar/SlideBar";
-import MainWS from "../MainWS/MainWS";
+import MainView from "../MainView/MainView";
 import FigureMenu from "../FigureMenu/FigureMenu";
 import classNames from "classnames";
 import { useState } from "react";
@@ -24,7 +24,7 @@ function Editor() {
       {isOpen ? <FigureMenu /> : null}
 
       <section className={style.working_block_grid}>
-        <MainWS />
+        <MainView />
         <SlideBar />
       </section>
     </div>

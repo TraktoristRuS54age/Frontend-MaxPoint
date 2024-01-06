@@ -31,15 +31,6 @@ interface Slide {
   objects: Array<Text | Image | Primitive>;
 };
 
-type Char = {
-  value: string;
-  fontSize: number;
-  fontFamily: string;
-  color: TColor;
-  bold: boolean;
-  id: string;
-};
-
 interface TextData {
   data: {
     value: string;
@@ -117,7 +108,6 @@ export type {
   Position,
   Block,
   Slide,
-  Char,
   Text,
   Image,
   Primitive,

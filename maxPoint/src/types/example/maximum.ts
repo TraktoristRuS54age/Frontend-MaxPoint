@@ -9,7 +9,6 @@ import {
   Size,
   Position,
   Slide,
-  Char,
   Text,
   Image,
   Primitive,
