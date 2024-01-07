@@ -64,6 +64,7 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
           x: action.payload.x,
           y: action.payload.y,
         };
+        console.log('Позиция сохранена')
         return {
           ...state,
           slides: slides,

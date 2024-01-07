@@ -33,7 +33,6 @@ function getObject(data: BlockProps) {
 function Block(props: SlideObjectProps) {
   const { size, position, id } = props.data;
   const { toggleArea, setPosition, setSize } = useAppActions();
-
   const styles: CSSProperties = {
     height: size.height,
     left: position.x,
@@ -83,7 +82,7 @@ function Block(props: SlideObjectProps) {
       control.addEventListener("mousedown", onMouseDown);
       return () => control.removeEventListener("mousedown", onMouseDown);
     }
-  }, [props.slide.selectObjects]);
+  }, [[props.slide.selectObjects]]);
 
   return (
     <div

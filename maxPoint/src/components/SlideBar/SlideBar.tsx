@@ -13,6 +13,7 @@ function SlideBar() {
   const slides = useAppSelector((state) => state.slides);
   const current = useAppSelector((state) => state.currentSlideID);
   const { createNewSlide, changeOrder } = useAppActions();
+  console.log("Перерисовка");
   const changeSlideOrder = (from: number, to: number) => {
     changeOrder(from, to);
   };
