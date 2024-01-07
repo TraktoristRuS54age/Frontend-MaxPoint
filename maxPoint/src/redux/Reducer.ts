@@ -40,7 +40,6 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
       };
     case "TOGGLE_AREA":
       if (currentSlide) {
-        console.log("toggle");
         if (action.payload.event.ctrlKey) {
           currentSlide.selectObjects = null;
           return {
@@ -64,7 +63,6 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
           x: action.payload.x,
           y: action.payload.y,
         };
-        console.log('Позиция сохранена')
         return {
           ...state,
           slides: slides,

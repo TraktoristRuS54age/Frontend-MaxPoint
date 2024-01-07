@@ -51,7 +51,6 @@ const SlideList = (props: SlideListProps) => {
           ref.current!.style.position = "";
           ref.current!.style.zIndex = "";
           ref.current!.style.left = "";
-          // console.log('Я в OnDrop')
           setId(slide.id);
           setSlideID(slide.id);
         },
