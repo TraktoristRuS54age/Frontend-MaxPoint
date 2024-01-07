@@ -24,7 +24,7 @@ type Block = {
 };
 
 interface Slide {
-  id: string,
+  id: string;
   name: string;
   background: Color;
   selectObjects: string | null;

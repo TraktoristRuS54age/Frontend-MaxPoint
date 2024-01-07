@@ -4,43 +4,36 @@ import style from "./SlideBar.module.css";
 import Plus from "../../resources/img/plus.png";
 import classNames from "classnames";
 import SlideList from "../SlideList/SlideList";
-import { useContext } from "react";
-import { PresentationContext } from "../../context/context";
-import { Slide as TSlide } from "../../types/types";
 import { v4 as uuidv4 } from "uuid";
 import { useDndList } from "../../hooks/useDnD/useDragSlideList";
+import { useAppActions } from "../../redux/Actions/Actions";
+import { Slide as TSlide } from "../../types/types";
 
-function SlideBar() {
-  const { presentation, setPresentation } = useContext(PresentationContext);
-  const slides = presentation.slides;
+type TSlideBar = {
+  slides: TSlide[];
+  current: string | null;
+};
 
+function SlideBar(props: TSlideBar) {
+  const { slides, current } = props;
+  const { createNewSlide, changeOrder } = useAppActions();
+  console.log("Перерисовка");
   const changeSlideOrder = (from: number, to: number) => {
-    // console.log(from, to);
-    const removed = slides.splice(from, 1);
-    slides.splice(to, 0, removed[0]);
-    setPresentation({
-      ...presentation,
-      slides: slides,
-    });
+    changeOrder(from, to);
   };
 
   const { registerDndItem } = useDndList({
     onOrderChange: changeSlideOrder,
   });
 
-  const createNewSlide = () => {
-    const NewSlide: TSlide = {
+  const newSlide = () => {
+    return {
       id: uuidv4(),
       name: `${uuidv4()}`,
       background: "#aaaaaa",
       selectObjects: null,
       objects: [],
     };
-    slides.push(NewSlide);
-    setPresentation({
-      ...presentation,
-      slides: slides,
-    });
   };
 
   return (
@@ -51,12 +44,16 @@ function SlideBar() {
             <SlideList
               key={index}
               slide={slide}
+              current={current}
               index={index}
               registerDndItem={registerDndItem}
             />
           ))
         ) : (
-          <div className={style.slide_block__wrapper} onClick={createNewSlide}>
+          <div
+            className={style.slide_block__wrapper}
+            onClick={() => createNewSlide(newSlide())}
+          >
             <div
               className={classNames(style.slide, style.slide_block_new_slide)}
             >
@@ -64,8 +61,11 @@ function SlideBar() {
             </div>
           </div>
         )}
-        {presentation.slides.length > 0 ? (
-          <div className={style.slide_block__wrapper} onClick={createNewSlide}>
+        {slides.length > 0 ? (
+          <div
+            className={style.slide_block__wrapper}
+            onClick={() => createNewSlide(newSlide())}
+          >
             <div
               className={classNames(
                 style.slide,

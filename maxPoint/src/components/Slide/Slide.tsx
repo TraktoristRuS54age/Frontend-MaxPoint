@@ -22,7 +22,7 @@ function Slide({ slide, className }: SlideProps) {
       style={styles}
     >
       {slide.objects.map((object) => (
-        <Block key={object.id} {...object} />
+        <Block key={object.id} slide={slide} data={object} />
       ))}
     </div>
   );

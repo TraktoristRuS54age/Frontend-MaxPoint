@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable sort-keys */
 /* eslint-disable sort-imports */
-import { useContext } from "react";
 import style from "./Title.module.css";
 import { useForm } from "react-hook-form";
-import { PresentationContext } from "../../context/context";
+import { useAppActions } from "../../redux/Actions/Actions";
+import { useAppSelector } from "../../redux/Reducer";
 
 export const Title = () => {
-  const { presentation, setPresentation } = useContext(PresentationContext);
+  const { changePresentationName } = useAppActions();
+  const name = useAppSelector((state) => state.name);
   const {
     //создаём объект используя useForm
     handleSubmit, //создаём передачу данных
@@ -19,13 +20,13 @@ export const Title = () => {
     <>
       <form
         onChange={handleSubmit((e) => {
-          setPresentation({ ...presentation, name: e.name });
+          changePresentationName(e.name);
         })}
       >
         <input
           type="text"
           className={errors.name && style.header_input_name} //если поле содержит ошибку
-          value={presentation.name}
+          value={name}
           {...register("name", {
             required: true, //поле является обязательным для ввода
             minLength: 0, //мин. символов

@@ -4,53 +4,23 @@ import style from "../SlideBar/SlideBar.module.css";
 import Slide from "../Slide/Slide";
 import { Slide as TSlide } from "../../types/types";
 import classNames from "classnames";
-import { useContext, useEffect, useRef, useState } from "react";
-import { PresentationContext } from "../../context/context";
+import { useEffect, useRef, useState } from "react";
 import { RegisterDndItemFn } from "../../hooks/useDnD/useDragSlideList";
 import delet from "../../resources/headerButton/delete_48.png";
+import { useAppActions } from "../../redux/Actions/Actions";
 
 interface SlideListProps {
   slide: TSlide;
+  current: string | null;
   index: number;
   registerDndItem: RegisterDndItemFn;
 }
 
 const SlideList = (props: SlideListProps) => {
-  const { slide, index, registerDndItem } = props;
-  const { presentation, setPresentation } = useContext(PresentationContext);
-  const slides = presentation.slides;
+  const { setId, removeSlide } = useAppActions();
+  const { slide, current, index, registerDndItem } = props;
   const [slideID, setSlideID] = useState(slide.id);
-  const [removed, setRemoved] = useState('');
-
-  const setId = (id: string) => {
-    // отменить выделение selectObjects если мы переместились на другой слайд
-    slides.map((slide) =>
-      slide.id === presentation.currentSlideID
-        ? { ...slide, selectObjects: null }
-        : slide,
-    );
-
-    setPresentation({
-      ...presentation,
-      currentSlideID: id,
-      slides: slides,
-    });
-    setSlideID(slide.id);
-  };
-
-  const removeSlide = (id: string) => {
-    const newSlides = slides.filter((slide) => slide.id !== id);
-
-    setPresentation({
-      ...presentation,
-      currentSlideID:
-        presentation.currentSlideID === id ? null : presentation.currentSlideID,
-      slides: newSlides,
-    });
-    setSlideID(slide.id);
-    setRemoved(id);
-  };
-
+  const [removed, setRemoved] = useState("");
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -63,8 +33,9 @@ const SlideList = (props: SlideListProps) => {
     //   return;
     // }
     const onMouseDown = (mouseDownEvent: MouseEvent) => {
-      if (slide.id !== presentation.currentSlideID && slide.id !== removed) {
+      if (slide.id !== current && slide.id !== removed) {
         setId(slide.id);
+        setSlideID(slide.id);
         return;
       }
       onDragStart({
@@ -82,6 +53,7 @@ const SlideList = (props: SlideListProps) => {
           ref.current!.style.left = "";
           // console.log('Я в OnDrop')
           setId(slide.id);
+          setSlideID(slide.id);
         },
       });
     };
@@ -94,7 +66,7 @@ const SlideList = (props: SlideListProps) => {
     <div className={style.wrapper} key={index} ref={ref}>
       <div
         className={
-          slide.id === presentation.currentSlideID
+          slide.id === current
             ? classNames(style.slide_block__wrapper, style.wrapper__current)
             : style.slide_block__wrapper
         }
@@ -105,7 +77,11 @@ const SlideList = (props: SlideListProps) => {
       </div>
       <button
         className={style.slide_button}
-        onClick={() => removeSlide(slideID)}
+        onClick={() => {
+          removeSlide(slideID);
+          setRemoved(slideID);
+          setSlideID(slide.id);
+        }}
       >
         <img className={style.slide_button_img} src={delet} alt="удалить"></img>
       </button>
