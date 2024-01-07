@@ -19,7 +19,7 @@ const titleReducer = (state: string, action: ActionType) => {
 };
 
 const objectsReducer = (state: Presentation, action: ActionType) => {
-  const slides: Slide[] = JSON.parse(JSON.stringify(state.slides));
+  const slides: Slide[] = [...state.slides];
   const currentSlide = slides.find(
     (slide) => slide.id === state.currentSlideID,
   );
