@@ -1,4 +1,5 @@
 .header_block_button {
+    width: 490px;
     margin: 0 10% 0 0;
     display: flex;
     align-items: flex-end;
@@ -10,7 +11,7 @@
     width: 25px;
     height: 25px;
     border: 0;
-    padding: 5px 5px;
+    padding: 3px 3px;
     margin: 0 6px;
     display: flex;
     align-items: baseline;
@@ -22,10 +23,10 @@
     outline: none;
 }
 
-.button_img {
+/* .button_img {
     width: 15px;
     height: 15px;
-}
+} */
 
 .header_input_number {
     width: 40px;
