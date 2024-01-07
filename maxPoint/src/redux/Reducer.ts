@@ -2,12 +2,11 @@
 import { Presentation, Slide } from "../types/types";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { ActionType } from "./Actions/ActionTypes";
-import { presentationSlice as data } from "../types/example/maximum.ts";
 
 const initialState: Presentation = {
   currentSlideID: null,
   name: "maxPoint",
-  slides: data.items.slides,
+  slides: [],
 };
 
 const titleReducer = (state: string, action: ActionType) => {
