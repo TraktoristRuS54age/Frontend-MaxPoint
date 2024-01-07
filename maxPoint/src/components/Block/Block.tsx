@@ -15,9 +15,9 @@ import { Slide as TSlide } from "../../types/types";
 
 type BlockProps = TPrimitive | TImage | TText;
 type SlideObjectProps = {
-  slide: TSlide,
-  data: BlockProps,
-}
+  slide: TSlide;
+  data: BlockProps;
+};
 
 function getObject(data: BlockProps) {
   switch (data.type) {
