@@ -1,5 +1,4 @@
-/* eslint-disable sort-imports */
-import { createContext, PropsWithChildren, useState } from "react";
+import { PropsWithChildren, createContext, useState } from "react";
 import { Presentation } from "../types/types.ts";
 import { presentationSlice as data } from "../types/example/maximum.ts";
 

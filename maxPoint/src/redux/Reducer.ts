@@ -1,4 +1,3 @@
-/* eslint-disable sort-imports */
 import { Presentation, Slide } from "../types/types";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { ActionType } from "./Actions/ActionTypes";
@@ -194,10 +193,10 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
           ...state,
           slides: slides,
         };
-      };
+      }
       return {
         ...state,
-      }
+      };
     default:
       return state;
   }

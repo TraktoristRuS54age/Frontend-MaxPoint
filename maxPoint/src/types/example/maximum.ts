@@ -1,20 +1,16 @@
-/* eslint-disable sort-keys */
-/* eslint-disable sort-imports */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-  FontFamily,
   Color,
-  TColor,
   Filter,
-  Size,
-  Position,
-  Slide,
-  Text,
+  FontFamily,
   Image,
-  Primitive,
-  // Preview,
+  Position,
   Presentation,
   PresentationSliceState,
+  Primitive,
+  Size,
+  Slide,
+  TColor,
+  Text,
 } from "../types";
 
 import { v4 as uuidv4 } from "uuid";
@@ -25,7 +21,7 @@ const color: Color = "#aaaaaa";
 
 const textColor: TColor = "black";
 
-const filter: Filter = {
+export const filter: Filter = {
   color: ["grey", "red", "green", "blue", "black"],
 };
 
@@ -34,40 +30,38 @@ const size: Size = {
   width: 400,
 };
 
-const workSize: Size = {
+export const workSize: Size = {
   height: 400,
   width: 800,
-}
+};
 
 const textSize: Size = {
   height: 50,
   width: 100,
 };
 
-const position: Position = {
+export const position: Position = {
   x: 12,
   y: 90,
 };
 
-// graphic
 const text: Text = {
-  type: "text",
   data: {
-    value: "",
-    fontSize: 20,
-    fontFamily: fontFamily,
-    fontStyle: 'normal',
-    textDecoration: 'none',
-    color: textColor,
     bold: true,
+    color: textColor,
+    fontFamily: fontFamily,
+    fontSize: 20,
+    fontStyle: "normal",
+    textDecoration: "none",
+    value: "",
   },
-  size: textSize,
   id: uuidv4(),
   position: {
     x: 0, //200
     y: 50, //100
   },
-
+  size: textSize,
+  type: "text",
 };
 
 const image: Image = {
@@ -76,74 +70,71 @@ const image: Image = {
     src: "https://i.pinimg.com/736x/e6/d3/61/e6d361c27b9c198cf5ddea153e88fb94.jpg",
   },
   id: uuidv4(),
-  size: size,
   position: {
     x: 0, //200
     y: 50, //100
   },
   rotation: 0,
+  size: size,
   type: "image",
 };
 
 const triangle: Primitive = {
   data: {
+    fill: "black",
     form: "triangle",
-    fill: 'black',
   },
   id: uuidv4(),
-  size: size,
   position: {
     x: 500,
     y: -10,
   },
   rotation: 20,
+  size: size,
   type: "primitive",
 };
 
-const ellipse: Primitive = {
+export const ellipse: Primitive = {
   data: {
+    fill: "black",
     form: "ellipse",
-    fill: 'black',
   },
   id: uuidv4(),
-  size: size,
   position: {
     x: 200,
     y: 100,
   },
   rotation: 0,
+  size: size,
   type: "primitive",
 };
 
 const rectangle: Primitive = {
   data: {
+    fill: "black",
     form: "rectangle",
-    fill: 'black',
   },
-  size: size,
   id: uuidv4(),
   position: {
     x: 230,
     y: 300,
   },
   rotation: 70,
+  size: size,
   type: "primitive",
 };
 
-//graphic
-
 const slide: Slide = {
+  background: color,
   id: uuidv4(),
   name: "slide",
-  background: color,
-  selectObjects: null,
   objects: [text, image, triangle, rectangle],
+  selectObjects: null,
 };
 
-
 const presentation: Presentation = {
-  name: "maxPoint",
   currentSlideID: slide.id,
+  name: "maxPoint",
   slides: [slide],
   // operation: operation,
   // preview: Preview,
@@ -154,4 +145,3 @@ export const presentationSlice: PresentationSliceState = {
 };
 
 export default presentation;
-

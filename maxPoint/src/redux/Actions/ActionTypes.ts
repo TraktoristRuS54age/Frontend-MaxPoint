@@ -1,6 +1,4 @@
-/* eslint-disable sort-imports */
-import { Presentation, Slide, Text, Image, Primitive } from "../../types/types";
-
+import { Image, Presentation, Primitive, Slide, Text } from "../../types/types";
 export type TitleActionType = {
   type: "CHANGE_PRESENTATION_TITLE";
   payload: string;
@@ -108,7 +106,6 @@ export type SetColorActionType = {
   payload: string;
 };
 
-
 export type ActionType =
   | TitleActionType
   | AddSlideActionType
@@ -129,4 +126,4 @@ export type ActionType =
   | SetTextFontStyleActionType
   | SetTextDecorationActionType
   | ObjectDeleteActionType
-  | SetColorActionType
+  | SetColorActionType;

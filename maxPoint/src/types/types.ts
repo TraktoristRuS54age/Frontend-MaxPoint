@@ -29,7 +29,7 @@ interface Slide {
   background: Color;
   selectObjects: string | null;
   objects: Array<Text | Image | Primitive>;
-};
+}
 
 interface TextData {
   data: {
@@ -40,7 +40,7 @@ interface TextData {
     textDecoration: string;
     color: TColor;
     bold: boolean;
-  }
+  };
 }
 
 interface ImageData {
@@ -71,7 +71,7 @@ interface Image extends Block, ImageData {
 interface Primitive extends Block, PrimitiveData {
   type: "primitive";
   size: Size;
-};
+}
 
 type Presentation = {
   name: string;

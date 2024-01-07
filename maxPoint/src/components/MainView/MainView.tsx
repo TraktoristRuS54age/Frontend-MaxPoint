@@ -1,8 +1,6 @@
-/* eslint-disable sort-imports */
-import style from "./MainView.module.css";
 import Slide from "../Slide/Slide.tsx";
+import style from "./MainView.module.css";
 import { useAppSelector } from "../../redux/Reducer.ts";
-
 
 function MainView() {
   const slides = useAppSelector((state) => state.slides);

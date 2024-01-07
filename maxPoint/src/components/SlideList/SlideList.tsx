@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable sort-imports */
-import style from "../SlideBar/SlideBar.module.css";
+import { useEffect, useRef, useState } from "react";
+import { RegisterDndItemFn } from "../../hooks/useDnD/useDragSlideList";
 import Slide from "../Slide/Slide";
 import { Slide as TSlide } from "../../types/types";
 import classNames from "classnames";
-import { useEffect, useRef, useState } from "react";
-import { RegisterDndItemFn } from "../../hooks/useDnD/useDragSlideList";
 import delet from "../../resources/headerButton/delete_48.png";
+import style from "../SlideBar/SlideBar.module.css";
 import { useAppActions } from "../../redux/Actions/Actions";
 
 interface SlideListProps {
@@ -47,7 +45,7 @@ const SlideList = (props: SlideListProps) => {
             dragEvent.clientX - mouseDownEvent.clientX
           }px`;
         },
-        onDrop: (dropEvent) => {
+        onDrop: () => {
           ref.current!.style.position = "";
           ref.current!.style.zIndex = "";
           ref.current!.style.left = "";

@@ -1,4 +1,3 @@
-/* eslint-disable sort-imports */
 import style from "../ToolBar/ToolBar.module.css";
 import { useAppSelector } from "../../redux/Reducer";
 

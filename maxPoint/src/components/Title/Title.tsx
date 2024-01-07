@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable sort-keys */
-/* eslint-disable sort-imports */
 import style from "./Title.module.css";
-import { useForm } from "react-hook-form";
 import { useAppActions } from "../../redux/Actions/Actions";
 import { useAppSelector } from "../../redux/Reducer";
+import { useForm } from "react-hook-form";
 
 export const Title = () => {
   const { changePresentationName } = useAppActions();
@@ -28,10 +25,10 @@ export const Title = () => {
           className={errors.name && style.header_input_name} //если поле содержит ошибку
           value={name}
           {...register("name", {
-            required: true, //поле является обязательным для ввода
-            minLength: 0, //мин. символов
             maxLength: 15, //макс. символов
+            minLength: 0, //мин. символов
             pattern: /^[a-zA-Zа-яА-Я]*$/,
+            required: true, //поле является обязательным для ввода
           })} // какие символы будем вводить
         />
         {errors.name?.type == "required" && <span>Введите имя</span>}
