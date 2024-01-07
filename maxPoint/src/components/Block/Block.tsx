@@ -62,7 +62,6 @@ function Block(props: SlideObjectProps) {
               x: dragEvent.clientX + (position.x - mouseDownEvent.clientX),
               y: dragEvent.clientY + (position.y - mouseDownEvent.clientY),
             };
-            console.log(pos);
             setPosition(pos);
           },
         });
@@ -80,7 +79,6 @@ function Block(props: SlideObjectProps) {
       }
     };
     if (props.slide.selectObjects) {
-      console.log("da");
       const control = ref.current!;
       control.addEventListener("mousedown", onMouseDown);
       return () => control.removeEventListener("mousedown", onMouseDown);

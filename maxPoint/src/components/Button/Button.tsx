@@ -5,15 +5,23 @@ import italic from "../../resources/headerButton/italic_48.png";
 import delet from "../../resources/headerButton/delete_48.png";
 import zalivka from "../../resources/headerButton/zalivka_48.png";
 import underline from "../../resources/headerButton/underline_48.png";
-import { useContext, useRef, useState } from "react";
-import { PresentationContext } from "../../context/context";
+import { useRef, useState } from "react";
+import { useAppSelector } from "../../redux/Reducer";
+import { useAppActions } from "../../redux/Actions/Actions";
 
 function Button() {
-  const { presentation, setPresentation } = useContext(PresentationContext);
-  const slides = presentation.slides;
-  const currentSlide = slides.find(
-    (slide) => slide.id === presentation.currentSlideID,
-  );
+  const {
+    SetTextSize,
+    ObjectDelete,
+    SetTextFontFamily,
+    SetTextBold,
+    SetTextFontStyle,
+    SetTextDecoration,
+    SetColor
+  } = useAppActions();
+  const slides = useAppSelector((state) => state.slides);
+  const currentSlideID = useAppSelector((state) => state.currentSlideID);
+  const currentSlide = slides.find((slide) => slide.id === currentSlideID);
   const selectedObject = currentSlide?.objects.find(
     (object) => object.id === currentSlide.selectObjects,
   );
@@ -34,17 +42,7 @@ function Button() {
                 value={counter}
                 style={{ width: `2.5rem` }}
                 onChange={(event) => {
-                  if (
-                    selectedObject === undefined ||
-                    selectedObject.type !== "text"
-                  ) {
-                    return;
-                  }
-                  selectedObject.data.fontSize = +event.target.value;
-                  setPresentation({
-                    ...presentation,
-                    slides: slides,
-                  });
+                  SetTextSize(+event.target.value);
                   setCounter(+event.target.value);
                 }}
               />
@@ -54,17 +52,7 @@ function Button() {
               <select
                 defaultValue={"Arial"}
                 onChange={(event) => {
-                  if (
-                    selectedObject === undefined ||
-                    selectedObject.type !== "text"
-                  ) {
-                    return;
-                  }
-                  selectedObject.data.fontFamily = event.target.value;
-                  setPresentation({
-                    ...presentation,
-                    slides: slides,
-                  });
+                  SetTextFontFamily(event.target.value);
                 }}
               >
                 <option value="Arial">Arial</option>
@@ -82,17 +70,7 @@ function Button() {
               type="button"
               className={style.header_button}
               onClick={() => {
-                if (
-                  selectedObject === undefined ||
-                  selectedObject.type !== "text"
-                ) {
-                  return;
-                }
-                selectedObject.data.bold = !selectedObject.data.bold;
-                setPresentation({
-                  ...presentation,
-                  slides: slides,
-                });
+                SetTextBold();
               }}
             >
               <img className={style.button_img} src={bold} alt="жирный"></img>
@@ -101,20 +79,7 @@ function Button() {
               type="button"
               className={style.header_button}
               onClick={() => {
-                if (
-                  selectedObject === undefined ||
-                  selectedObject.type !== "text"
-                ) {
-                  return;
-                }
-                selectedObject.data.fontStyle =
-                  selectedObject.data.fontStyle === "italic"
-                    ? "normal"
-                    : "italic";
-                setPresentation({
-                  ...presentation,
-                  slides: slides,
-                });
+                SetTextFontStyle();
               }}
             >
               <img className={style.button_img} src={italic} alt="курсив"></img>
@@ -123,20 +88,7 @@ function Button() {
               type="button"
               className={style.header_button}
               onClick={() => {
-                if (
-                  selectedObject === undefined ||
-                  selectedObject.type !== "text"
-                ) {
-                  return;
-                }
-                selectedObject.data.textDecoration =
-                  selectedObject.data.textDecoration === "none"
-                    ? "underline"
-                    : "none";
-                setPresentation({
-                  ...presentation,
-                  slides: slides,
-                });
+                SetTextDecoration();
               }}
             >
               <img
@@ -154,18 +106,7 @@ function Button() {
               type="button"
               className={style.header_button}
               onClick={() => {
-                if (selectedObject === undefined) {
-                  return;
-                }
-                const newObject = currentSlide!.objects.filter(
-                  (object) => object.id !== selectedObject.id,
-                );
-                currentSlide!.objects = newObject;
-                currentSlide!.selectObjects = null;
-                setPresentation({
-                  ...presentation,
-                  slides: slides,
-                });
+                ObjectDelete();
               }}
             >
               <img className={style.button_img} src={delet} alt="удалить"></img>
@@ -179,24 +120,7 @@ function Button() {
               type="button"
               className={style.header_button}
               onClick={() => {
-                if (selectedObject === undefined) {
-                  if (currentSlide !== undefined) {
-                    currentSlide.background = `${ref.current?.value}`;
-                    setPresentation({
-                      ...presentation,
-                      slides: slides,
-                    });
-                  }
-                  return;
-                }
-                if (selectedObject.type === "primitive")
-                  selectedObject.data.fill = `${ref.current?.value}`;
-                if (selectedObject.type === "text")
-                  selectedObject.data.color = `${ref.current?.value}`;
-                setPresentation({
-                  ...presentation,
-                  slides: slides,
-                });
+                SetColor(ref.current!.value);
               }}
             >
               <img

@@ -1,5 +1,6 @@
+/* eslint-disable sort-imports */
 /* eslint-disable sort-keys */
-import { Slide } from "../../types/types";
+import { Slide, Text, Image, Presentation, Primitive } from "../../types/types";
 
 export const changePresentationName = (name: string) => {
   return {
@@ -63,5 +64,85 @@ export const setSize = (size: { height: number; width: number }) => {
   return {
     type: "SET_SIZE",
     payload: size,
+  };
+};
+
+export const createText = (text: Text) => {
+  return {
+    type: "CREATE_TEXT",
+    payload: text,
+  };
+};
+
+export const createImage = (image: Image) => {
+  return {
+    type: "CREATE_IMAGE",
+    payload: image,
+  };
+};
+
+export const UploadPresentation = (dataParsing: Presentation) => {
+  return {
+    type: "UPLOAD_PRESENTATION",
+    payload: dataParsing,
+  };
+};
+
+export const CreatePrimitive = (data: Primitive) => {
+  return {
+    type: "CREATE_PRIMITIVE",
+    payload: data,
+  };
+};
+
+export const SetTextValue = (value: string) => {
+  return {
+    type: "SET_TEXT_VALUE",
+    payload: value,
+  };
+};
+
+export const SetTextSize = (size: number) => {
+  return {
+    type: "SET_TEXT_SIZE",
+    payload: size,
+  };
+};
+
+export const SetTextFontFamily = (data: string) => {
+  return {
+    type: "SET_TEXT_FONT_FAMILY",
+    payload: data,
+  };
+};
+
+export const SetTextBold = () => {
+  return {
+    type: "SET_TEXT_BOLD",
+  };
+};
+
+export const SetTextFontStyle = () => {
+  return {
+    type: "SET_TEXT_FONT_STYLE",
+  };
+};
+
+export const SetTextDecoration = () => {
+  return {
+    type: "SET_TEXT_DECORATION",
+  };
+};
+
+export const ObjectDelete = () => {
+  return {
+    type: "OBJECT_DELETE",
+  };
+};
+
+export const SetColor = (data: string) => {
+  return {
+    type: "SET_COLOR",
+    payload: data,
   };
 };

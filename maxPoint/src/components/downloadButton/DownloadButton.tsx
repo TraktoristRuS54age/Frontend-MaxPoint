@@ -1,10 +1,9 @@
 /* eslint-disable sort-imports */
 import style from "../ToolBar/ToolBar.module.css";
-import { useContext } from "react";
-import { PresentationContext } from "../../context/context";
+import { useAppSelector } from "../../redux/Reducer";
 
 const DownloadButton = () => {
-  const { presentation } = useContext(PresentationContext);
+  const presentation = useAppSelector((state) => state);
   const createFile = () => {
     const file = new Blob([JSON.stringify(presentation)], {
       type: "application/json",

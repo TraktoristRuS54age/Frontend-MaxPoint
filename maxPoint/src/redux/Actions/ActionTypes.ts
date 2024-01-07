@@ -1,4 +1,5 @@
-import { Slide } from "../../types/types";
+/* eslint-disable sort-imports */
+import { Presentation, Slide, Text, Image, Primitive } from "../../types/types";
 
 export type TitleActionType = {
   type: "CHANGE_PRESENTATION_TITLE";
@@ -47,12 +48,66 @@ export type SetPositionActionType = {
 export type SetSizeActionType = {
   type: "SET_SIZE";
   payload: {
-    size: {
-      height: number;
-      width: number;
-    };
+    height: number;
+    width: number;
   };
 };
+
+export type CreateTextActionType = {
+  type: "CREATE_TEXT";
+  payload: Text;
+};
+
+export type CreateImageActionType = {
+  type: "CREATE_IMAGE";
+  payload: Image;
+};
+
+export type UploadActionType = {
+  type: "UPLOAD_PRESENTATION";
+  payload: Presentation;
+};
+
+export type CreatePrimitiveActionType = {
+  type: "CREATE_PRIMITIVE";
+  payload: Primitive;
+};
+export type SetTextValueActionType = {
+  type: "SET_TEXT_VALUE";
+  payload: string;
+};
+
+export type SetTextSizeActionType = {
+  type: "SET_TEXT_SIZE";
+  payload: number;
+};
+
+export type SetTextFontFamilyActionType = {
+  type: "SET_TEXT_FONT_FAMILY";
+  payload: string;
+};
+
+export type SetTextBoldActionType = {
+  type: "SET_TEXT_BOLD";
+};
+
+export type SetTextFontStyleActionType = {
+  type: "SET_TEXT_FONT_STYLE";
+};
+
+export type SetTextDecorationActionType = {
+  type: "SET_TEXT_DECORATION";
+};
+
+export type ObjectDeleteActionType = {
+  type: "OBJECT_DELETE";
+};
+
+export type SetColorActionType = {
+  type: "SET_COLOR";
+  payload: string;
+};
+
 
 export type ActionType =
   | TitleActionType
@@ -62,4 +117,16 @@ export type ActionType =
   | ChangeSlideOrderActionType
   | ToggleAreaActionType
   | SetPositionActionType
-  | SetSizeActionType;
+  | SetSizeActionType
+  | CreateTextActionType
+  | CreateImageActionType
+  | UploadActionType
+  | CreatePrimitiveActionType
+  | SetTextValueActionType
+  | SetTextSizeActionType
+  | SetTextFontFamilyActionType
+  | SetTextBoldActionType
+  | SetTextFontStyleActionType
+  | SetTextDecorationActionType
+  | ObjectDeleteActionType
+  | SetColorActionType

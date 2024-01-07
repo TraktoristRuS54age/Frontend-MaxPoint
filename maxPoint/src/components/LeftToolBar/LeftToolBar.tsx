@@ -5,23 +5,19 @@ import figures from "../../resources/img/figures.png";
 import style from "./LeftToolbar.module.css";
 import PhotoButton from "../PhotoButton/PhotoButton";
 import UploadButton from "../UploadButton/UploadButton";
-import { useContext } from "react";
-import { PresentationContext } from "../../context/context";
 import { Text as TText } from "../../types/types";
 import { v4 as uuidv4 } from "uuid";
+import { useAppActions } from "../../redux/Actions/Actions";
 
 type TFunction = {
   props: () => void;
 };
 
 function Left_ToolBar({ props }: TFunction) {
-  const { presentation, setPresentation } = useContext(PresentationContext);
-  const slides = presentation.slides;
-  const currentSlide = slides.find(
-    (slide) => slide.id === presentation.currentSlideID,
-  );
-  const createText = () => {
-    const text: TText = {
+  const { createText } = useAppActions();
+
+  const newText = (): TText => {
+    return {
       type: "text",
       data: {
         value: "",
@@ -42,17 +38,12 @@ function Left_ToolBar({ props }: TFunction) {
         y: 0, //100
       },
     };
-    currentSlide?.objects.push(text);
-    setPresentation({
-      ...presentation,
-      slides: slides,
-    });
   };
 
   return (
     <div className={style.menu_block}>
       <div className={style.menu_block__list}>
-        <div className={style.menu_item} onClick={createText}>
+        <div className={style.menu_item} onClick={() => createText(newText())}>
           <img className={style.menu_block__img} src={text}></img>
           <p className={style.menu_block_text}>Text</p>
         </div>

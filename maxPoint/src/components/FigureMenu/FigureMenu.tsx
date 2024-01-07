@@ -1,12 +1,11 @@
 /* eslint-disable sort-imports */
 /* eslint-disable sort-keys */
-import { useContext } from "react";
-import { PresentationContext } from "../../context/context";
 import { Primitive as TPrimitive } from "../../types/types";
 import { v4 as uuidv4 } from "uuid";
 import style from "./FigureMenu.module.css";
 import Primitive from "../Primitive/Primitive.tsx";
 import { Size } from "../../types/types";
+import { useAppActions } from "../../redux/Actions/Actions.ts";
 
 type PrimitiveProps = {
   data: {
@@ -46,14 +45,10 @@ const ellipseButton: PrimitiveProps = {
   },
 };
 const FigureMenu = () => {
-  const { presentation, setPresentation } = useContext(PresentationContext);
-  const slides = presentation.slides;
-  const currentSlide = slides.find(
-    (slide) => slide.id === presentation.currentSlideID,
-  );
+  const { CreatePrimitive } = useAppActions();
 
-  const createTriangle = () => {
-    const triangle: TPrimitive = {
+  const newTriangle = (): TPrimitive => {
+    return {
       data: {
         form: "triangle",
         fill: "black",
@@ -70,15 +65,10 @@ const FigureMenu = () => {
       rotation: 0,
       type: "primitive",
     };
-    currentSlide?.objects.push(triangle);
-    setPresentation({
-      ...presentation,
-      slides: slides,
-    });
   };
 
-  const createRectangle = () => {
-    const rectangle: TPrimitive = {
+  const newRectangle = (): TPrimitive => {
+    return {
       data: {
         form: "rectangle",
         fill: "black",
@@ -95,15 +85,10 @@ const FigureMenu = () => {
       rotation: 0,
       type: "primitive",
     };
-    currentSlide?.objects.push(rectangle);
-    setPresentation({
-      ...presentation,
-      slides: slides,
-    });
   };
 
-  const createEllipse = () => {
-    const ellipse: TPrimitive = {
+  const newEllipse = (): TPrimitive => {
+    return {
       data: {
         form: "ellipse",
         fill: "black",
@@ -120,27 +105,31 @@ const FigureMenu = () => {
       rotation: 0,
       type: "primitive",
     };
-    currentSlide?.objects.push(ellipse);
-    setPresentation({
-      ...presentation,
-      slides: slides,
-    });
   };
 
   return (
     <div className={style.figure}>
       <div className={style.figure__menu}>
-        <button className={style.figure__button} onClick={createTriangle}>
+        <button
+          className={style.figure__button}
+          onClick={() => CreatePrimitive(newTriangle())}
+        >
           <Primitive data={triangleButton.data} size={triangleButton.size} />
         </button>
       </div>
       <div className={style.figure__menu}>
-        <button className={style.figure__button} onClick={createRectangle}>
+        <button
+          className={style.figure__button}
+          onClick={() => CreatePrimitive(newRectangle())}
+        >
           <Primitive data={rectangleButton.data} size={rectangleButton.size} />
         </button>
       </div>
       <div className={style.figure__menu}>
-        <button className={style.figure__button} onClick={createEllipse}>
+        <button
+          className={style.figure__button}
+          onClick={() => CreatePrimitive(newEllipse())}
+        >
           <Primitive data={ellipseButton.data} size={ellipseButton.size} />
         </button>
       </div>

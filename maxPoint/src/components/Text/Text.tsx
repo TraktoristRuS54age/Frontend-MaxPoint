@@ -1,21 +1,19 @@
 /* eslint-disable sort-keys */
 /* eslint-disable sort-imports */
-import { CSSProperties, useContext } from "react";
+import { CSSProperties } from "react";
 import { Text as TText } from "../../types/types";
 import styles from "./Text.module.css";
-import { PresentationContext } from "../../context/context";
+import { useAppActions } from "../../redux/Actions/Actions";
+import { useAppSelector } from "../../redux/Reducer";
 
 function Text({ data, size }: TText) {
-  const { presentation, setPresentation } = useContext(PresentationContext);
-  const slides = presentation.slides;
-  const currentSlide = slides.find(
-    (slide) => slide.id === presentation.currentSlideID,
+  const { SetTextValue } = useAppActions();
+  const slides = useAppSelector((state) => state.slides);
+  const currentSlideID = useAppSelector((state) => state.currentSlideID);
+  const currentSlide = slides.find((slide) => slide.id === currentSlideID);
+  const selectedObject = currentSlide?.objects.find(
+    (object) => object.id === currentSlide.selectObjects,
   );
-  const selectedObject = () => {
-    return currentSlide?.objects.find(
-      (object) => object.id === currentSlide.selectObjects,
-    );
-  };
   const style: CSSProperties = {
     color: data.color,
     fontFamily: data.fontFamily,
@@ -35,19 +33,11 @@ function Text({ data, size }: TText) {
       value={data.value}
       placeholder={data.value === "" ? "Enter text" : undefined}
       onChange={(event) => {
-        const obj = selectedObject();
-        if (obj === undefined || obj.type !== "text") {
+        if (selectedObject === undefined || selectedObject.type !== "text") {
           return;
         }
         const value = event.target.value;
-        obj.data.value = event.target.value;
-        obj.data.fontSize = value.length != 0 ? obj.data.fontSize : 20;
-        obj.size.height = value.length != 0 ? obj.size.height : 34;
-        obj.size.width = value.length != 0 ? obj.size.width : 110;
-        setPresentation({
-          ...presentation,
-          slides: slides,
-        });
+        SetTextValue(value);
       }}
     />
   );

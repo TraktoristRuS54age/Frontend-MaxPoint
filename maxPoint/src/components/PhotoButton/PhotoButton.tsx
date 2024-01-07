@@ -1,18 +1,15 @@
-import { ChangeEvent, useContext } from "react";
-import { PresentationContext } from "../../context/context";
+/* eslint-disable sort-imports */
+import { ChangeEvent } from "react";
 import style from "../LeftToolBar/LeftToolbar.module.css";
 // eslint-disable-next-line sort-imports
 import photo from "../../resources/img/photo.png";
 // eslint-disable-next-line sort-imports
 import { Image as TImage } from "../../types/types";
 import { v4 as uuidv4 } from "uuid";
+import { useAppActions } from "../../redux/Actions/Actions";
 
 const PhotoButton = () => {
-  const { presentation, setPresentation } = useContext(PresentationContext);
-  const slides = presentation.slides;
-  const currentSlide = slides.find(
-    (slide) => slide.id === presentation.currentSlideID,
-  );
+  const { createImage } = useAppActions();
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
     let file: File;
@@ -45,11 +42,7 @@ const PhotoButton = () => {
           },
           type: "image",
         };
-        currentSlide?.objects.push(image);
-        setPresentation({
-          ...presentation,
-          slides: slides,
-        });
+        createImage(image);
       } catch (error) {
         alert(error);
       }
