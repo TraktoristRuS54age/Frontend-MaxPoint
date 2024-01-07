@@ -16,7 +16,6 @@ const PhotoButton = () => {
     if (event.target.files) {
       file = event.target.files[0];
       reader.readAsDataURL(event.target.files[0]);
-      console.log(event.target.files[0])
     }
 
     reader.onload = function () {

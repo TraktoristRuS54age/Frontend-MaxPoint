@@ -8,7 +8,6 @@ import classNames from "classnames";
 import { useState } from "react";
 
 function Editor() {
-  console.log("Перерисовка едитор");
   const [isOpen, setIsOpen] = useState(false);
   const changeIsOpen = () => {
     setIsOpen((isOpen) => !isOpen);
