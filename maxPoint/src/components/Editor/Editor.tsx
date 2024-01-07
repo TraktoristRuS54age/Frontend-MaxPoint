@@ -1,10 +1,9 @@
-/* eslint-disable sort-imports */
-import style from "./Editor.module.css";
-import Left_ToolBar from "../LeftToolBar/LeftToolBar";
-import SlideBar from "../SlideBar/SlideBar";
-import MainView from "../MainView/MainView";
 import FigureMenu from "../FigureMenu/FigureMenu";
+import Left_ToolBar from "../LeftToolBar/LeftToolBar";
+import MainView from "../MainView/MainView";
+import SlideBar from "../SlideBar/SlideBar";
 import classNames from "classnames";
+import style from "./Editor.module.css";
 import { useState } from "react";
 
 function Editor() {

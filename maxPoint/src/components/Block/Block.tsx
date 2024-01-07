@@ -1,17 +1,15 @@
-/* eslint-disable sort-keys */
-/* eslint-disable sort-imports */
-import style from "./Block.module.css";
 import { CSSProperties, useEffect, useRef } from "react";
-import { Image as TImage } from "../../types/types";
-import { Primitive as TPrimitive } from "../../types/types";
-import { Text as TText } from "../../types/types";
-import { useDnDBlock } from "../../hooks/useDnD/useDragBlock";
 import Image from "../Image/Image";
 import Primitive from "../Primitive/Primitive";
+import { Image as TImage } from "../../types/types";
+import { Primitive as TPrimitive } from "../../types/types";
+import { Slide as TSlide } from "../../types/types";
+import { Text as TText } from "../../types/types";
 import Text from "../Text/Text";
 import classNames from "classnames";
+import style from "./Block.module.css";
 import { useAppActions } from "../../redux/Actions/Actions";
-import { Slide as TSlide } from "../../types/types";
+import { useDnDBlock } from "../../hooks/useDnD/useDragBlock";
 
 type BlockProps = TPrimitive | TImage | TText;
 type SlideObjectProps = {

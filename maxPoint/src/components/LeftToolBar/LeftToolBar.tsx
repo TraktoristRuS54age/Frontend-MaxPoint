@@ -1,13 +1,11 @@
-/* eslint-disable sort-keys */
-/* eslint-disable sort-imports */
-import text from "../../resources/img/text.png";
+import PhotoButton from "../PhotoButton/PhotoButton";
+import { Text as TText } from "../../types/types";
+import UploadButton from "../UploadButton/UploadButton";
 import figures from "../../resources/img/figures.png";
 import style from "./LeftToolbar.module.css";
-import PhotoButton from "../PhotoButton/PhotoButton";
-import UploadButton from "../UploadButton/UploadButton";
-import { Text as TText } from "../../types/types";
-import { v4 as uuidv4 } from "uuid";
+import text from "../../resources/img/text.png";
 import { useAppActions } from "../../redux/Actions/Actions";
+import { v4 as uuidv4 } from "uuid";
 
 type TFunction = {
   props: () => void;
@@ -18,25 +16,25 @@ function Left_ToolBar({ props }: TFunction) {
 
   const newText = (): TText => {
     return {
-      type: "text",
       data: {
-        value: "",
-        fontSize: 20,
+        bold: true,
+        color: "black",
         fontFamily: "Arial",
+        fontSize: 20,
         fontStyle: "normal",
         textDecoration: "none",
-        color: "black",
-        bold: true,
-      },
-      size: {
-        height: 34,
-        width: 110,
+        value: "",
       },
       id: uuidv4(),
       position: {
         x: 0, //200
         y: 0, //100
       },
+      size: {
+        height: 34,
+        width: 110,
+      },
+      type: "text",
     };
   };
 

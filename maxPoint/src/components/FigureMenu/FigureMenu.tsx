@@ -1,11 +1,9 @@
-/* eslint-disable sort-imports */
-/* eslint-disable sort-keys */
-import { Primitive as TPrimitive } from "../../types/types";
-import { v4 as uuidv4 } from "uuid";
-import style from "./FigureMenu.module.css";
 import Primitive from "../Primitive/Primitive.tsx";
 import { Size } from "../../types/types";
+import { Primitive as TPrimitive } from "../../types/types";
+import style from "./FigureMenu.module.css";
 import { useAppActions } from "../../redux/Actions/Actions.ts";
+import { v4 as uuidv4 } from "uuid";
 
 type PrimitiveProps = {
   data: {
@@ -16,32 +14,32 @@ type PrimitiveProps = {
 };
 const triangleButton: PrimitiveProps = {
   data: {
-    form: "triangle",
     fill: "black",
+    form: "triangle",
   },
   size: {
-    width: 100,
     height: 100,
+    width: 100,
   },
 };
 const rectangleButton: PrimitiveProps = {
   data: {
-    form: "rectangle",
     fill: "black",
+    form: "rectangle",
   },
   size: {
-    width: 100,
     height: 100,
+    width: 100,
   },
 };
 const ellipseButton: PrimitiveProps = {
   data: {
-    form: "ellipse",
     fill: "black",
+    form: "ellipse",
   },
   size: {
-    width: 100,
     height: 100,
+    width: 100,
   },
 };
 const FigureMenu = () => {
@@ -50,19 +48,19 @@ const FigureMenu = () => {
   const newTriangle = (): TPrimitive => {
     return {
       data: {
-        form: "triangle",
         fill: "black",
+        form: "triangle",
       },
       id: uuidv4(),
-      size: {
-        height: 100,
-        width: 100,
-      },
       position: {
         x: 0,
         y: 0,
       },
       rotation: 0,
+      size: {
+        height: 100,
+        width: 100,
+      },
       type: "primitive",
     };
   };
@@ -70,12 +68,8 @@ const FigureMenu = () => {
   const newRectangle = (): TPrimitive => {
     return {
       data: {
-        form: "rectangle",
         fill: "black",
-      },
-      size: {
-        height: 100,
-        width: 100,
+        form: "rectangle",
       },
       id: uuidv4(),
       position: {
@@ -83,6 +77,10 @@ const FigureMenu = () => {
         y: 0,
       },
       rotation: 0,
+      size: {
+        height: 100,
+        width: 100,
+      },
       type: "primitive",
     };
   };
@@ -90,19 +88,19 @@ const FigureMenu = () => {
   const newEllipse = (): TPrimitive => {
     return {
       data: {
-        form: "ellipse",
         fill: "black",
+        form: "ellipse",
       },
       id: uuidv4(),
-      size: {
-        height: 100,
-        width: 100,
-      },
       position: {
         x: 0,
         y: 0,
       },
       rotation: 0,
+      size: {
+        height: 100,
+        width: 100,
+      },
       type: "primitive",
     };
   };

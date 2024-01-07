@@ -1,12 +1,9 @@
-/* eslint-disable sort-imports */
 import { ChangeEvent } from "react";
-import style from "../LeftToolBar/LeftToolbar.module.css";
-// eslint-disable-next-line sort-imports
-import photo from "../../resources/img/photo.png";
-// eslint-disable-next-line sort-imports
 import { Image as TImage } from "../../types/types";
-import { v4 as uuidv4 } from "uuid";
+import photo from "../../resources/img/photo.png";
+import style from "../LeftToolBar/LeftToolbar.module.css";
 import { useAppActions } from "../../redux/Actions/Actions";
+import { v4 as uuidv4 } from "uuid";
 
 const PhotoButton = () => {
   const { createImage } = useAppActions();
@@ -24,7 +21,7 @@ const PhotoButton = () => {
           throw Error("invalid file type: " + typeof reader.result);
         if (!file.type.includes("jpeg") && !file.type.includes("png")) {
           throw Error("invalid file: " + file.type);
-        };
+        }
         const image: TImage = {
           data: {
             alt: "не найдено",
