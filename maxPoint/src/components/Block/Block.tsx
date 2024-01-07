@@ -53,7 +53,6 @@ function Block(props: SlideObjectProps) {
         return; // Если toggleArea не активен, выходим из функции
       }
       if (!mouseDownEvent.shiftKey) {
-        // console.log(mouseDownEvent);
         onChangePosition({
           onDrag: (dragEvent) => {
             dragEvent.preventDefault();

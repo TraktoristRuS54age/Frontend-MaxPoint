@@ -2,12 +2,11 @@
 import { Presentation, Slide } from "../types/types";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { ActionType } from "./Actions/ActionTypes";
-import { presentationSlice as data } from "../types/example/maximum.ts";
 
 const initialState: Presentation = {
   currentSlideID: null,
   name: "maxPoint",
-  slides: data.items.slides,
+  slides: [],
 };
 
 const titleReducer = (state: string, action: ActionType) => {
@@ -40,7 +39,6 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
       };
     case "TOGGLE_AREA":
       if (currentSlide) {
-        console.log("toggle");
         if (action.payload.event.ctrlKey) {
           currentSlide.selectObjects = null;
           return {
@@ -64,7 +62,6 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
           x: action.payload.x,
           y: action.payload.y,
         };
-        console.log('Позиция сохранена')
         return {
           ...state,
           slides: slides,

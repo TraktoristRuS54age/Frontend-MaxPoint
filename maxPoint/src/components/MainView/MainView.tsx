@@ -8,7 +8,6 @@ function MainView() {
   const slides = useAppSelector((state) => state.slides);
   const current = useAppSelector((state) => state.currentSlideID);
   const currentSlide = slides.find((slide) => slide.id === current);
-  console.log("Перерисовка");
 
   if (currentSlide != null) {
     return (
