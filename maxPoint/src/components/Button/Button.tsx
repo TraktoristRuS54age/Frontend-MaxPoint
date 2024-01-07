@@ -17,7 +17,7 @@ function Button() {
     SetTextBold,
     SetTextFontStyle,
     SetTextDecoration,
-    SetColor
+    SetColor,
   } = useAppActions();
   const slides = useAppSelector((state) => state.slides);
   const currentSlideID = useAppSelector((state) => state.currentSlideID);

@@ -1,5 +1,5 @@
 /* eslint-disable sort-imports */
-import { Presentation } from "../types/types";
+import { Presentation, Slide } from "../types/types";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { ActionType } from "./Actions/ActionTypes";
 import { presentationSlice as data } from "../types/example/maximum.ts";
@@ -19,14 +19,13 @@ const titleReducer = (state: string, action: ActionType) => {
 };
 
 const objectsReducer = (state: Presentation, action: ActionType) => {
-  const slides = state.slides;
-  const currentSlide = state.slides.find(
+  const slides: Slide[] = JSON.parse(JSON.stringify(state.slides));
+  const currentSlide = slides.find(
     (slide) => slide.id === state.currentSlideID,
   );
   const selectedObject = currentSlide?.objects.find(
     (object) => object.id === currentSlide.selectObjects,
   );
-  let newSlides = slides;
   let newObject;
   switch (action.type) {
     case "OBJECT_DELETE":
@@ -35,27 +34,24 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
       );
       currentSlide!.objects = newObject;
       currentSlide!.selectObjects = null;
-      newSlides = JSON.parse(JSON.stringify(slides));
       return {
         ...state,
-        slides: newSlides,
+        slides: slides,
       };
     case "TOGGLE_AREA":
       if (currentSlide) {
         console.log("toggle");
         if (action.payload.event.ctrlKey) {
           currentSlide.selectObjects = null;
-          newSlides = JSON.parse(JSON.stringify(slides));
           return {
             ...state,
-            slides: newSlides,
+            slides: slides,
           };
         }
         currentSlide.selectObjects = action.payload.id;
-        newSlides = JSON.parse(JSON.stringify(slides));
         return {
           ...state,
-          slides: newSlides,
+          slides: slides,
         };
       }
       return {
@@ -64,14 +60,13 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
     case "SET_POSITION":
       if (currentSlide && selectedObject) {
         selectedObject.position = { x: action.payload.x, y: action.payload.y };
-        newSlides = JSON.parse(JSON.stringify(slides));
         selectedObject.position = {
           x: action.payload.x,
           y: action.payload.y,
         };
         return {
           ...state,
-          slides: newSlides,
+          slides: slides,
         };
       }
       return {
@@ -83,10 +78,9 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
           height: action.payload.height,
           width: action.payload.width,
         };
-        newSlides = JSON.parse(JSON.stringify(slides));
         return {
           ...state,
-          slides: newSlides,
+          slides: slides,
         };
       }
       return {
@@ -94,24 +88,21 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
       };
     case "CREATE_TEXT":
       currentSlide?.objects.push(action.payload);
-      newSlides = JSON.parse(JSON.stringify(slides));
       return {
         ...state,
-        slides: newSlides,
+        slides: slides,
       };
     case "CREATE_IMAGE":
       currentSlide?.objects.push(action.payload);
-      newSlides = JSON.parse(JSON.stringify(slides));
       return {
         ...state,
-        slides: newSlides,
+        slides: slides,
       };
     case "CREATE_PRIMITIVE":
       currentSlide?.objects.push(action.payload);
-      newSlides = JSON.parse(JSON.stringify(slides));
       return {
         ...state,
-        slides: newSlides,
+        slides: slides,
       };
     case "SET_TEXT_VALUE":
       if (selectedObject?.type === "text") {
@@ -122,10 +113,9 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
           action.payload.length != 0 ? selectedObject.size.height : 34;
         selectedObject.size.width =
           action.payload.length != 0 ? selectedObject.size.width : 110;
-        newSlides = JSON.parse(JSON.stringify(slides));
         return {
           ...state,
-          slides: newSlides,
+          slides: slides,
         };
       }
       return {
@@ -134,10 +124,9 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
     case "SET_TEXT_SIZE":
       if (selectedObject?.type === "text") {
         selectedObject!.data.fontSize = action.payload;
-        newSlides = JSON.parse(JSON.stringify(slides));
         return {
           ...state,
-          slides: newSlides,
+          slides: slides,
         };
       }
       return {
@@ -146,10 +135,9 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
     case "SET_TEXT_FONT_FAMILY":
       if (selectedObject?.type === "text") {
         selectedObject!.data.fontFamily = action.payload;
-        newSlides = JSON.parse(JSON.stringify(slides));
         return {
           ...state,
-          slides: newSlides,
+          slides: slides,
         };
       }
       return {
@@ -158,10 +146,9 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
     case "SET_TEXT_BOLD":
       if (selectedObject?.type === "text") {
         selectedObject.data.bold = !selectedObject.data.bold;
-        newSlides = JSON.parse(JSON.stringify(slides));
         return {
           ...state,
-          slides: newSlides,
+          slides: slides,
         };
       }
       return {
@@ -171,10 +158,9 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
       if (selectedObject?.type === "text") {
         selectedObject.data.fontStyle =
           selectedObject.data.fontStyle === "italic" ? "normal" : "italic";
-        newSlides = JSON.parse(JSON.stringify(slides));
         return {
           ...state,
-          slides: newSlides,
+          slides: slides,
         };
       }
       return {
@@ -184,10 +170,9 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
       if (selectedObject?.type === "text") {
         selectedObject.data.textDecoration =
           selectedObject.data.textDecoration === "none" ? "underline" : "none";
-        newSlides = JSON.parse(JSON.stringify(slides));
         return {
           ...state,
-          slides: newSlides,
+          slides: slides,
         };
       }
       return {
@@ -197,10 +182,9 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
       if (selectedObject === undefined) {
         if (currentSlide !== undefined) {
           currentSlide.background = action.payload;
-          newSlides = JSON.parse(JSON.stringify(slides));
           return {
             ...state,
-            slides: newSlides,
+            slides: slides,
           };
         }
       } else {
@@ -208,10 +192,9 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
           selectedObject.data.fill = action.payload;
         if (selectedObject.type === "text")
           selectedObject.data.color = action.payload;
-        newSlides = JSON.parse(JSON.stringify(slides));
         return {
           ...state,
-          slides: newSlides,
+          slides: slides,
         };
       };
       return {

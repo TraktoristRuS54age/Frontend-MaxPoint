@@ -6,12 +6,9 @@ import MainView from "../MainView/MainView";
 import FigureMenu from "../FigureMenu/FigureMenu";
 import classNames from "classnames";
 import { useState } from "react";
-import { useAppSelector } from "../../redux/Reducer";
 
 function Editor() {
-  const slides = useAppSelector((state) => state.slides);
-  const currentSlideID = useAppSelector((state) => state.currentSlideID);
-  console.log("Перерисовка");
+  console.log("Перерисовка едитор");
   const [isOpen, setIsOpen] = useState(false);
   const changeIsOpen = () => {
     setIsOpen((isOpen) => !isOpen);
@@ -28,8 +25,8 @@ function Editor() {
       {isOpen ? <FigureMenu /> : null}
 
       <section className={style.working_block_grid}>
-        <MainView slides={slides} current={currentSlideID} />
-        <SlideBar slides={slides} current={currentSlideID} />
+        <MainView />
+        <SlideBar />
       </section>
     </div>
   );

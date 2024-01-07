@@ -1,15 +1,12 @@
 /* eslint-disable sort-imports */
 import style from "./MainView.module.css";
 import Slide from "../Slide/Slide.tsx";
-import { Slide as TSlide } from "../../types/types.ts";
+import { useAppSelector } from "../../redux/Reducer.ts";
 
-type TMainView = {
-  slides: TSlide[];
-  current: string | null;
-};
 
-function MainView(props: TMainView) {
-  const { slides, current } = props;
+function MainView() {
+  const slides = useAppSelector((state) => state.slides);
+  const current = useAppSelector((state) => state.currentSlideID);
   const currentSlide = slides.find((slide) => slide.id === current);
   console.log("Перерисовка");
 

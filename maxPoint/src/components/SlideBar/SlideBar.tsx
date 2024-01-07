@@ -7,17 +7,12 @@ import SlideList from "../SlideList/SlideList";
 import { v4 as uuidv4 } from "uuid";
 import { useDndList } from "../../hooks/useDnD/useDragSlideList";
 import { useAppActions } from "../../redux/Actions/Actions";
-import { Slide as TSlide } from "../../types/types";
+import { useAppSelector } from "../../redux/Reducer";
 
-type TSlideBar = {
-  slides: TSlide[];
-  current: string | null;
-};
-
-function SlideBar(props: TSlideBar) {
-  const { slides, current } = props;
+function SlideBar() {
+  const slides = useAppSelector((state) => state.slides);
+  const current = useAppSelector((state) => state.currentSlideID);
   const { createNewSlide, changeOrder } = useAppActions();
-  console.log("Перерисовка");
   const changeSlideOrder = (from: number, to: number) => {
     changeOrder(from, to);
   };
