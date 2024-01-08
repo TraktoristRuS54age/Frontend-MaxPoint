@@ -1,9 +1,12 @@
+import {
+  ellipse as newEllipse,
+  rectangle as newRectangle,
+  triangle as newTriangle,
+} from "../../types/example/maximum.ts";
 import Primitive from "../Primitive/Primitive.tsx";
 import { Size } from "../../types/types";
-import { Primitive as TPrimitive } from "../../types/types";
 import style from "./FigureMenu.module.css";
 import { useAppActions } from "../../redux/Actions/Actions.ts";
-import { v4 as uuidv4 } from "uuid";
 
 type PrimitiveProps = {
   data: {
@@ -43,74 +46,14 @@ const ellipseButton: PrimitiveProps = {
   },
 };
 const FigureMenu = () => {
-  const { CreatePrimitive } = useAppActions();
-
-  const newTriangle = (): TPrimitive => {
-    return {
-      data: {
-        fill: "black",
-        form: "triangle",
-      },
-      id: uuidv4(),
-      position: {
-        x: 0,
-        y: 0,
-      },
-      rotation: 0,
-      size: {
-        height: 100,
-        width: 100,
-      },
-      type: "primitive",
-    };
-  };
-
-  const newRectangle = (): TPrimitive => {
-    return {
-      data: {
-        fill: "black",
-        form: "rectangle",
-      },
-      id: uuidv4(),
-      position: {
-        x: 0,
-        y: 0,
-      },
-      rotation: 0,
-      size: {
-        height: 100,
-        width: 100,
-      },
-      type: "primitive",
-    };
-  };
-
-  const newEllipse = (): TPrimitive => {
-    return {
-      data: {
-        fill: "black",
-        form: "ellipse",
-      },
-      id: uuidv4(),
-      position: {
-        x: 0,
-        y: 0,
-      },
-      rotation: 0,
-      size: {
-        height: 100,
-        width: 100,
-      },
-      type: "primitive",
-    };
-  };
+  const { CreateObject } = useAppActions();
 
   return (
     <div className={style.figure}>
       <div className={style.figure__menu}>
         <button
           className={style.figure__button}
-          onClick={() => CreatePrimitive(newTriangle())}
+          onClick={() => CreateObject(newTriangle())}
         >
           <Primitive data={triangleButton.data} size={triangleButton.size} />
         </button>
@@ -118,7 +61,7 @@ const FigureMenu = () => {
       <div className={style.figure__menu}>
         <button
           className={style.figure__button}
-          onClick={() => CreatePrimitive(newRectangle())}
+          onClick={() => CreateObject(newRectangle())}
         >
           <Primitive data={rectangleButton.data} size={rectangleButton.size} />
         </button>
@@ -126,7 +69,7 @@ const FigureMenu = () => {
       <div className={style.figure__menu}>
         <button
           className={style.figure__button}
-          onClick={() => CreatePrimitive(newEllipse())}
+          onClick={() => CreateObject(newEllipse())}
         >
           <Primitive data={ellipseButton.data} size={ellipseButton.size} />
         </button>

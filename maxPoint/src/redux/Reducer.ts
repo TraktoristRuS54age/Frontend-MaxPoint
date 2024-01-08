@@ -64,7 +64,7 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
           selectedObject.position.x === x &&
           selectedObject.position.y === y
         ) {
-          return state; // No change, return the original state
+          return state;
         }
 
         const updatedSlides = slides.map((slide) =>
@@ -93,7 +93,7 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
           selectedObject.size.width === width &&
           selectedObject.size.height === height
         ) {
-          return state; // No change, return the original state
+          return state;
         }
 
         const updatedSlides = slides.map((slide) =>
@@ -115,9 +115,7 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
         };
       }
       return state;
-    case "CREATE_TEXT":
-    case "CREATE_IMAGE":
-    case "CREATE_PRIMITIVE":
+    case "CREATE_OBJECT":
       if (currentSlide) {
         const updatedSlide = {
           ...currentSlide,
@@ -294,9 +292,7 @@ const presentationReducer = (
     case "TOGGLE_AREA":
     case "SET_POSITION":
     case "SET_SIZE":
-    case "CREATE_TEXT":
-    case "CREATE_IMAGE":
-    case "CREATE_PRIMITIVE":
+    case "CREATE_OBJECT":
     case "SET_TEXT_SIZE":
     case "SET_TEXT_VALUE":
     case "SET_TEXT_FONT_FAMILY":

@@ -1,4 +1,4 @@
-import { Image, Presentation, Primitive, Slide, Text } from "../../types/types";
+import { MainObjects, Presentation, Slide } from "../../types/types";
 
 export const changePresentationName = (name: string) => {
   return {
@@ -65,17 +65,10 @@ export const setSize = (size: { height: number; width: number }) => {
   };
 };
 
-export const createText = (text: Text) => {
+export const CreateObject = (text: MainObjects) => {
   return {
     payload: text,
-    type: "CREATE_TEXT",
-  };
-};
-
-export const createImage = (image: Image) => {
-  return {
-    payload: image,
-    type: "CREATE_IMAGE",
+    type: "CREATE_OBJECT",
   };
 };
 
@@ -83,13 +76,6 @@ export const UploadPresentation = (dataParsing: Presentation) => {
   return {
     payload: dataParsing,
     type: "UPLOAD_PRESENTATION",
-  };
-};
-
-export const CreatePrimitive = (data: Primitive) => {
-  return {
-    payload: data,
-    type: "CREATE_PRIMITIVE",
   };
 };
 

@@ -1,11 +1,11 @@
 import Plus from "../../resources/img/plus.png";
 import SlideList from "../SlideList/SlideList";
 import classNames from "classnames";
+import { slide as newSlide } from "../../types/example/maximum";
 import style from "./SlideBar.module.css";
 import { useAppActions } from "../../redux/Actions/Actions";
 import { useAppSelector } from "../../redux/Reducer";
 import { useDndList } from "../../hooks/useDnD/useDragSlideList";
-import { v4 as uuidv4 } from "uuid";
 
 function SlideBar() {
   const slides = useAppSelector((state) => state.slides);
@@ -18,16 +18,6 @@ function SlideBar() {
   const { registerDndItem } = useDndList({
     onOrderChange: changeSlideOrder,
   });
-
-  const newSlide = () => {
-    return {
-      background: "#aaaaaa",
-      id: uuidv4(),
-      name: `${uuidv4()}`,
-      objects: [],
-      selectObjects: null,
-    };
-  };
 
   return (
     <div className={style.slide_block}>

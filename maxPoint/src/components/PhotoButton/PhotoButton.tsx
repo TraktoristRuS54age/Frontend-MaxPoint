@@ -1,12 +1,11 @@
 import { ChangeEvent } from "react";
-import { Image as TImage } from "../../types/types";
+import { image as newImage } from "../../types/example/maximum";
 import photo from "../../resources/img/photo.png";
 import style from "../LeftToolBar/LeftToolbar.module.css";
 import { useAppActions } from "../../redux/Actions/Actions";
-import { v4 as uuidv4 } from "uuid";
 
 const PhotoButton = () => {
-  const { createImage } = useAppActions();
+  const { CreateObject } = useAppActions();
   const onChange = async (event: ChangeEvent<HTMLInputElement>) => {
     try {
       const file = event.target.files?.[0];
@@ -21,24 +20,7 @@ const PhotoButton = () => {
 
       const imageUrl = URL.createObjectURL(file);
 
-      const image: TImage = {
-        data: {
-          alt: "не найдено",
-          src: imageUrl,
-        },
-        id: uuidv4(),
-        position: {
-          x: 0,
-          y: 0,
-        },
-        size: {
-          height: 100,
-          width: 100,
-        },
-        type: "image",
-      };
-
-      createImage(image);
+      CreateObject(newImage(imageUrl));
     } catch (error) {
       alert(error);
     }
