@@ -125,7 +125,7 @@ export const rectangle = (): Primitive => {
 
 export const slide = (): Slide => {
   return {
-    background: "#aaaaaa",
+    color: "#aaaaaa",
     id: uuidv4(),
     name: `${uuidv4()}`,
     objects: [],

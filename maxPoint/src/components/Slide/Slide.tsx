@@ -10,8 +10,8 @@ type SlideProps = {
 };
 
 function Slide({ slide, className }: SlideProps) {
-  const styles: CSSProperties = {
-    background: slide.background,
+  const styles: CSSProperties = { 
+    background: slide.color,
   };
 
   return (

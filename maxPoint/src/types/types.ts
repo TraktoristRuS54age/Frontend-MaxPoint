@@ -24,7 +24,7 @@ type MainObjects = Text | Image | Primitive;
 interface Slide {
   id: string;
   name: string;
-  background: Color;
+  color: Color;
   selectObjects: string | null;
   objects: Array<MainObjects>;
 }

@@ -10,11 +10,11 @@
 
 
 .working_block__wrapper {
-    width: 800px;
-    height: 400px;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAADBJREFUOE9jfPbs2X8GPEBSUhKfNAPjqAHDIgz+//+PNx08f/4cfzoYNYCBceiHAQC5flV5JzgrxQAAAABJRU5ErkJggg==);
-    background-repeat: repeat;
-    background-size: 16px;
+    width: 1000px;
+    height: 500px;
+    background-image: url(../../resources/img/background.png);
+    /* background-repeat: repeat; */
+    background-size: 1000px;
 }
 
 .working_block__slide {

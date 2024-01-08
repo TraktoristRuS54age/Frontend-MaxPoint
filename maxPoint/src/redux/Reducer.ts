@@ -209,7 +209,7 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
     case "SET_COLOR":
       if (selectedObject === undefined) {
         if (currentSlide !== undefined) {
-          currentSlide.background = action.payload;
+          currentSlide.color = action.payload;
           return {
             ...state,
             slides: slides,
@@ -240,6 +240,7 @@ const slidesReducer = (state: Presentation, action: ActionType) => {
     case "CREATE_NEW_SLIDE":
       return {
         ...state,
+        currentSlideID: action.payload.id,
         slides: [...state.slides, action.payload],
       };
     case "SET_SLIDE_ID":
@@ -257,8 +258,7 @@ const slidesReducer = (state: Presentation, action: ActionType) => {
       newSlides = slides.filter((slide) => slide.id !== action.payload);
       return {
         ...state,
-        currentSlideID:
-          state.currentSlideID === action.payload ? null : state.currentSlideID,
+        currentSlideID: newSlides.length !== 0 ? newSlides[0].id : null,
         slides: newSlides,
       };
     case "CHANGE_SLIDE_ORDER":

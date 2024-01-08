@@ -19,7 +19,6 @@ const PhotoButton = () => {
       }
 
       const imageUrl = URL.createObjectURL(file);
-
       CreateObject(newImage(imageUrl));
     } catch (error) {
       alert(error);
