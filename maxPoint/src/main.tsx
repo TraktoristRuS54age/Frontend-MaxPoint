@@ -1,6 +1,5 @@
 import "./index.css";
 import App from "./components/app/App.tsx";
-import PresentationProvider from "./context/context.tsx";
 import { Provider } from "react-redux";
 import React from "react";
 import ReactDOM from "react-dom/client";
