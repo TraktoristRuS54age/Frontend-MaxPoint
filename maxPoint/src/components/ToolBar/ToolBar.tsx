@@ -1,5 +1,5 @@
 import Button from "../Button/Button";
-import DownloadButton from "../downloadButton/DownloadButton";
+import DownloadButton from "../DownloadButton/DownloadButton";
 import Title from "../Title/Title";
 import logo from "../../resources/img/logo.png";
 import style from "./ToolBar.module.css";
