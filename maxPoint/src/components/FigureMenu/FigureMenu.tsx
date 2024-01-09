@@ -1,10 +1,11 @@
-/* eslint-disable sort-imports */
-/* eslint-disable sort-keys */
-import { Primitive as TPrimitive } from "../../types/types";
-import { v4 as uuidv4 } from "uuid";
-import style from "./FigureMenu.module.css";
+import {
+  ellipse as newEllipse,
+  rectangle as newRectangle,
+  triangle as newTriangle,
+} from "../../types/example/maximum.ts";
 import Primitive from "../Primitive/Primitive.tsx";
 import { Size } from "../../types/types";
+import style from "./FigureMenu.module.css";
 import { useAppActions } from "../../redux/Actions/Actions.ts";
 
 type PrimitiveProps = {
@@ -16,103 +17,43 @@ type PrimitiveProps = {
 };
 const triangleButton: PrimitiveProps = {
   data: {
-    form: "triangle",
     fill: "black",
+    form: "triangle",
   },
   size: {
-    width: 100,
     height: 100,
+    width: 100,
   },
 };
 const rectangleButton: PrimitiveProps = {
   data: {
-    form: "rectangle",
     fill: "black",
+    form: "rectangle",
   },
   size: {
-    width: 100,
     height: 100,
+    width: 100,
   },
 };
 const ellipseButton: PrimitiveProps = {
   data: {
-    form: "ellipse",
     fill: "black",
+    form: "ellipse",
   },
   size: {
-    width: 100,
     height: 100,
+    width: 100,
   },
 };
 const FigureMenu = () => {
-  const { CreatePrimitive } = useAppActions();
-
-  const newTriangle = (): TPrimitive => {
-    return {
-      data: {
-        form: "triangle",
-        fill: "black",
-      },
-      id: uuidv4(),
-      size: {
-        height: 100,
-        width: 100,
-      },
-      position: {
-        x: 0,
-        y: 0,
-      },
-      rotation: 0,
-      type: "primitive",
-    };
-  };
-
-  const newRectangle = (): TPrimitive => {
-    return {
-      data: {
-        form: "rectangle",
-        fill: "black",
-      },
-      size: {
-        height: 100,
-        width: 100,
-      },
-      id: uuidv4(),
-      position: {
-        x: 0,
-        y: 0,
-      },
-      rotation: 0,
-      type: "primitive",
-    };
-  };
-
-  const newEllipse = (): TPrimitive => {
-    return {
-      data: {
-        form: "ellipse",
-        fill: "black",
-      },
-      id: uuidv4(),
-      size: {
-        height: 100,
-        width: 100,
-      },
-      position: {
-        x: 0,
-        y: 0,
-      },
-      rotation: 0,
-      type: "primitive",
-    };
-  };
+  const { CreateObject } = useAppActions();
 
   return (
     <div className={style.figure}>
       <div className={style.figure__menu}>
         <button
           className={style.figure__button}
-          onClick={() => CreatePrimitive(newTriangle())}
+          onClick={() => CreateObject(newTriangle())}
         >
           <Primitive data={triangleButton.data} size={triangleButton.size} />
         </button>
@@ -120,7 +61,7 @@ const FigureMenu = () => {
       <div className={style.figure__menu}>
         <button
           className={style.figure__button}
-          onClick={() => CreatePrimitive(newRectangle())}
+          onClick={() => CreateObject(newRectangle())}
         >
           <Primitive data={rectangleButton.data} size={rectangleButton.size} />
         </button>
@@ -128,7 +69,7 @@ const FigureMenu = () => {
       <div className={style.figure__menu}>
         <button
           className={style.figure__button}
-          onClick={() => CreatePrimitive(newEllipse())}
+          onClick={() => CreateObject(newEllipse())}
         >
           <Primitive data={ellipseButton.data} size={ellipseButton.size} />
         </button>

@@ -1,51 +1,28 @@
-/* eslint-disable sort-imports */
 import { ChangeEvent } from "react";
-import style from "../LeftToolBar/LeftToolbar.module.css";
-// eslint-disable-next-line sort-imports
+import { image as newImage } from "../../types/example/maximum";
 import photo from "../../resources/img/photo.png";
-// eslint-disable-next-line sort-imports
-import { Image as TImage } from "../../types/types";
-import { v4 as uuidv4 } from "uuid";
+import style from "../LeftToolBar/LeftToolbar.module.css";
 import { useAppActions } from "../../redux/Actions/Actions";
 
 const PhotoButton = () => {
-  const { createImage } = useAppActions();
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const reader = new FileReader();
-    let file: File;
-    if (event.target.files) {
-      file = event.target.files[0];
-      reader.readAsDataURL(event.target.files[0]);
-    }
+  const { CreateObject } = useAppActions();
+  const onChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    try {
+      const file = event.target.files?.[0];
 
-    reader.onload = function () {
-      try {
-        if (typeof reader.result !== "string")
-          throw Error("invalid file type: " + typeof reader.result);
-        if (!file.type.includes("jpeg") && !file.type.includes("png")) {
-          throw Error("invalid file: " + file.type);
-        };
-        const image: TImage = {
-          data: {
-            alt: "не найдено",
-            src: reader.result,
-          },
-          id: uuidv4(),
-          position: {
-            x: 0,
-            y: 0,
-          },
-          size: {
-            height: 100,
-            width: 100,
-          },
-          type: "image",
-        };
-        createImage(image);
-      } catch (error) {
-        alert(error);
+      if (!file) {
+        throw new Error("No file selected");
       }
-    };
+
+      if (!file.type.includes("jpeg") && !file.type.includes("png")) {
+        throw new Error("Invalid file type: " + file.type);
+      }
+
+      const imageUrl = URL.createObjectURL(file);
+      CreateObject(newImage(imageUrl));
+    } catch (error) {
+      alert(error);
+    }
   };
   return (
     <>

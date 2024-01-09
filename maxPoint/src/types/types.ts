@@ -3,10 +3,6 @@ type FontFamily = string;
 type Color = string;
 type TColor = string;
 
-type Filter = {
-  color: string[];
-};
-
 type Size = {
   width: number;
   height: number;
@@ -23,13 +19,15 @@ type Block = {
   rotation?: number;
 };
 
+type MainObjects = Text | Image | Primitive;
+
 interface Slide {
   id: string;
   name: string;
-  background: Color;
+  color: Color;
   selectObjects: string | null;
-  objects: Array<Text | Image | Primitive>;
-};
+  objects: Array<MainObjects>;
+}
 
 interface TextData {
   data: {
@@ -40,7 +38,7 @@ interface TextData {
     textDecoration: string;
     color: TColor;
     bold: boolean;
-  }
+  };
 }
 
 interface ImageData {
@@ -71,7 +69,7 @@ interface Image extends Block, ImageData {
 interface Primitive extends Block, PrimitiveData {
   type: "primitive";
   size: Size;
-};
+}
 
 type Presentation = {
   name: string;
@@ -79,31 +77,11 @@ type Presentation = {
   slides: Slide[];
 };
 
-interface PresentationSliceState {
-  items: Presentation;
-}
-
-type Option = {
-  id: string;
-  value: number | string;
-  label: string;
-};
-
-type MenuElement = {
-  id: string;
-  text: string;
-  shortcut?: string;
-};
-
-type Menu = {
-  menuElements: MenuElement[];
-};
 
 export type {
   FontFamily,
   Color,
   TColor,
-  Filter,
   Size,
   Position,
   Block,
@@ -111,11 +89,8 @@ export type {
   Text,
   Image,
   Primitive,
+  MainObjects,
   Presentation,
-  PresentationSliceState,
-  Option,
-  MenuElement,
-  Menu,
   TextData,
   PrimitiveData,
 };

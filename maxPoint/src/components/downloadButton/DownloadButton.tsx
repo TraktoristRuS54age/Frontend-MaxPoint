@@ -1,9 +1,15 @@
-/* eslint-disable sort-imports */
 import style from "../ToolBar/ToolBar.module.css";
 import { useAppSelector } from "../../redux/Reducer";
 
 const DownloadButton = () => {
-  const presentation = useAppSelector((state) => state);
+  const name = useAppSelector((state) => state.name);
+  const currentSlideID = useAppSelector((state) => state.currentSlideID);
+  const slides = useAppSelector((state) => state.slides);
+  const presentation = {
+    currentSlideID,
+    name,
+    slides,
+  }
   const createFile = () => {
     const file = new Blob([JSON.stringify(presentation)], {
       type: "application/json",

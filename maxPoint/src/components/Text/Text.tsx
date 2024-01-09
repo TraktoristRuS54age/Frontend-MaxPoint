@@ -1,5 +1,3 @@
-/* eslint-disable sort-keys */
-/* eslint-disable sort-imports */
 import { CSSProperties } from "react";
 import { Text as TText } from "../../types/types";
 import styles from "./Text.module.css";
@@ -18,14 +16,13 @@ function Text({ data, size }: TText) {
     color: data.color,
     fontFamily: data.fontFamily,
     fontSize: data.fontSize,
-    fontWeight: data.bold ? "bold" : "normal",
     fontStyle: data.fontStyle,
+    fontWeight: data.bold ? "bold" : "normal",
+    height: size.height,
     textDecoration: data.textDecoration,
     userSelect: "none",
-    height: size.height,
     width: size.width,
   };
-  
   return (
     <textarea
       className={styles.textarea}

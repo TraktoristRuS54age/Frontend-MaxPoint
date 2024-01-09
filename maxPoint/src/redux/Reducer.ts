@@ -1,4 +1,3 @@
-/* eslint-disable sort-imports */
 import { Presentation, Slide } from "../types/types";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { ActionType } from "./Actions/ActionTypes";
@@ -18,7 +17,10 @@ const titleReducer = (state: string, action: ActionType) => {
 };
 
 const objectsReducer = (state: Presentation, action: ActionType) => {
-  const slides: Slide[] = [...state.slides];
+  const slides: Slide[] = state.slides.map((slide) => ({
+    ...slide,
+    objects: [...slide.objects],
+  }));
   const currentSlide = slides.find(
     (slide) => slide.id === state.currentSlideID,
   );
@@ -57,51 +59,79 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
       };
     case "SET_POSITION":
       if (currentSlide && selectedObject) {
-        selectedObject.position = { x: action.payload.x, y: action.payload.y };
-        selectedObject.position = {
-          x: action.payload.x,
-          y: action.payload.y,
-        };
+        const { x, y } = action.payload;
+        if (
+          selectedObject.position.x === x &&
+          selectedObject.position.y === y
+        ) {
+          return state;
+        }
+
+        const updatedSlides = slides.map((slide) =>
+          slide.id === currentSlide.id
+            ? {
+                ...slide,
+                objects: slide.objects.map((obj) =>
+                  obj.id === selectedObject.id
+                    ? { ...obj, position: { x, y } }
+                    : obj,
+                ),
+              }
+            : slide,
+        );
+
         return {
           ...state,
-          slides: slides,
+          slides: updatedSlides,
         };
       }
-      return {
-        ...state,
-      };
+      return state;
     case "SET_SIZE":
       if (currentSlide && selectedObject) {
-        selectedObject.size = {
-          height: action.payload.height,
-          width: action.payload.width,
-        };
+        const { width, height } = action.payload;
+        if (
+          selectedObject.size.width === width &&
+          selectedObject.size.height === height
+        ) {
+          return state;
+        }
+
+        const updatedSlides = slides.map((slide) =>
+          slide.id === currentSlide.id
+            ? {
+                ...slide,
+                objects: slide.objects.map((obj) =>
+                  obj.id === selectedObject.id
+                    ? { ...obj, size: { height, width } }
+                    : obj,
+                ),
+              }
+            : slide,
+        );
+
         return {
           ...state,
-          slides: slides,
+          slides: updatedSlides,
         };
       }
-      return {
-        ...state,
-      };
-    case "CREATE_TEXT":
-      currentSlide?.objects.push(action.payload);
-      return {
-        ...state,
-        slides: slides,
-      };
-    case "CREATE_IMAGE":
-      currentSlide?.objects.push(action.payload);
-      return {
-        ...state,
-        slides: slides,
-      };
-    case "CREATE_PRIMITIVE":
-      currentSlide?.objects.push(action.payload);
-      return {
-        ...state,
-        slides: slides,
-      };
+      return state;
+    case "CREATE_OBJECT":
+      if (currentSlide) {
+        const updatedSlide = {
+          ...currentSlide,
+          objects: [...currentSlide.objects, action.payload],
+        };
+
+        const updatedSlides = slides.map((slide) =>
+          slide.id === currentSlide.id ? updatedSlide : slide,
+        );
+
+        return {
+          ...state,
+          slides: updatedSlides,
+        };
+      }
+      return state;
     case "SET_TEXT_VALUE":
       if (selectedObject?.type === "text") {
         selectedObject.data.value = action.payload;
@@ -179,7 +209,7 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
     case "SET_COLOR":
       if (selectedObject === undefined) {
         if (currentSlide !== undefined) {
-          currentSlide.background = action.payload;
+          currentSlide.color = action.payload;
           return {
             ...state,
             slides: slides,
@@ -194,10 +224,10 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
           ...state,
           slides: slides,
         };
-      };
+      }
       return {
         ...state,
-      }
+      };
     default:
       return state;
   }
@@ -210,6 +240,7 @@ const slidesReducer = (state: Presentation, action: ActionType) => {
     case "CREATE_NEW_SLIDE":
       return {
         ...state,
+        currentSlideID: action.payload.id,
         slides: [...state.slides, action.payload],
       };
     case "SET_SLIDE_ID":
@@ -227,8 +258,7 @@ const slidesReducer = (state: Presentation, action: ActionType) => {
       newSlides = slides.filter((slide) => slide.id !== action.payload);
       return {
         ...state,
-        currentSlideID:
-          state.currentSlideID === action.payload ? null : state.currentSlideID,
+        currentSlideID: newSlides.length !== 0 ? newSlides[0].id : null,
         slides: newSlides,
       };
     case "CHANGE_SLIDE_ORDER":
@@ -262,9 +292,7 @@ const presentationReducer = (
     case "TOGGLE_AREA":
     case "SET_POSITION":
     case "SET_SIZE":
-    case "CREATE_TEXT":
-    case "CREATE_IMAGE":
-    case "CREATE_PRIMITIVE":
+    case "CREATE_OBJECT":
     case "SET_TEXT_SIZE":
     case "SET_TEXT_VALUE":
     case "SET_TEXT_FONT_FAMILY":

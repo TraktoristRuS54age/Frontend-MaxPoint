@@ -1,7 +1,6 @@
-/* eslint-disable sort-imports */
 import { ChangeEvent } from "react";
-import upload from "../../resources/img/upload.png";
 import style from "../LeftToolBar/LeftToolbar.module.css";
+import upload from "../../resources/img/upload.png";
 import { useAppActions } from "../../redux/Actions/Actions";
 
 const UploadButton = () => {

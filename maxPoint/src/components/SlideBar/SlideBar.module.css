@@ -30,7 +30,7 @@
 }
 
 .slide_block__wrapper {
-    width: 245px;
+    width: 244px;
     height: 127px;
     margin-left: 20px;
     position: relative;
@@ -78,10 +78,10 @@
 }
 
 .slide_block_slide {
-    width: 800px;
-    height: 500px;
+    width: 1000px;
+    height: 512px;
     overflow: hidden;
-    transform: scale(0.3);
+    transform: scale(0.24);
     transform-origin: 0 0;
 }
 

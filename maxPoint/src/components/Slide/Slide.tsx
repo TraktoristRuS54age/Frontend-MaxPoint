@@ -1,9 +1,8 @@
-/* eslint-disable sort-imports */
+import Block from "../Block/Block";
 import { CSSProperties } from "react"; //типизация стилей
 import { Slide as TSlide } from "../../types/types";
-import style from "./Slide.module.css";
-import Block from "../Block/Block";
 import classNames from "classnames";
+import style from "./Slide.module.css";
 
 type SlideProps = {
   slide: TSlide;
@@ -11,8 +10,8 @@ type SlideProps = {
 };
 
 function Slide({ slide, className }: SlideProps) {
-  const styles: CSSProperties = {
-    background: slide.background,
+  const styles: CSSProperties = { 
+    background: slide.color,
   };
 
   return (

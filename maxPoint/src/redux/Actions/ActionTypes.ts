@@ -1,6 +1,4 @@
-/* eslint-disable sort-imports */
-import { Presentation, Slide, Text, Image, Primitive } from "../../types/types";
-
+import { MainObjects, Presentation, Slide } from "../../types/types";
 export type TitleActionType = {
   type: "CHANGE_PRESENTATION_TITLE";
   payload: string;
@@ -53,14 +51,9 @@ export type SetSizeActionType = {
   };
 };
 
-export type CreateTextActionType = {
-  type: "CREATE_TEXT";
-  payload: Text;
-};
-
-export type CreateImageActionType = {
-  type: "CREATE_IMAGE";
-  payload: Image;
+export type CreateObject = {
+  type: "CREATE_OBJECT";
+  payload: MainObjects;
 };
 
 export type UploadActionType = {
@@ -68,10 +61,6 @@ export type UploadActionType = {
   payload: Presentation;
 };
 
-export type CreatePrimitiveActionType = {
-  type: "CREATE_PRIMITIVE";
-  payload: Primitive;
-};
 export type SetTextValueActionType = {
   type: "SET_TEXT_VALUE";
   payload: string;
@@ -108,7 +97,6 @@ export type SetColorActionType = {
   payload: string;
 };
 
-
 export type ActionType =
   | TitleActionType
   | AddSlideActionType
@@ -118,10 +106,8 @@ export type ActionType =
   | ToggleAreaActionType
   | SetPositionActionType
   | SetSizeActionType
-  | CreateTextActionType
-  | CreateImageActionType
+  | CreateObject
   | UploadActionType
-  | CreatePrimitiveActionType
   | SetTextValueActionType
   | SetTextSizeActionType
   | SetTextFontFamilyActionType
@@ -129,4 +115,4 @@ export type ActionType =
   | SetTextFontStyleActionType
   | SetTextDecorationActionType
   | ObjectDeleteActionType
-  | SetColorActionType
+  | SetColorActionType;

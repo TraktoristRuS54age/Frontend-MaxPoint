@@ -1,10 +1,9 @@
-
 import { Size } from "../../types/types";
 
 type PrimitiveProps = {
   data: {
-    form?: "triangle" | "ellipse" | "rectangle",
-    fill: string,
+    form?: "triangle" | "ellipse" | "rectangle";
+    fill: string;
   };
   size: Size;
 };
