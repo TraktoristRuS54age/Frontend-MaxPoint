@@ -1,4 +1,3 @@
-import { ChangeEvent } from "react";
 import { image as newImage } from "../../types/example/maximum";
 import photo from "../../resources/img/photo.png";
 import style from "../LeftToolBar/LeftToolbar.module.css";
@@ -6,30 +5,31 @@ import { useAppActions } from "../../redux/Actions/Actions";
 
 const PhotoButton = () => {
   const { CreateObject } = useAppActions();
-  const onChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    try {
-      const file = event.target.files?.[0];
-
-      if (!file) {
-        throw new Error("No file selected");
-      }
-
-      if (!file.type.includes("jpeg") && !file.type.includes("png")) {
-        throw new Error("Invalid file type: " + file.type);
-      }
-
-      const imageUrl = URL.createObjectURL(file);
-      CreateObject(newImage(imageUrl));
-    } catch (error) {
-      alert(error);
-    }
-  };
   return (
     <>
       <input
         type="file"
         accept="Image/*"
-        onChange={onChange}
+        onChange={(event) => {
+          const reader = new FileReader();
+          let file: File;
+          if (event.target.files) {
+            file = event.target.files[0];
+            reader.readAsDataURL(event.target.files[0]);
+          }
+          reader.onload = function (e) {
+            try {
+              if (typeof reader.result !== "string")
+                throw Error("invalid file type: " + typeof reader.result);
+              if (!file.type.includes("jpeg") && !file.type.includes("png")) {
+                throw Error("invalid file: " + file.type);
+              }
+              CreateObject(newImage(e.target!.result as string));
+            } catch (error) {
+              alert(error);
+            }
+          };
+        }}
         id="Photo"
         className={style.input_display}
         multiple

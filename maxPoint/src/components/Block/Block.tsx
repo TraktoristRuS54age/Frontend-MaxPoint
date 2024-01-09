@@ -54,22 +54,36 @@ function Block(props: SlideObjectProps) {
         onChangePosition({
           onDrag: (dragEvent) => {
             dragEvent.preventDefault();
-            const pos = {
-              x: dragEvent.clientX + (position.x - mouseDownEvent.clientX),
-              y: dragEvent.clientY + (position.y - mouseDownEvent.clientY),
-            };
-            setPosition(pos);
+            ref.current!.style.left = `${
+              dragEvent.clientX + (position.x - mouseDownEvent.clientX)
+            }px`;
+            ref.current!.style.top = `${
+              dragEvent.clientY + (position.y - mouseDownEvent.clientY)
+            }px`;
+          },
+          onDrop: () => {
+            setPosition({
+              x: Number(ref.current!.style.left.slice(0, -2)),
+              y: Number(ref.current!.style.top.slice(0, -2)),
+            });
           },
         });
       } else {
         onChangeSize({
           onDrag: (dragEvent) => {
             dragEvent.preventDefault();
-            const sizes = {
-              height: size.height + dragEvent.clientY - mouseDownEvent.clientY,
-              width: size.width + dragEvent.clientX - mouseDownEvent.clientX,
-            };
-            setSize(sizes);
+            ref.current!.style.height = `${
+              size.height + dragEvent.clientY - mouseDownEvent.clientY
+            }px`;
+            ref.current!.style.width = `${
+              size.width + dragEvent.clientX - mouseDownEvent.clientX
+            }px`;
+          },
+          onDrop: () => {
+            setSize({
+              height: Number(ref.current!.style.height.slice(0, -2)),
+              width: Number(ref.current!.style.width.slice(0, -2)),
+            });
           },
         });
       }
@@ -79,7 +93,7 @@ function Block(props: SlideObjectProps) {
       control.addEventListener("mousedown", onMouseDown);
       return () => control.removeEventListener("mousedown", onMouseDown);
     }
-  }, [[props.slide.selectObjects]]);
+  });
 
   return (
     <div
