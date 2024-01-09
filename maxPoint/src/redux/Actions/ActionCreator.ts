@@ -65,6 +65,13 @@ export const setSize = (size: { height: number; width: number }) => {
   };
 };
 
+export const setZIndex = (zIndex: number) => {
+  return {
+    payload: zIndex,
+    type: "SET_Z_INDEX",
+  }
+}
+
 export const CreateObject = (text: MainObjects) => {
   return {
     payload: text,

@@ -17,6 +17,7 @@ type Block = {
   id: string;
   position: Position;
   rotation?: number;
+  zIndex?: number;
 };
 
 type MainObjects = Text | Image | Primitive;

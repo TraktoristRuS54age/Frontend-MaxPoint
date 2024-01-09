@@ -51,6 +51,11 @@ export type SetSizeActionType = {
   };
 };
 
+export type SetZIndexActionType = {
+  type: "SET_Z_INDEX";
+  payload: number;
+}
+
 export type CreateObject = {
   type: "CREATE_OBJECT";
   payload: MainObjects;
@@ -110,6 +115,7 @@ export type ActionType =
   | UploadActionType
   | SetTextValueActionType
   | SetTextSizeActionType
+  | SetZIndexActionType
   | SetTextFontFamilyActionType
   | SetTextBoldActionType
   | SetTextFontStyleActionType
