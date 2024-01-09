@@ -11,22 +11,24 @@ const PhotoButton = () => {
         type="file"
         accept="Image/*"
         onChange={(event) => {
-          if (event.target.files === null) {
-            return;
-          }
-          const file = event.target.files[0];
-          if (!file) {
-            return;
-          }
           const reader = new FileReader();
-          reader.onload = (e) => {
+          let file: File;
+          if (event.target.files) {
+            file = event.target.files[0];
+            reader.readAsDataURL(event.target.files[0]);
+          }
+          reader.onload = function (e) {
             try {
+              if (typeof reader.result !== "string")
+                throw Error("invalid file type: " + typeof reader.result);
+              if (!file.type.includes("jpeg") && !file.type.includes("png")) {
+                throw Error("invalid file: " + file.type);
+              }
               CreateObject(newImage(e.target!.result as string));
             } catch (error) {
-              console.error(error);
+              alert(error);
             }
           };
-          reader.readAsDataURL(file);
         }}
         id="Photo"
         className={style.input_display}
