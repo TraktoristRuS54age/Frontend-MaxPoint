@@ -29,13 +29,14 @@ function getObject(data: BlockProps) {
 }
 
 function Block(props: SlideObjectProps) {
-  const { size, position, id } = props.data;
+  const { size, position, id, zIndex } = props.data;
   const { toggleArea, setPosition, setSize } = useAppActions();
   const styles: CSSProperties = {
     height: size.height,
     left: position.x,
     top: position.y,
     width: size.width,
+    zIndex: zIndex,
   };
 
   const { registerDndItem } = useDnDBlock();
@@ -43,7 +44,6 @@ function Block(props: SlideObjectProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // TODO: эту логику перемещения можно вынести в отдельный компонент, div, который сможет отрисовывать в себе любой контент
     const { onChangePosition, onChangeSize } = registerDndItem();
 
     const onMouseDown = (mouseDownEvent: MouseEvent) => {

@@ -7,10 +7,12 @@ import underline from "../../resources/headerButton/underline_48.png";
 import { useAppActions } from "../../redux/Actions/Actions";
 import { useAppSelector } from "../../redux/Reducer";
 import zalivka from "../../resources/headerButton/zalivka_48.png";
+import zindex from "../../resources/img/zindex.png";
 
 function Button() {
   const {
     SetTextSize,
+    setZIndex,
     ObjectDelete,
     SetTextFontFamily,
     SetTextBold,
@@ -28,14 +30,35 @@ function Button() {
   const ref = useRef<HTMLInputElement>(null);
 
   const [counter, setCounter] = useState(20);
+  const [zIndexCounter, setZIndexCounter] = useState(1);
 
   return (
     <>
       <div className={style.header_block_button}>
+        {selectedObject?.type === "text" ||
+        selectedObject?.type === "image" ||
+        selectedObject?.type === "primitive" ? (
+          <>
+            <img className={style.button_img} src={zindex} alt="zindex"></img>
+            <div style={{ margin: `0 10px` }}>
+              <input
+                type="number"
+                value={zIndexCounter}
+                style={{ width: `2.5rem` }}
+                onChange={(event) => {
+                  if (+event.target.value > -1 && +event.target.value < 100) {
+                    setZIndex(+event.target.value);
+                    setZIndexCounter(+event.target.value);
+                  }
+                }}
+              />
+            </div>
+          </>
+        ) : null}
         {selectedObject?.type === "text" ? (
           <>
             <p>Size:</p>
-            <div style={{ margin: `0 10px`}}>
+            <div style={{ margin: `0 10px`, overflow: "hiiden" }}>
               <input
                 type="number"
                 value={counter}
@@ -47,7 +70,7 @@ function Button() {
               />
             </div>
             <p>Font:</p>
-            <div style={{ margin: `0 10px`}}>
+            <div style={{ margin: `0 10px` }}>
               <select
                 defaultValue={"Arial"}
                 onChange={(event) => {

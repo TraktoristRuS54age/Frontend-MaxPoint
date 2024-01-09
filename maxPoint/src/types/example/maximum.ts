@@ -41,6 +41,7 @@ export const text = (): Text => {
       width: 110,
     },
     type: "text",
+    zIndex: 0,
   };
 };
 
@@ -60,6 +61,7 @@ export const image = (imageUrl: string): Image => {
       width: 100,
     },
     type: "image",
+    zIndex: 0,
   };
 };
 
@@ -80,6 +82,7 @@ export const triangle = (): Primitive => {
       width: 100,
     },
     type: "primitive",
+    zIndex: 0,
   };
 };
 
@@ -100,6 +103,7 @@ export const ellipse = (): Primitive => {
       width: 100,
     },
     type: "primitive",
+    zIndex: 0,
   };
 };
 
@@ -120,6 +124,7 @@ export const rectangle = (): Primitive => {
       width: 100,
     },
     type: "primitive",
+    zIndex: 0,
   };
 };
 

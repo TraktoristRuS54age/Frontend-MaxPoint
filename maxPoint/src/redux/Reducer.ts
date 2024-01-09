@@ -160,6 +160,12 @@ const objectsReducer = (state: Presentation, action: ActionType) => {
       return {
         ...state,
       };
+    case "SET_Z_INDEX":
+      selectedObject!.zIndex = action.payload;
+      return {
+        ...state,
+        slides: slides,
+      };
     case "SET_TEXT_FONT_FAMILY":
       if (selectedObject?.type === "text") {
         selectedObject!.data.fontFamily = action.payload;
@@ -294,6 +300,7 @@ const presentationReducer = (
     case "SET_SIZE":
     case "CREATE_OBJECT":
     case "SET_TEXT_SIZE":
+    case "SET_Z_INDEX":
     case "SET_TEXT_VALUE":
     case "SET_TEXT_FONT_FAMILY":
     case "SET_TEXT_BOLD":
