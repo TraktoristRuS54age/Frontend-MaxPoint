@@ -34,8 +34,8 @@ function Button() {
       <div className={style.header_block_button}>
         {selectedObject?.type === "text" ? (
           <>
-            <div>
-              Size:
+            <p>Size:</p>
+            <div style={{ margin: `0 10px`}}>
               <input
                 type="number"
                 value={counter}
@@ -46,8 +46,8 @@ function Button() {
                 }}
               />
             </div>
-            <div>
-              Font:
+            <p>Font:</p>
+            <div style={{ margin: `0 10px`}}>
               <select
                 defaultValue={"Arial"}
                 onChange={(event) => {
@@ -55,14 +55,15 @@ function Button() {
                 }}
               >
                 <option value="Arial">Arial</option>
-                <option value="Verdana">Verdana</option>
-                <option value="Tahoma">Tahoma</option>
-                <option value="Trebuchet MS">Trebuchet MS</option>
-                <option value="Times New Roman">Times New Roman</option>
+                <option value="Calibri">Calibri</option>
+                <option value="Candara">Cnadara</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
                 <option value="Georgia">Georgia</option>
-                <option value="Garamond">Garamond</option>
-                <option value="Courier New">Courier New</option>
-                <option value="Brush Script MT">Brush Script MT</option>
+                <option value="Palatino">Palatino</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Trebuchet MS">Trebuchet MS</option>
+                <option value="Webdings">Webdings</option>
+                <option value="Wingdings">Wingdings</option>
               </select>
             </div>
             <button

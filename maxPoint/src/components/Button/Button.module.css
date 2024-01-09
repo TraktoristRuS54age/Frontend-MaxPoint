@@ -1,5 +1,5 @@
 .header_block_button {
-    width: 490px;
+    width: 510px;
     margin: 0 10% 0 0;
     display: flex;
     align-items: flex-end;
@@ -46,4 +46,20 @@
     height: 25px;
     margin-left: 10px;
     border: none;
+}
+
+select {
+    background-color: transparent;
+    border-color: rgb(84, 84, 84);
+    border-width: 0 0 2px 0;
+    
+}
+
+select:focus {
+    border-color: #555;
+    outline: none;
+  }
+
+p {
+    color: black
 }
